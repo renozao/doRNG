@@ -417,6 +417,8 @@
 % add preamble from pkgmaker
 
 %%%% PKGMAKER COMMANDS %%%%%%
+\usepackage{xspace}
+
 % R
 \let\proglang=\textit
 \let\code=\texttt 
@@ -464,7 +466,7 @@
 \usepackage[minnames=1,maxnames=2]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 
-\bibliography{/tmp/tmp.bt4n7VsAvc/doRNG/REFERENCES}
+\bibliography{/tmp/tmp.vGJzKa3e2A/doRNG/REFERENCES}
 
 
 
@@ -528,7 +530,7 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 \normalfont
 \end{flushleft}
 \begin{verbatim}
-## [1] 1.190 2.506 3.834 4.677 5.571
+## [1] 1.539 2.357 3.499 4.583 5.172
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -973,9 +975,9 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{flushleft}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    19944    19944    19944    19944    19944
-##         19955    19964    19955    19964    19955
-## res2    19977    19986    19995    19986    19995
+## res1    23200    23200    23200    23200    23200
+##         23215    23224    23224    23215    23224
+## res2    23241    23252    23261    23241    23252
 \end{verbatim}
 \begin{flushleft}
 \ttfamily\noindent
@@ -1529,7 +1531,7 @@ CHANGES
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-R version 2.15.0 (2012-03-30)
+R version 2.15.1 (2012-06-22)
 Platform: i686-pc-linux-gnu (32-bit)
 
 locale:
@@ -1542,12 +1544,12 @@ attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] doRNG_1.4.4      pkgmaker_0.6.5   codetools_0.2-8  stringr_0.6      digest_0.5.2    
-[6] doParallel_1.0.1 iterators_1.0.6  foreach_1.4.0    knitr_0.6.1     
+[1] doRNG_1.4.4      pkgmaker_0.8     codetools_0.2-8  stringr_0.6      digest_0.5.2    
+[6] doParallel_1.0.1 iterators_1.0.6  foreach_1.4.0    knitr_0.6       
 
 loaded via a namespace (and not attached):
-[1] compiler_2.15.0 evaluate_0.4.2  formatR_0.4     highlight_0.3.1 parser_0.0-14  
-[6] plyr_1.7.1      Rcpp_0.9.10     tools_2.15.0    xtable_1.7-0   
+[1] compiler_2.15.1 evaluate_0.4.2  formatR_0.4     highlight_0.3.1 parser_0.0-14  
+[6] plyr_1.7.1      Rcpp_0.9.10     tools_2.15.1    xtable_1.7-0   
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
