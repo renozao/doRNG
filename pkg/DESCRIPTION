@@ -3,7 +3,7 @@ Type: Package
 Title: Generic Reproducible Parallel Backend for foreach
     Loops
 Version: 1.4.5
-Date: 2012-03-30
+Date: 2012-07-24
 Author: Renaud Gaujoux
 Maintainer: Renaud Gaujoux <renaud@cbio.uct.ac.za>
 Description: This package provides functions to perform
@@ -23,13 +23,16 @@ Depends:
     foreach,
     parallel,
     iterators,
-    pkgmaker (>= 0.6.4)
+    pkgmaker (>= 0.8)
 Suggests:
     doParallel,
     doMPI,
     doRedis,
+    rbenchmark,
+    RUnit,
+    devtools,
     knitr,
-    rbenchmark
+    bibtex
 Collate:
     'doRNG-package.R'
     'doRNG.R'
