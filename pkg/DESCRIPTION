@@ -2,7 +2,7 @@ Package: doRNG
 Type: Package
 Title: Generic Reproducible Parallel Backend for foreach
     Loops
-Version: 1.4.5
+Version: 1.4.6
 Date: 2012-07-24
 Author: Renaud Gaujoux
 Maintainer: Renaud Gaujoux <renaud@cbio.uct.ac.za>
@@ -23,7 +23,7 @@ Depends:
     foreach,
     parallel,
     iterators,
-    pkgmaker (>= 0.8)
+    pkgmaker (>= 0.8.14)
 Suggests:
     doParallel,
     doMPI,
