@@ -13,7 +13,7 @@
 \makeatother
 
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\definecolor{fgcolor}{rgb}{0.267, 0.267, 0.267}
+\definecolor{fgcolor}{rgb}{0.2, 0.2, 0.2}
 \newcommand{\hlnumber}[1]{\textcolor[rgb]{0,0,0}{#1}}%
 \newcommand{\hlfunctioncall}[1]{\textcolor[rgb]{0.501960784313725,0,0.329411764705882}{\textbf{#1}}}%
 \newcommand{\hlstring}[1]{\textcolor[rgb]{0.6,0.6,1}{#1}}%
@@ -27,360 +27,16 @@
 \newcommand{\hlpackage}[1]{\textcolor[rgb]{0.588235294117647,0.709803921568627,0.145098039215686}{#1}}%
 \newcommand{\hlslot}[1]{\textit{#1}}%
 \newcommand{\hlsymbol}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.266666666666667,0.266666666666667,0.266666666666667}{#1}}%
-
-\usepackage{color}%
- 
-\newsavebox{\hlnormalsizeboxclosebrace}%
-\newsavebox{\hlnormalsizeboxopenbrace}%
-\newsavebox{\hlnormalsizeboxbackslash}%
-\newsavebox{\hlnormalsizeboxlessthan}%
-\newsavebox{\hlnormalsizeboxgreaterthan}%
-\newsavebox{\hlnormalsizeboxdollar}%
-\newsavebox{\hlnormalsizeboxunderscore}%
-\newsavebox{\hlnormalsizeboxand}%
-\newsavebox{\hlnormalsizeboxhash}%
-\newsavebox{\hlnormalsizeboxat}%
-\newsavebox{\hlnormalsizeboxpercent}% 
-\newsavebox{\hlnormalsizeboxhat}%
-\newsavebox{\hlnormalsizeboxsinglequote}%
-\newsavebox{\hlnormalsizeboxbacktick}%
-
-\setbox\hlnormalsizeboxopenbrace=\hbox{\begin{normalsize}\verb.{.\end{normalsize}}%
-\setbox\hlnormalsizeboxclosebrace=\hbox{\begin{normalsize}\verb.}.\end{normalsize}}%
-\setbox\hlnormalsizeboxlessthan=\hbox{\begin{normalsize}\verb.<.\end{normalsize}}%
-\setbox\hlnormalsizeboxdollar=\hbox{\begin{normalsize}\verb.$.\end{normalsize}}%
-\setbox\hlnormalsizeboxunderscore=\hbox{\begin{normalsize}\verb._.\end{normalsize}}%
-\setbox\hlnormalsizeboxand=\hbox{\begin{normalsize}\verb.&.\end{normalsize}}%
-\setbox\hlnormalsizeboxhash=\hbox{\begin{normalsize}\verb.#.\end{normalsize}}%
-\setbox\hlnormalsizeboxat=\hbox{\begin{normalsize}\verb.@.\end{normalsize}}%
-\setbox\hlnormalsizeboxbackslash=\hbox{\begin{normalsize}\verb.\.\end{normalsize}}%
-\setbox\hlnormalsizeboxgreaterthan=\hbox{\begin{normalsize}\verb.>.\end{normalsize}}%
-\setbox\hlnormalsizeboxpercent=\hbox{\begin{normalsize}\verb.%.\end{normalsize}}%
-\setbox\hlnormalsizeboxhat=\hbox{\begin{normalsize}\verb.^.\end{normalsize}}%
-\setbox\hlnormalsizeboxsinglequote=\hbox{\begin{normalsize}\verb.'.\end{normalsize}}%
-\setbox\hlnormalsizeboxbacktick=\hbox{\begin{normalsize}\verb.`.\end{normalsize}}%
-\setbox\hlnormalsizeboxhat=\hbox{\begin{normalsize}\verb.^.\end{normalsize}}%
-
-
-
-\newsavebox{\hltinyboxclosebrace}%
-\newsavebox{\hltinyboxopenbrace}%
-\newsavebox{\hltinyboxbackslash}%
-\newsavebox{\hltinyboxlessthan}%
-\newsavebox{\hltinyboxgreaterthan}%
-\newsavebox{\hltinyboxdollar}%
-\newsavebox{\hltinyboxunderscore}%
-\newsavebox{\hltinyboxand}%
-\newsavebox{\hltinyboxhash}%
-\newsavebox{\hltinyboxat}%
-\newsavebox{\hltinyboxpercent}% 
-\newsavebox{\hltinyboxhat}%
-\newsavebox{\hltinyboxsinglequote}%
-\newsavebox{\hltinyboxbacktick}%
-
-\setbox\hltinyboxopenbrace=\hbox{\begin{tiny}\verb.{.\end{tiny}}%
-\setbox\hltinyboxclosebrace=\hbox{\begin{tiny}\verb.}.\end{tiny}}%
-\setbox\hltinyboxlessthan=\hbox{\begin{tiny}\verb.<.\end{tiny}}%
-\setbox\hltinyboxdollar=\hbox{\begin{tiny}\verb.$.\end{tiny}}%
-\setbox\hltinyboxunderscore=\hbox{\begin{tiny}\verb._.\end{tiny}}%
-\setbox\hltinyboxand=\hbox{\begin{tiny}\verb.&.\end{tiny}}%
-\setbox\hltinyboxhash=\hbox{\begin{tiny}\verb.#.\end{tiny}}%
-\setbox\hltinyboxat=\hbox{\begin{tiny}\verb.@.\end{tiny}}%
-\setbox\hltinyboxbackslash=\hbox{\begin{tiny}\verb.\.\end{tiny}}%
-\setbox\hltinyboxgreaterthan=\hbox{\begin{tiny}\verb.>.\end{tiny}}%
-\setbox\hltinyboxpercent=\hbox{\begin{tiny}\verb.%.\end{tiny}}%
-\setbox\hltinyboxhat=\hbox{\begin{tiny}\verb.^.\end{tiny}}%
-\setbox\hltinyboxsinglequote=\hbox{\begin{tiny}\verb.'.\end{tiny}}%
-\setbox\hltinyboxbacktick=\hbox{\begin{tiny}\verb.`.\end{tiny}}%
-\setbox\hltinyboxhat=\hbox{\begin{tiny}\verb.^.\end{tiny}}%
-
-
-
-\newsavebox{\hlscriptsizeboxclosebrace}%
-\newsavebox{\hlscriptsizeboxopenbrace}%
-\newsavebox{\hlscriptsizeboxbackslash}%
-\newsavebox{\hlscriptsizeboxlessthan}%
-\newsavebox{\hlscriptsizeboxgreaterthan}%
-\newsavebox{\hlscriptsizeboxdollar}%
-\newsavebox{\hlscriptsizeboxunderscore}%
-\newsavebox{\hlscriptsizeboxand}%
-\newsavebox{\hlscriptsizeboxhash}%
-\newsavebox{\hlscriptsizeboxat}%
-\newsavebox{\hlscriptsizeboxpercent}% 
-\newsavebox{\hlscriptsizeboxhat}%
-\newsavebox{\hlscriptsizeboxsinglequote}%
-\newsavebox{\hlscriptsizeboxbacktick}%
-
-\setbox\hlscriptsizeboxopenbrace=\hbox{\begin{scriptsize}\verb.{.\end{scriptsize}}%
-\setbox\hlscriptsizeboxclosebrace=\hbox{\begin{scriptsize}\verb.}.\end{scriptsize}}%
-\setbox\hlscriptsizeboxlessthan=\hbox{\begin{scriptsize}\verb.<.\end{scriptsize}}%
-\setbox\hlscriptsizeboxdollar=\hbox{\begin{scriptsize}\verb.$.\end{scriptsize}}%
-\setbox\hlscriptsizeboxunderscore=\hbox{\begin{scriptsize}\verb._.\end{scriptsize}}%
-\setbox\hlscriptsizeboxand=\hbox{\begin{scriptsize}\verb.&.\end{scriptsize}}%
-\setbox\hlscriptsizeboxhash=\hbox{\begin{scriptsize}\verb.#.\end{scriptsize}}%
-\setbox\hlscriptsizeboxat=\hbox{\begin{scriptsize}\verb.@.\end{scriptsize}}%
-\setbox\hlscriptsizeboxbackslash=\hbox{\begin{scriptsize}\verb.\.\end{scriptsize}}%
-\setbox\hlscriptsizeboxgreaterthan=\hbox{\begin{scriptsize}\verb.>.\end{scriptsize}}%
-\setbox\hlscriptsizeboxpercent=\hbox{\begin{scriptsize}\verb.%.\end{scriptsize}}%
-\setbox\hlscriptsizeboxhat=\hbox{\begin{scriptsize}\verb.^.\end{scriptsize}}%
-\setbox\hlscriptsizeboxsinglequote=\hbox{\begin{scriptsize}\verb.'.\end{scriptsize}}%
-\setbox\hlscriptsizeboxbacktick=\hbox{\begin{scriptsize}\verb.`.\end{scriptsize}}%
-\setbox\hlscriptsizeboxhat=\hbox{\begin{scriptsize}\verb.^.\end{scriptsize}}%
-
-
-
-\newsavebox{\hlfootnotesizeboxclosebrace}%
-\newsavebox{\hlfootnotesizeboxopenbrace}%
-\newsavebox{\hlfootnotesizeboxbackslash}%
-\newsavebox{\hlfootnotesizeboxlessthan}%
-\newsavebox{\hlfootnotesizeboxgreaterthan}%
-\newsavebox{\hlfootnotesizeboxdollar}%
-\newsavebox{\hlfootnotesizeboxunderscore}%
-\newsavebox{\hlfootnotesizeboxand}%
-\newsavebox{\hlfootnotesizeboxhash}%
-\newsavebox{\hlfootnotesizeboxat}%
-\newsavebox{\hlfootnotesizeboxpercent}% 
-\newsavebox{\hlfootnotesizeboxhat}%
-\newsavebox{\hlfootnotesizeboxsinglequote}%
-\newsavebox{\hlfootnotesizeboxbacktick}%
-
-\setbox\hlfootnotesizeboxopenbrace=\hbox{\begin{footnotesize}\verb.{.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxclosebrace=\hbox{\begin{footnotesize}\verb.}.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxlessthan=\hbox{\begin{footnotesize}\verb.<.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxdollar=\hbox{\begin{footnotesize}\verb.$.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxunderscore=\hbox{\begin{footnotesize}\verb._.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxand=\hbox{\begin{footnotesize}\verb.&.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxhash=\hbox{\begin{footnotesize}\verb.#.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxat=\hbox{\begin{footnotesize}\verb.@.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxbackslash=\hbox{\begin{footnotesize}\verb.\.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxgreaterthan=\hbox{\begin{footnotesize}\verb.>.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxpercent=\hbox{\begin{footnotesize}\verb.%.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxhat=\hbox{\begin{footnotesize}\verb.^.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxsinglequote=\hbox{\begin{footnotesize}\verb.'.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxbacktick=\hbox{\begin{footnotesize}\verb.`.\end{footnotesize}}%
-\setbox\hlfootnotesizeboxhat=\hbox{\begin{footnotesize}\verb.^.\end{footnotesize}}%
-
-
-
-\newsavebox{\hlsmallboxclosebrace}%
-\newsavebox{\hlsmallboxopenbrace}%
-\newsavebox{\hlsmallboxbackslash}%
-\newsavebox{\hlsmallboxlessthan}%
-\newsavebox{\hlsmallboxgreaterthan}%
-\newsavebox{\hlsmallboxdollar}%
-\newsavebox{\hlsmallboxunderscore}%
-\newsavebox{\hlsmallboxand}%
-\newsavebox{\hlsmallboxhash}%
-\newsavebox{\hlsmallboxat}%
-\newsavebox{\hlsmallboxpercent}% 
-\newsavebox{\hlsmallboxhat}%
-\newsavebox{\hlsmallboxsinglequote}%
-\newsavebox{\hlsmallboxbacktick}%
-
-\setbox\hlsmallboxopenbrace=\hbox{\begin{small}\verb.{.\end{small}}%
-\setbox\hlsmallboxclosebrace=\hbox{\begin{small}\verb.}.\end{small}}%
-\setbox\hlsmallboxlessthan=\hbox{\begin{small}\verb.<.\end{small}}%
-\setbox\hlsmallboxdollar=\hbox{\begin{small}\verb.$.\end{small}}%
-\setbox\hlsmallboxunderscore=\hbox{\begin{small}\verb._.\end{small}}%
-\setbox\hlsmallboxand=\hbox{\begin{small}\verb.&.\end{small}}%
-\setbox\hlsmallboxhash=\hbox{\begin{small}\verb.#.\end{small}}%
-\setbox\hlsmallboxat=\hbox{\begin{small}\verb.@.\end{small}}%
-\setbox\hlsmallboxbackslash=\hbox{\begin{small}\verb.\.\end{small}}%
-\setbox\hlsmallboxgreaterthan=\hbox{\begin{small}\verb.>.\end{small}}%
-\setbox\hlsmallboxpercent=\hbox{\begin{small}\verb.%.\end{small}}%
-\setbox\hlsmallboxhat=\hbox{\begin{small}\verb.^.\end{small}}%
-\setbox\hlsmallboxsinglequote=\hbox{\begin{small}\verb.'.\end{small}}%
-\setbox\hlsmallboxbacktick=\hbox{\begin{small}\verb.`.\end{small}}%
-\setbox\hlsmallboxhat=\hbox{\begin{small}\verb.^.\end{small}}%
-
-
-
-\newsavebox{\hllargeboxclosebrace}%
-\newsavebox{\hllargeboxopenbrace}%
-\newsavebox{\hllargeboxbackslash}%
-\newsavebox{\hllargeboxlessthan}%
-\newsavebox{\hllargeboxgreaterthan}%
-\newsavebox{\hllargeboxdollar}%
-\newsavebox{\hllargeboxunderscore}%
-\newsavebox{\hllargeboxand}%
-\newsavebox{\hllargeboxhash}%
-\newsavebox{\hllargeboxat}%
-\newsavebox{\hllargeboxpercent}% 
-\newsavebox{\hllargeboxhat}%
-\newsavebox{\hllargeboxsinglequote}%
-\newsavebox{\hllargeboxbacktick}%
-
-\setbox\hllargeboxopenbrace=\hbox{\begin{large}\verb.{.\end{large}}%
-\setbox\hllargeboxclosebrace=\hbox{\begin{large}\verb.}.\end{large}}%
-\setbox\hllargeboxlessthan=\hbox{\begin{large}\verb.<.\end{large}}%
-\setbox\hllargeboxdollar=\hbox{\begin{large}\verb.$.\end{large}}%
-\setbox\hllargeboxunderscore=\hbox{\begin{large}\verb._.\end{large}}%
-\setbox\hllargeboxand=\hbox{\begin{large}\verb.&.\end{large}}%
-\setbox\hllargeboxhash=\hbox{\begin{large}\verb.#.\end{large}}%
-\setbox\hllargeboxat=\hbox{\begin{large}\verb.@.\end{large}}%
-\setbox\hllargeboxbackslash=\hbox{\begin{large}\verb.\.\end{large}}%
-\setbox\hllargeboxgreaterthan=\hbox{\begin{large}\verb.>.\end{large}}%
-\setbox\hllargeboxpercent=\hbox{\begin{large}\verb.%.\end{large}}%
-\setbox\hllargeboxhat=\hbox{\begin{large}\verb.^.\end{large}}%
-\setbox\hllargeboxsinglequote=\hbox{\begin{large}\verb.'.\end{large}}%
-\setbox\hllargeboxbacktick=\hbox{\begin{large}\verb.`.\end{large}}%
-\setbox\hllargeboxhat=\hbox{\begin{large}\verb.^.\end{large}}%
-
-
-
-\newsavebox{\hlLargeboxclosebrace}%
-\newsavebox{\hlLargeboxopenbrace}%
-\newsavebox{\hlLargeboxbackslash}%
-\newsavebox{\hlLargeboxlessthan}%
-\newsavebox{\hlLargeboxgreaterthan}%
-\newsavebox{\hlLargeboxdollar}%
-\newsavebox{\hlLargeboxunderscore}%
-\newsavebox{\hlLargeboxand}%
-\newsavebox{\hlLargeboxhash}%
-\newsavebox{\hlLargeboxat}%
-\newsavebox{\hlLargeboxpercent}% 
-\newsavebox{\hlLargeboxhat}%
-\newsavebox{\hlLargeboxsinglequote}%
-\newsavebox{\hlLargeboxbacktick}%
-
-\setbox\hlLargeboxopenbrace=\hbox{\begin{Large}\verb.{.\end{Large}}%
-\setbox\hlLargeboxclosebrace=\hbox{\begin{Large}\verb.}.\end{Large}}%
-\setbox\hlLargeboxlessthan=\hbox{\begin{Large}\verb.<.\end{Large}}%
-\setbox\hlLargeboxdollar=\hbox{\begin{Large}\verb.$.\end{Large}}%
-\setbox\hlLargeboxunderscore=\hbox{\begin{Large}\verb._.\end{Large}}%
-\setbox\hlLargeboxand=\hbox{\begin{Large}\verb.&.\end{Large}}%
-\setbox\hlLargeboxhash=\hbox{\begin{Large}\verb.#.\end{Large}}%
-\setbox\hlLargeboxat=\hbox{\begin{Large}\verb.@.\end{Large}}%
-\setbox\hlLargeboxbackslash=\hbox{\begin{Large}\verb.\.\end{Large}}%
-\setbox\hlLargeboxgreaterthan=\hbox{\begin{Large}\verb.>.\end{Large}}%
-\setbox\hlLargeboxpercent=\hbox{\begin{Large}\verb.%.\end{Large}}%
-\setbox\hlLargeboxhat=\hbox{\begin{Large}\verb.^.\end{Large}}%
-\setbox\hlLargeboxsinglequote=\hbox{\begin{Large}\verb.'.\end{Large}}%
-\setbox\hlLargeboxbacktick=\hbox{\begin{Large}\verb.`.\end{Large}}%
-\setbox\hlLargeboxhat=\hbox{\begin{Large}\verb.^.\end{Large}}%
-
-
-
-\newsavebox{\hlLARGEboxclosebrace}%
-\newsavebox{\hlLARGEboxopenbrace}%
-\newsavebox{\hlLARGEboxbackslash}%
-\newsavebox{\hlLARGEboxlessthan}%
-\newsavebox{\hlLARGEboxgreaterthan}%
-\newsavebox{\hlLARGEboxdollar}%
-\newsavebox{\hlLARGEboxunderscore}%
-\newsavebox{\hlLARGEboxand}%
-\newsavebox{\hlLARGEboxhash}%
-\newsavebox{\hlLARGEboxat}%
-\newsavebox{\hlLARGEboxpercent}% 
-\newsavebox{\hlLARGEboxhat}%
-\newsavebox{\hlLARGEboxsinglequote}%
-\newsavebox{\hlLARGEboxbacktick}%
-
-\setbox\hlLARGEboxopenbrace=\hbox{\begin{LARGE}\verb.{.\end{LARGE}}%
-\setbox\hlLARGEboxclosebrace=\hbox{\begin{LARGE}\verb.}.\end{LARGE}}%
-\setbox\hlLARGEboxlessthan=\hbox{\begin{LARGE}\verb.<.\end{LARGE}}%
-\setbox\hlLARGEboxdollar=\hbox{\begin{LARGE}\verb.$.\end{LARGE}}%
-\setbox\hlLARGEboxunderscore=\hbox{\begin{LARGE}\verb._.\end{LARGE}}%
-\setbox\hlLARGEboxand=\hbox{\begin{LARGE}\verb.&.\end{LARGE}}%
-\setbox\hlLARGEboxhash=\hbox{\begin{LARGE}\verb.#.\end{LARGE}}%
-\setbox\hlLARGEboxat=\hbox{\begin{LARGE}\verb.@.\end{LARGE}}%
-\setbox\hlLARGEboxbackslash=\hbox{\begin{LARGE}\verb.\.\end{LARGE}}%
-\setbox\hlLARGEboxgreaterthan=\hbox{\begin{LARGE}\verb.>.\end{LARGE}}%
-\setbox\hlLARGEboxpercent=\hbox{\begin{LARGE}\verb.%.\end{LARGE}}%
-\setbox\hlLARGEboxhat=\hbox{\begin{LARGE}\verb.^.\end{LARGE}}%
-\setbox\hlLARGEboxsinglequote=\hbox{\begin{LARGE}\verb.'.\end{LARGE}}%
-\setbox\hlLARGEboxbacktick=\hbox{\begin{LARGE}\verb.`.\end{LARGE}}%
-\setbox\hlLARGEboxhat=\hbox{\begin{LARGE}\verb.^.\end{LARGE}}%
-
-
-
-\newsavebox{\hlhugeboxclosebrace}%
-\newsavebox{\hlhugeboxopenbrace}%
-\newsavebox{\hlhugeboxbackslash}%
-\newsavebox{\hlhugeboxlessthan}%
-\newsavebox{\hlhugeboxgreaterthan}%
-\newsavebox{\hlhugeboxdollar}%
-\newsavebox{\hlhugeboxunderscore}%
-\newsavebox{\hlhugeboxand}%
-\newsavebox{\hlhugeboxhash}%
-\newsavebox{\hlhugeboxat}%
-\newsavebox{\hlhugeboxpercent}% 
-\newsavebox{\hlhugeboxhat}%
-\newsavebox{\hlhugeboxsinglequote}%
-\newsavebox{\hlhugeboxbacktick}%
-
-\setbox\hlhugeboxopenbrace=\hbox{\begin{huge}\verb.{.\end{huge}}%
-\setbox\hlhugeboxclosebrace=\hbox{\begin{huge}\verb.}.\end{huge}}%
-\setbox\hlhugeboxlessthan=\hbox{\begin{huge}\verb.<.\end{huge}}%
-\setbox\hlhugeboxdollar=\hbox{\begin{huge}\verb.$.\end{huge}}%
-\setbox\hlhugeboxunderscore=\hbox{\begin{huge}\verb._.\end{huge}}%
-\setbox\hlhugeboxand=\hbox{\begin{huge}\verb.&.\end{huge}}%
-\setbox\hlhugeboxhash=\hbox{\begin{huge}\verb.#.\end{huge}}%
-\setbox\hlhugeboxat=\hbox{\begin{huge}\verb.@.\end{huge}}%
-\setbox\hlhugeboxbackslash=\hbox{\begin{huge}\verb.\.\end{huge}}%
-\setbox\hlhugeboxgreaterthan=\hbox{\begin{huge}\verb.>.\end{huge}}%
-\setbox\hlhugeboxpercent=\hbox{\begin{huge}\verb.%.\end{huge}}%
-\setbox\hlhugeboxhat=\hbox{\begin{huge}\verb.^.\end{huge}}%
-\setbox\hlhugeboxsinglequote=\hbox{\begin{huge}\verb.'.\end{huge}}%
-\setbox\hlhugeboxbacktick=\hbox{\begin{huge}\verb.`.\end{huge}}%
-\setbox\hlhugeboxhat=\hbox{\begin{huge}\verb.^.\end{huge}}%
-
-
-
-\newsavebox{\hlHugeboxclosebrace}%
-\newsavebox{\hlHugeboxopenbrace}%
-\newsavebox{\hlHugeboxbackslash}%
-\newsavebox{\hlHugeboxlessthan}%
-\newsavebox{\hlHugeboxgreaterthan}%
-\newsavebox{\hlHugeboxdollar}%
-\newsavebox{\hlHugeboxunderscore}%
-\newsavebox{\hlHugeboxand}%
-\newsavebox{\hlHugeboxhash}%
-\newsavebox{\hlHugeboxat}%
-\newsavebox{\hlHugeboxpercent}% 
-\newsavebox{\hlHugeboxhat}%
-\newsavebox{\hlHugeboxsinglequote}%
-\newsavebox{\hlHugeboxbacktick}%
-
-\setbox\hlHugeboxopenbrace=\hbox{\begin{Huge}\verb.{.\end{Huge}}%
-\setbox\hlHugeboxclosebrace=\hbox{\begin{Huge}\verb.}.\end{Huge}}%
-\setbox\hlHugeboxlessthan=\hbox{\begin{Huge}\verb.<.\end{Huge}}%
-\setbox\hlHugeboxdollar=\hbox{\begin{Huge}\verb.$.\end{Huge}}%
-\setbox\hlHugeboxunderscore=\hbox{\begin{Huge}\verb._.\end{Huge}}%
-\setbox\hlHugeboxand=\hbox{\begin{Huge}\verb.&.\end{Huge}}%
-\setbox\hlHugeboxhash=\hbox{\begin{Huge}\verb.#.\end{Huge}}%
-\setbox\hlHugeboxat=\hbox{\begin{Huge}\verb.@.\end{Huge}}%
-\setbox\hlHugeboxbackslash=\hbox{\begin{Huge}\verb.\.\end{Huge}}%
-\setbox\hlHugeboxgreaterthan=\hbox{\begin{Huge}\verb.>.\end{Huge}}%
-\setbox\hlHugeboxpercent=\hbox{\begin{Huge}\verb.%.\end{Huge}}%
-\setbox\hlHugeboxhat=\hbox{\begin{Huge}\verb.^.\end{Huge}}%
-\setbox\hlHugeboxsinglequote=\hbox{\begin{Huge}\verb.'.\end{Huge}}%
-\setbox\hlHugeboxbacktick=\hbox{\begin{Huge}\verb.`.\end{Huge}}%
-\setbox\hlHugeboxhat=\hbox{\begin{Huge}\verb.^.\end{Huge}}%
- 
-
-\def\urltilda{\kern -.15em\lower .7ex\hbox{\~{}}\kern .04em}%
-
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.16,0.16,1}{#1}}
-\newcommand{\hlesc}[1]{\textcolor[rgb]{1,0,1}{#1}}
-\newcommand{\hlstr}[1]{\textcolor[rgb]{1,0,0}{#1}}
-\newcommand{\hldstr}[1]{\textcolor[rgb]{0.51,0.51,0}{#1}}
-\newcommand{\hlslc}[1]{\textcolor[rgb]{0.51,0.51,0.51}{\it{#1}}}
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.51,0.51,0.51}{\it{#1}}}
-\newcommand{\hldir}[1]{\textcolor[rgb]{0,0.51,0}{#1}}
-\newcommand{\hlsym}[1]{\textcolor[rgb]{0,0,0}{#1}}
-\newcommand{\hlline}[1]{\textcolor[rgb]{0.33,0.33,0.33}{#1}}
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0,0,0}{\bf{#1}}}
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.51,0,0}{#1}}
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0,0,0}{\bf{#1}}}
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0,0,0.51}{#1}}
-
+\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.2,0.2,0.2}{#1}}%
 
 \usepackage{framed}
 \makeatletter
 \newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
  \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
  \colorbox{shadecolor}{##1}\hskip-\fboxsep
      % There is no \\@totalrightmargin, so:
@@ -388,12 +44,17 @@
  \MakeFramed {\advance\hsize-\width
    \@totalleftmargin\z@ \linewidth\hsize
    \@setminipage}}%
- {\par\unskip\endMakeFramed}
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
 \makeatother
 
 \definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
+\usepackage{alltt}
 \usepackage{Sweave}
 
 %\VignetteIndexEntry{Using the package doRNG}
@@ -466,7 +127,7 @@
 \usepackage[minnames=1,maxnames=2]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 
-\bibliography{/tmp/tmp.vGJzKa3e2A/doRNG/REFERENCES}
+\bibliography{/tmp/tmp.PrYM8XZuTJ/doRNG/REFERENCES}
 
 
 
@@ -482,7 +143,7 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.4.4}}
+{\small \Rpkg{doRNG} -- Version 1.4.7}}
 \author{Renaud Gaujoux}
 
 \begin{document}
@@ -506,31 +167,28 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }load{\ }and{\ }register{\ }parallel{\ }backend{\ }for{\ }multicore{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{library}\hlkeyword{(}\hlsymbol{doParallel}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# load and register parallel backend for multicore computations}
+\hlfunctioncall{library}(doParallel)
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: foreach}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: iterators}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: parallel}}\begin{alltt}
+cl <- \hlfunctioncall{makeCluster}(2)
+\hlfunctioncall{registerDoParallel}(cl)
+
+\hlcomment{# perform 5 tasks in parallel}
+x <- \hlfunctioncall{foreach}(i = 1:5) %dopar% \{
+    i + \hlfunctioncall{runif}(1)
+\}
+\hlfunctioncall{unlist}(x)
+\end{alltt}
 \begin{verbatim}
-## Loading required package: foreach
-## Loading required package: iterators
-## Loading required package: parallel
-\end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hlsymbol{cl}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{makeCluster}\hlkeyword{(}\hlnumber{2}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoParallel}\hlkeyword{(}\hlsymbol{cl}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }perform{\ }5{\ }tasks{\ }in{\ }parallel}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{x}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlsymbol{i}{\ }\hlkeyword{+}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{unlist}\hlkeyword{(}\hlsymbol{x}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
-\begin{verbatim}
-## [1] 1.539 2.357 3.499 4.583 5.172
+## [1] 1.269 2.853 3.022 4.844 5.846
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -546,16 +204,14 @@ be used to ensure that the separate computations are indeed statistically indepe
 In particular, standard \code{\%dopar\%} loops are not reproducible:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }with{\ }standard{\ }\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}:{\ }foreach{\ }loops{\ }are{\ }not{\ }reproducible}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlsymbol{res2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# with standard %dopar%: foreach loops are not reproducible}
+\hlfunctioncall{set.seed}(123)
+res <- \hlfunctioncall{foreach}(i=1:5) %dopar% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{set.seed}(123)
+res2 <- \hlfunctioncall{foreach}(i=1:5) %dopar% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{identical}(res, res2)
+\end{alltt}
 \begin{verbatim}
 ## [1] FALSE
 \end{verbatim}
@@ -588,31 +244,32 @@ Loops that use this operator are \emph{de facto} reproducible.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }load{\ }the{\ }doRNG{\ }package}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{library}\hlkeyword{(}\hlsymbol{doRNG}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
-\begin{verbatim}
-## Loading required package: methods
-## Loading required package: pkgmaker
-## Loading required package: digest
-## Loading required package: stringr
-## Loading required package: codetools
-\end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }using{\ }\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}:{\ }loops{\ }\usebox{\hlnormalsizeboxunderscore}are\usebox{\hlnormalsizeboxunderscore}{\ }reproducible}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlsymbol{res2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# load the doRNG package}
+\hlfunctioncall{library}(doRNG)
+\end{alltt}
+
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: methods}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: pkgmaker}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: digest}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: stringr}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: codetools}}
+
+{\ttfamily\noindent\itshape\textcolor{messagecolor}{\#\# Loading required package: rngtools}}\begin{alltt}
+
+\hlcomment{# using %dorng%: loops _are_ reproducible}
+\hlfunctioncall{set.seed}(123)
+res <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{set.seed}(123)
+res2 <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{identical}(res, res2)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -638,11 +295,9 @@ performs the following tasks:
   object:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{attr}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlstring{"{}rng"{}}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{attr}(res, \hlstring{"rng"})
+\end{alltt}
 \begin{verbatim}
 ## [[1]]
 ## [1]         407   642048078    81368183 -2093158836   506506973  1421492218 -1906381517
@@ -658,7 +313,6 @@ performs the following tasks:
 ## 
 ## [[5]]
 ## [1]         407 -1816009034  -580124020  1603250023   817712173   190009158  -706984535
-## 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -668,16 +322,14 @@ performs the following tasks:
 \subsection{Seeding computations}
 
 Sequences of random streams for \code{"L'Ecuyer-CMRG"} are generated
-using a 6-length integer seed:
+using a 6-length integer seed, e.g.,:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{nextRNGStream}\hlkeyword{(}\hlnumber{1}\hlkeyword{:}\hlnumber{6}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{nextRNGStream}(\hlfunctioncall{c}(407L, 1:6))
+\end{alltt}
 \begin{verbatim}
-## Error: invalid value of 'seed'
+## [1]         407  -447371532   542750874  -935969228  -269326340   701604884 -1748056907
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -697,18 +349,16 @@ ways of seeding reproducible loops.
   
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }use{\ }a{\ }single{\ }numeric{\ }as{\ }a{\ }seed}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{123}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{123}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{s}\hlkeyword{,}{\ }\hlsymbol{s2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# use a single numeric as a seed}
+s <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 123) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+s2 <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 123) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(s, s2)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -724,44 +374,38 @@ See \cref{sec:set_seed} for more details.
 The kind of Normal generator may also be passed in \code{.options.RNG}:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}\usebox{\hlnormalsizeboxhash}{\ }Pass{\ }the{\ }Normal{\ }RNG{\ }kind{\ }to{\ }use{\ }within{\ }the{\ }loop{\ }results{\ }are{\ }identical{\ }if{\ }not{\ }using{\ }the}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}\usebox{\hlnormalsizeboxhash}{\ }Normal{\ }kind{\ }in{\ }the{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{optsN}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{list}\hlkeyword{(}\hlnumber{123}\hlkeyword{,}{\ }\hlargument{normal.kind}{\ }\hlargument{=}{\ }\hlstring{"{}Ahrens"{}}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resN.U}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{optsN}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resN.U}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{## Pass the Normal RNG kind to use within the loop results are identical if not using the}
+\hlcomment{## Normal kind in the loop}
+optsN <- \hlfunctioncall{list}(123, normal.kind = \hlstring{"Ahrens"})
+resN.U <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = optsN) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(resN.U[1:5], res[1:5])
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Results{\ }are{\ }different{\ }if{\ }the{\ }Normal{\ }kind{\ }is{\ }used{\ }and{\ }is{\ }not{\ }the{\ }same}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resN}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{123}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resN1}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{optsN}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resN2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{optsN}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resN}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{resN1}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# Results are different if the Normal kind is used and is not the same}
+resN <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 123) %dorng% \{
+    \hlfunctioncall{rnorm}(3)
+\}
+resN1 <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = optsN) %dorng% \{
+    \hlfunctioncall{rnorm}(3)
+\}
+resN2 <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = optsN) %dorng% \{
+    \hlfunctioncall{rnorm}(3)
+\}
+\hlfunctioncall{identical}(resN[1:5], resN1[1:5])
+\end{alltt}
 \begin{verbatim}
 ## [1] FALSE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resN1}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{resN2}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{identical}(resN1[1:5], resN2[1:5])
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -772,15 +416,13 @@ The kind of Normal generator may also be passed in \code{.options.RNG}:
 for the first RNG stream may be passed via \code{options.RNG}: 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }use{\ }a{\ }6-length{\ }numeric}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{6}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{attr}\hlkeyword{(}\hlsymbol{s}\hlkeyword{,}{\ }\hlstring{"{}rng"{}}\hlkeyword{)}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{3}\hlkeyword{]}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# use a 6-length numeric}
+s <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 1:6) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{attr}(s, \hlstring{"rng"})[1:3]
+\end{alltt}
 \begin{verbatim}
 ## [[1]]
 ## [1] 407   1   2   3   4   5   6
@@ -790,7 +432,6 @@ for the first RNG stream may be passed via \code{options.RNG}:
 ## 
 ## [[3]]
 ## [1]         407   311773008 -1393648596   433058656  -545474683  2059732357   994549473
-## 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -802,16 +443,14 @@ the RNG kind is then always required to be the \code{"L'Ecuyer-CMRG"}, i.e.
 the first element of the seed must have unit 7 (e.g. 407 or 107).}:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }use{\ }a{\ }7-length{\ }numeric,{\ }used{\ }as{\ }first{\ }value{\ }for{\ }.Random.seed}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{seed}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{attr}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlstring{"{}rng"{}}\hlkeyword{)}\hlkeyword{[[}\hlnumber{2}\hlkeyword{]}\hlkeyword{]}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{seed}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{s}\hlkeyword{[}\hlnumber{1}\hlkeyword{:}\hlnumber{4}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res}\hlkeyword{[}\hlnumber{2}\hlkeyword{:}\hlnumber{5}\hlkeyword{]}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# use a 7-length numeric, used as first value for .Random.seed}
+seed <- \hlfunctioncall{attr}(res, \hlstring{"rng"})[[2]]
+s <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = seed) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(s[1:4], res[2:5])
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -829,46 +468,40 @@ details:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }reproduce{\ }previous{\ }\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{res}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{s}\hlkeyword{,}{\ }\hlsymbol{res}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# reproduce previous %dorng% loop}
+s <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = res) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(s, res)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}\usebox{\hlnormalsizeboxhash}{\ }use{\ }completely{\ }custom{\ }sequence{\ }of{\ }seeds{\ }(e.g.{\ }using{\ }RNG{\ }\usebox{\hlnormalsizeboxsinglequote}Marsaglia-Multicarry\usebox{\hlnormalsizeboxsinglequote}){\ }as{\ }a}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}\usebox{\hlnormalsizeboxhash}{\ }matrix}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{seedM}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{rbind}\hlkeyword{(}\hlfunctioncall{rep}\hlkeyword{(}\hlnumber{401}\hlkeyword{,}{\ }\hlnumber{5}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{mapply}\hlkeyword{(}\hlsymbol{rep}\hlkeyword{,}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlnumber{2}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{seedM}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{## use completely custom sequence of \hlfunctioncall{seeds} (e.g. using RNG \hlstring{'Marsaglia-Multicarry'}) as a}
+\hlcomment{## matrix}
+seedM <- \hlfunctioncall{rbind}(\hlfunctioncall{rep}(401, 5), \hlfunctioncall{mapply}(rep, 1:5, 2))
+seedM
+\end{alltt}
 \begin{verbatim}
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]  401  401  401  401  401
 ## [2,]    1    2    3    4    5
 ## [3,]    1    2    3    4    5
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hlsymbol{sM}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{seedM}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }same{\ }seeds{\ }passed{\ }as{\ }a{\ }list}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{seedL}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{lapply}\hlkeyword{(}\hlfunctioncall{seq}\hlkeyword{(}\hlfunctioncall{ncol}\hlkeyword{(}\hlsymbol{seedM}\hlkeyword{)}\hlkeyword{)}\hlkeyword{,}{\ }\hlkeyword{function}\hlkeyword{(}\hlformalargs{i}\hlkeyword{)}{\ }\hlsymbol{seedM}\hlkeyword{[}\hlkeyword{,}{\ }\hlsymbol{i}\hlkeyword{]}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{sL}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlsymbol{seedL}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{sL}\hlkeyword{,}{\ }\hlsymbol{sM}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+sM <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = seedM) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlcomment{# same seeds passed as a list}
+seedL <- \hlfunctioncall{lapply}(\hlfunctioncall{seq}(\hlfunctioncall{ncol}(seedM)), \hlfunctioncall{function}(i) seedM[, i])
+sL <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = seedL) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(sL, sM)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -886,32 +519,28 @@ it is important to note that the result depends on the current RNG kind
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }default{\ }RNG{\ }kind}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{RNGkind}\hlkeyword{(}\hlstring{"{}default"{}}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{def}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{123}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Marsaglia-Multicarry}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{RNGkind}\hlkeyword{(}\hlstring{"{}Marsaglia"{}}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{mars}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{123}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{def}\hlkeyword{,}{\ }\hlsymbol{mars}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# default RNG kind}
+\hlfunctioncall{RNGkind}(\hlstring{"default"})
+def <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 123) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+
+\hlcomment{# Marsaglia-Multicarry}
+\hlfunctioncall{RNGkind}(\hlstring{"Marsaglia"})
+mars <- \hlfunctioncall{foreach}(i = 1:5, .options.RNG = 123) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(def, mars)
+\end{alltt}
 \begin{verbatim}
 ## [1] FALSE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }revert{\ }to{\ }default{\ }RNG{\ }kind}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{RNGkind}\hlkeyword{(}\hlstring{"{}default"{}}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# revert to default RNG kind}
+\hlfunctioncall{RNGkind}(\hlstring{"default"})
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -937,54 +566,50 @@ The following code illustrates this feature using 2 or 3 workers.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }define{\ }a{\ }stochastic{\ }task{\ }to{\ }perform}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{task}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlkeyword{function}\hlkeyword{(}\hlkeyword{)}{\ }\hlfunctioncall{c}\hlkeyword{(}\hlargument{pid}\hlargument{=}\hlfunctioncall{Sys.getpid}\hlkeyword{(}\hlkeyword{)}\hlkeyword{,}{\ }\hlargument{val}\hlargument{=}\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }using{\ }the{\ }previously{\ }registered{\ }cluster{\ }with{\ }2{\ }workers}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}2workers}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.combine}\hlargument{=}\hlsymbol{rbind}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{task}\hlkeyword{(}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }stop{\ }cluster}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopCluster}\hlkeyword{(}\hlsymbol{cl}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Sequential{\ }computation}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoSEQ}\hlkeyword{(}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}seq}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.combine}\hlargument{=}\hlsymbol{rbind}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{task}\hlkeyword{(}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Using{\ }3{\ }workers}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{cl}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{makeCluster}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoParallel}\hlkeyword{(}\hlsymbol{cl}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}3workers}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{,}{\ }\hlargument{.combine}\hlargument{=}\hlsymbol{rbind}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{task}\hlkeyword{(}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }task{\ }schedule{\ }is{\ }different}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{pid}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{rbind}\hlkeyword{(}\hlargument{res1}\hlargument{=}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}seq}\hlkeyword{[}\hlkeyword{,}\hlnumber{1}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}2workers}\hlkeyword{[}\hlkeyword{,}\hlnumber{1}\hlkeyword{]}\hlkeyword{,}{\ }\hlargument{res2}\hlargument{=}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}3workers}\hlkeyword{[}\hlkeyword{,}\hlnumber{1}\hlkeyword{]}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{storage.mode}\hlkeyword{(}\hlsymbol{pid}\hlkeyword{)}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlstring{\usebox{\hlnormalsizeboxsinglequote}integer\usebox{\hlnormalsizeboxsinglequote}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{pid}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# define a stochastic task to perform}
+task <- \hlfunctioncall{function}() \hlfunctioncall{c}(pid=\hlfunctioncall{Sys.getpid}(), val=\hlfunctioncall{runif}(1))
+
+\hlcomment{# using the previously registered cluster with 2 workers}
+\hlfunctioncall{set.seed}(123)
+res_2workers <- \hlfunctioncall{foreach}(i=1:5, .combine=rbind) %dorng% \{
+	\hlfunctioncall{task}()
+\}
+\hlcomment{# stop cluster}
+\hlfunctioncall{stopCluster}(cl)
+
+\hlcomment{# Sequential computation}
+\hlfunctioncall{registerDoSEQ}()
+\hlfunctioncall{set.seed}(123)
+res_seq <- \hlfunctioncall{foreach}(i=1:5, .combine=rbind) %dorng% \{
+	\hlfunctioncall{task}() 
+\}
+\hlcomment{#}
+
+\hlcomment{# Using 3 workers}
+cl <- \hlfunctioncall{makeCluster}(3)
+\hlfunctioncall{registerDoParallel}(cl)
+\hlfunctioncall{set.seed}(123)
+res_3workers <- \hlfunctioncall{foreach}(i=1:5, .combine=rbind) %dorng% \{ 
+	\hlfunctioncall{task}()
+\}
+
+\hlcomment{# task schedule is different}
+pid <- \hlfunctioncall{rbind}(res1=res_seq[,1], res_2workers[,1], res2=res_3workers[,1])
+\hlfunctioncall{storage.mode}(pid) <- \hlstring{'integer'}
+pid
+\end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    23200    23200    23200    23200    23200
-##         23215    23224    23224    23215    23224
-## res2    23241    23252    23261    23241    23252
+## res1    30508    30508    30508    30508    30508
+##         30525    30534    30534    30525    30534
+## res2    30554    30563    30572    30554    30572
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }results{\ }are{\ }identical}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}seq}\hlkeyword{[}\hlkeyword{,}\hlnumber{2}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}2workers}\hlkeyword{[}\hlkeyword{,}\hlnumber{2}\hlkeyword{]}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxand}\usebox{\hlnormalsizeboxand}}{\ }\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}2workers}\hlkeyword{[}\hlkeyword{,}\hlnumber{2}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}3workers}\hlkeyword{[}\hlkeyword{,}\hlnumber{2}\hlkeyword{]}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# results are identical}
+\hlfunctioncall{identical}(res_seq[,2], res_2workers[,2]) && \hlfunctioncall{identical}(res_2workers[,2], res_3workers[,2])
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -1002,29 +627,25 @@ This is achieved by registering the \code{doRNG} backend:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoRNG}\hlkeyword{(}\hlnumber{123}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}dopar}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}dopar}\hlkeyword{,}{\ }\hlsymbol{res}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlfunctioncall{set.seed}(123)
+res <- \hlfunctioncall{foreach}(i = 1:5) %dorng% \{
+    \hlfunctioncall{runif}(3)
+\}
+
+\hlfunctioncall{registerDoRNG}(123)
+res_dopar <- \hlfunctioncall{foreach}(i = 1:5) %dopar% \{
+    \hlfunctioncall{runif}(3)
+\}
+\hlfunctioncall{identical}(res_dopar, res)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{attr}\hlkeyword{(}\hlsymbol{res\usebox{\hlnormalsizeboxunderscore}dopar}\hlkeyword{,}{\ }\hlstring{"{}rng"{}}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{attr}(res_dopar, \hlstring{"rng"})
+\end{alltt}
 \begin{verbatim}
 ## [[1]]
 ## [1]         407   642048078    81368183 -2093158836   506506973  1421492218 -1906381517
@@ -1040,7 +661,6 @@ This is achieved by registering the \code{doRNG} backend:
 ## 
 ## [[5]]
 ## [1]         407 -1816009034  -580124020  1603250023   817712173   190009158  -706984535
-## 
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1053,41 +673,35 @@ Sequences of multiple loops are reproducible, whether using the
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{456}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s1}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{s2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }the{\ }two{\ }loops{\ }do{\ }not{\ }use{\ }the{\ }same{\ }streams:{\ }different{\ }results}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{s1}\hlkeyword{,}{\ }\hlsymbol{s2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{set.seed}(456)
+s1 <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+s2 <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+\hlcomment{# the two loops do not use the same streams: different results}
+\hlfunctioncall{identical}(s1, s2)
+\end{alltt}
 \begin{verbatim}
 ## [1] FALSE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }but{\ }the{\ }sequence{\ }of{\ }loops{\ }is{\ }reproducible{\ }as{\ }a{\ }whole}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{set.seed}\hlkeyword{(}\hlnumber{456}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{r1}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{r2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{r1}\hlkeyword{,}{\ }\hlsymbol{s1}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxand}\usebox{\hlnormalsizeboxand}}{\ }\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{r2}\hlkeyword{,}{\ }\hlsymbol{s2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# but the sequence of loops is reproducible as a whole}
+\hlfunctioncall{set.seed}(456)
+r1 <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+r2 <- \hlfunctioncall{foreach}(i=1:5) %dorng% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{identical}(r1, s1) && \hlfunctioncall{identical}(r2, s2) 
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }one{\ }can{\ }equivalently{\ }register{\ }the{\ }doRNG{\ }backend{\ }and{\ }use{\ }\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoRNG}\hlkeyword{(}\hlnumber{456}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{r1}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{r2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}\hlargument{=}\hlnumber{1}\hlkeyword{:}\hlnumber{5}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}{\ }\hlfunctioncall{runif}\hlkeyword{(}\hlnumber{3}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{r1}\hlkeyword{,}{\ }\hlsymbol{s1}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxand}\usebox{\hlnormalsizeboxand}}{\ }\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{r2}\hlkeyword{,}{\ }\hlsymbol{s2}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# one can equivalently register the doRNG backend and use %dopar%}
+\hlfunctioncall{registerDoRNG}(456)
+r1 <- \hlfunctioncall{foreach}(i=1:5) %dopar% \{ \hlfunctioncall{runif}(3) \}
+r2 <- \hlfunctioncall{foreach}(i=1:5) %dopar% \{ \hlfunctioncall{runif}(3) \}
+\hlfunctioncall{identical}(r1, s1) && \hlfunctioncall{identical}(r2, s2)
+\end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
@@ -1106,43 +720,41 @@ in practice, where parallelised computations typically take several minutes.
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }load{\ }rbenchmark}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{library}\hlkeyword{(}\hlsymbol{rbenchmark}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }comparison{\ }is{\ }done{\ }on{\ }sequential{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoSEQ}\hlkeyword{(}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rPar}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlkeyword{function}\hlkeyword{(}\hlformalargs{n}\hlkeyword{,}{\ }\hlformalargs{s}{\ }\hleqformalargs{=}{\ }\hlnumber{0}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{Sys.sleep}\hlkeyword{(}\hlsymbol{s}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rRNG}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlkeyword{function}\hlkeyword{(}\hlformalargs{n}\hlkeyword{,}{\ }\hlformalargs{s}{\ }\hleqformalargs{=}{\ }\hlnumber{0}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{Sys.sleep}\hlkeyword{(}\hlsymbol{s}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }run{\ }benchmark}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{cmp}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{benchmark}\hlkeyword{(}\hlfunctioncall{rPar}\hlkeyword{(}\hlnumber{10}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rRNG}\hlkeyword{(}\hlnumber{10}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rPar}\hlkeyword{(}\hlnumber{50}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rRNG}\hlkeyword{(}\hlnumber{50}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rPar}\hlkeyword{(}\hlnumber{100}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rRNG}\hlkeyword{(}\hlnumber{100}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rPar}\hlkeyword{(}\hlnumber{10}\hlkeyword{,}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlnumber{0.1}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rRNG}\hlkeyword{(}\hlnumber{10}\hlkeyword{,}{\ }\hlnumber{0.1}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rPar}\hlkeyword{(}\hlnumber{100}\hlkeyword{,}{\ }\hlnumber{0.01}\hlkeyword{)}\hlkeyword{,}{\ }\hlfunctioncall{rRNG}\hlkeyword{(}\hlnumber{100}\hlkeyword{,}{\ }\hlnumber{0.01}\hlkeyword{)}\hlkeyword{,}{\ }\hlargument{replications}{\ }\hlargument{=}{\ }\hlnumber{50}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }order{\ }by{\ }increasing{\ }elapsed{\ }time}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{cmp}\hlkeyword{[}\hlfunctioncall{order}\hlkeyword{(}\hlsymbol{cmp}\hlkeyword{\usebox{\hlnormalsizeboxdollar}}\hlsymbol{elapsed}\hlkeyword{)}\hlkeyword{,}{\ }\hlkeyword{]}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# load rbenchmark}
+\hlfunctioncall{library}(rbenchmark)
+
+\hlcomment{# comparison is done on sequential computations}
+\hlfunctioncall{registerDoSEQ}()
+rPar <- \hlfunctioncall{function}(n, s = 0) \{
+    \hlfunctioncall{foreach}(i = 1:n) %dopar% \{
+        \hlfunctioncall{Sys.sleep}(s)
+    \}
+\}
+rRNG <- \hlfunctioncall{function}(n, s = 0) \{
+    \hlfunctioncall{foreach}(i = 1:n) %dorng% \{
+        \hlfunctioncall{Sys.sleep}(s)
+    \}
+\}
+
+\hlcomment{# run benchmark}
+cmp <- \hlfunctioncall{benchmark}(\hlfunctioncall{rPar}(10), \hlfunctioncall{rRNG}(10), \hlfunctioncall{rPar}(50), \hlfunctioncall{rRNG}(50), \hlfunctioncall{rPar}(100), \hlfunctioncall{rRNG}(100), \hlfunctioncall{rPar}(10, 0.1), 
+    \hlfunctioncall{rRNG}(10, 0.1), \hlfunctioncall{rPar}(100, 0.01), \hlfunctioncall{rRNG}(100, 0.01), replications = 50)
+\hlcomment{# order by increasing elapsed time}
+cmp[\hlfunctioncall{order}(cmp$elapsed), ]
+\end{alltt}
 \begin{verbatim}
 ##               test replications elapsed relative user.self sys.self user.child sys.child
-## 1         rPar(10)           50   0.539    1.000     0.536    0.004          0         0
-## 2         rRNG(10)           50   0.937    1.738     0.920    0.012          0         0
-## 3         rPar(50)           50   1.862    3.455     1.856    0.004          0         0
-## 4         rRNG(50)           50   3.221    5.976     3.040    0.008          0         0
-## 5        rPar(100)           50   3.768    6.991     3.608    0.004          0         0
-## 6        rRNG(100)           50   5.712   10.597     5.629    0.024          0         0
-## 7    rPar(10, 0.1)           50  50.744   94.145     0.680    0.004          0         0
-## 8    rRNG(10, 0.1)           50  51.188   94.968     1.100    0.024          0         0
-## 9  rPar(100, 0.01)           50  54.586  101.273     4.228    0.040          0         0
-## 10 rRNG(100, 0.01)           50  56.734  105.258     6.353    0.060          0         0
+## 1         rPar(10)           50   0.563    1.000     0.560    0.004          0         0
+## 2         rRNG(10)           50   1.011    1.796     0.988    0.020          0         0
+## 3         rPar(50)           50   2.004    3.560     1.956    0.000          0         0
+## 4         rRNG(50)           50   3.210    5.702     3.160    0.040          0         0
+## 5        rPar(100)           50   3.663    6.506     3.648    0.012          0         0
+## 6        rRNG(100)           50   5.918   10.512     5.889    0.020          0         0
+## 7    rPar(10, 0.1)           50  50.761   90.162     0.708    0.000          0         0
+## 8    rRNG(10, 0.1)           50  51.276   91.076     1.196    0.020          0         0
+## 9  rPar(100, 0.01)           50  54.710   97.176     4.404    0.024          0         0
+## 10 rRNG(100, 0.01)           50  57.125  101.465     6.769    0.060          0         0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1156,32 +768,24 @@ Nested and conditional foreach loops are currently not supported and generate an
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }nested{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{10}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\mbox{}
-\normalfont
-\end{flushleft}
-\begin{verbatim}
-## Error: nested/conditional foreach loops are not supported yet. See the package's vignette
-## for a work around.
-\end{verbatim}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }conditional{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlnumber{10}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{when}\hlkeyword{(}\hlsymbol{i}\hlkeyword{\usebox{\hlnormalsizeboxpercent}\usebox{\hlnormalsizeboxpercent}}\hlnumber{2}{\ }=={\ }\hlnumber{0}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\mbox{}
-\normalfont
-\end{flushleft}
-\begin{verbatim}
-## Error: nested/conditional foreach loops are not supported yet. See the package's vignette
-## for a work around.
-\end{verbatim}
-\end{kframe}
+\begin{alltt}
+\hlcomment{# nested loop}
+\hlfunctioncall{foreach}(i = 1:10) %:% \hlfunctioncall{foreach}(j = 1:i) %dorng% \{
+    \hlfunctioncall{rnorm}(1)
+\}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\textcolor{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\begin{alltt}
+
+\hlcomment{# conditional loop}
+\hlfunctioncall{foreach}(i = 1:10) %:% \hlfunctioncall{when}(i%%2 == 0) %dorng% \{
+    \hlfunctioncall{rnorm}(1)
+\}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\textcolor{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\end{kframe}
 \end{knitrout}
 
 
@@ -1197,42 +801,39 @@ for simple loops:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }doRNG{\ }must{\ }not{\ }be{\ }registered}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{registerDoParallel}\hlkeyword{(}\hlsymbol{cl}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }generate{\ }sequence{\ }of{\ }seeds{\ }of{\ }length{\ }the{\ }number{\ }of{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{n}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{10}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{p}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{5}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rng}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{RNGseq}\hlkeyword{(}\hlsymbol{n}{\ }\hlkeyword{*}{\ }\hlsymbol{p}\hlkeyword{,}{\ }\hlnumber{1234}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }run{\ }standard{\ }nested{\ }foreach{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{p}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{[}\hlkeyword{(}\hlsymbol{i}{\ }\hlkeyword{-}{\ }\hlnumber{1}\hlkeyword{)}{\ }\hlkeyword{*}{\ }\hlsymbol{p}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{p}\hlkeyword{]}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Compare{\ }against{\ }the{\ }equivalent{\ }sequential{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{p}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}do\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{rng}\hlkeyword{[[}\hlsymbol{k}\hlkeyword{]}\hlkeyword{]}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlsymbol{k}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlsymbol{res2}\hlkeyword{)}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# doRNG must not be registered}
+\hlfunctioncall{registerDoParallel}(cl)
+
+\hlcomment{# generate sequence of seeds of length the number of computations}
+n <- 10
+p <- 5
+rng <- \hlfunctioncall{RNGseq}(n * p, 1234)
+
+\hlcomment{# run standard nested foreach loop}
+res <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{foreach}(j = 1:p, r = rng[(i - 1) * p + 1:p]) %dopar% \{
+    
+    \hlcomment{# set RNG seed}
+    rngtools::\hlfunctioncall{setRNG}(r)
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# Compare against the equivalent sequential computations}
+k <- 1
+res2 <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{foreach}(j = 1:p) %do% \{
+    \hlcomment{# set seed}
+    rngtools::\hlfunctioncall{setRNG}(rng[[k]])
+    k <- k + 1
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(res, res2))
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1242,37 +843,34 @@ numbers of iterations performed in the inner loops:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }generate{\ }sequence{\ }of{\ }seeds{\ }of{\ }length{\ }the{\ }number{\ }of{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{n}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{10}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rng}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{RNGseq}\hlkeyword{(}\hlsymbol{n}{\ }\hlkeyword{*}{\ }\hlkeyword{(}\hlsymbol{n}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hlkeyword{)}\hlkeyword{/}\hlnumber{2}\hlkeyword{,}{\ }\hlnumber{1234}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }run{\ }standard{\ }nested{\ }foreach{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{[}\hlkeyword{(}\hlsymbol{i}{\ }\hlkeyword{-}{\ }\hlnumber{1}\hlkeyword{)}{\ }\hlkeyword{*}{\ }\hlsymbol{i}\hlkeyword{/}\hlnumber{2}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{]}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Compare{\ }against{\ }the{\ }equivalent{\ }sequential{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res2}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}do\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{rng}\hlkeyword{[[}\hlsymbol{k}\hlkeyword{]}\hlkeyword{]}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlsymbol{k}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{res}\hlkeyword{,}{\ }\hlsymbol{res2}\hlkeyword{)}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# generate sequence of seeds of length the number of computations}
+n <- 10
+rng <- \hlfunctioncall{RNGseq}(n * (n + 1)/2, 1234)
+
+\hlcomment{# run standard nested foreach loop}
+res <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{foreach}(j = 1:i, r = rng[(i - 1) * i/2 + 1:i]) %dopar% \{
+    
+    \hlcomment{# set RNG seed}
+    rngtools::\hlfunctioncall{setRNG}(r)
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# Compare against the equivalent sequential computations}
+k <- 1
+res2 <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{foreach}(j = 1:i) %do% \{
+    \hlcomment{# set seed}
+    rngtools::\hlfunctioncall{setRNG}(rng[[k]])
+    k <- k + 1
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(res, res2))
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1285,54 +883,52 @@ filter, but only on its index in the unconditional-unfolded loop:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }un-conditional{\ }single{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resAll}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{.options.RNG}{\ }\hlargument{=}{\ }\hlnumber{1234}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dorng\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }generate{\ }sequence{\ }of{\ }RNG}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rng}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{RNGseq}\hlkeyword{(}\hlsymbol{n}\hlkeyword{,}{\ }\hlnumber{1234}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }conditional{\ }loop:{\ }even{\ }iterations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resEven}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{when}\hlkeyword{(}\hlsymbol{i}\hlkeyword{\usebox{\hlnormalsizeboxpercent}\usebox{\hlnormalsizeboxpercent}}\hlnumber{2}{\ }=={\ }\hlnumber{0}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }conditional{\ }loop:{\ }odd{\ }iterations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resOdd}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{when}\hlkeyword{(}\hlsymbol{i}\hlkeyword{\usebox{\hlnormalsizeboxpercent}\usebox{\hlnormalsizeboxpercent}}\hlnumber{2}{\ }=={\ }\hlnumber{1}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }conditional{\ }loop:{\ }only{\ }first{\ }2{\ }and{\ }last{\ }2}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resFL}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{when}\hlkeyword{(}\hlsymbol{i}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}in\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{c}\hlkeyword{(}\hlnumber{1}\hlkeyword{,}{\ }\hlnumber{2}\hlkeyword{,}{\ }\hlsymbol{n}{\ }\hlkeyword{-}{\ }\hlnumber{1}\hlkeyword{,}{\ }\hlsymbol{n}\hlkeyword{)}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }compare{\ }results}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resAll}\hlkeyword{[}\hlfunctioncall{seq}\hlkeyword{(}\hlnumber{2}\hlkeyword{,}{\ }\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{by}{\ }\hlargument{=}{\ }\hlnumber{2}\hlkeyword{)}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{resEven}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resAll}\hlkeyword{[}\hlfunctioncall{seq}\hlkeyword{(}\hlnumber{1}\hlkeyword{,}{\ }\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{by}{\ }\hlargument{=}{\ }\hlnumber{2}\hlkeyword{)}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{resOdd}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resAll}\hlkeyword{[}\hlfunctioncall{c}\hlkeyword{(}\hlnumber{1}\hlkeyword{,}{\ }\hlnumber{2}\hlkeyword{,}{\ }\hlsymbol{n}{\ }\hlkeyword{-}{\ }\hlnumber{1}\hlkeyword{,}{\ }\hlsymbol{n}\hlkeyword{)}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{resFL}\hlkeyword{)}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+
+\hlcomment{# un-conditional single loop}
+resAll <- \hlfunctioncall{foreach}(i = 1:n, .options.RNG = 1234) %dorng% \{
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# generate sequence of RNG}
+rng <- \hlfunctioncall{RNGseq}(n, 1234)
+
+\hlcomment{# conditional loop: even iterations}
+resEven <- \hlfunctioncall{foreach}(i = 1:n, r = rng) %:% \hlfunctioncall{when}(i%%2 == 0) %dopar% \{
+    
+    \hlcomment{# set RNG seed}
+    rngtools::\hlfunctioncall{setRNG}(r)
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# conditional loop: odd iterations}
+resOdd <- \hlfunctioncall{foreach}(i = 1:n, r = rng) %:% \hlfunctioncall{when}(i%%2 == 1) %dopar% \{
+    
+    \hlcomment{# set RNG seed}
+    rngtools::\hlfunctioncall{setRNG}(r)
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# conditional loop: only first 2 and last 2}
+resFL <- \hlfunctioncall{foreach}(i = 1:n, r = rng) %:% \hlfunctioncall{when}(i %in% \hlfunctioncall{c}(1, 2, n - 1, n)) %dopar% \{
+    
+    \hlcomment{# set RNG seed}
+    rngtools::\hlfunctioncall{setRNG}(r)
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlcomment{# compare results}
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(resAll[\hlfunctioncall{seq}(2, n, by = 2)], resEven))
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(resAll[\hlfunctioncall{seq}(1, n, by = 2)], resOdd))
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(resAll[\hlfunctioncall{c}(1, 2, n - 1, n)], resFL))
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1344,37 +940,35 @@ example:
 
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }generate{\ }sequence{\ }of{\ }seeds{\ }of{\ }length{\ }the{\ }number{\ }of{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{n}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{10}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{rng}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{RNGseq}\hlkeyword{(}\hlsymbol{n}{\ }\hlkeyword{*}{\ }\hlkeyword{(}\hlsymbol{n}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hlkeyword{)}\hlkeyword{/}\hlnumber{2}\hlkeyword{,}{\ }\hlnumber{1234}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }run{\ }standard{\ }nested{\ }foreach{\ }loop}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{res}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{when}\hlkeyword{(}\hlsymbol{i}\hlkeyword{\usebox{\hlnormalsizeboxpercent}\usebox{\hlnormalsizeboxpercent}}\hlnumber{2}{\ }=={\ }\hlnumber{0}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{,}{\ }\hlargument{r}{\ }\hlargument{=}{\ }\hlsymbol{rng}\hlkeyword{[}\hlkeyword{(}\hlsymbol{i}{\ }\hlkeyword{-}{\ }\hlnumber{1}\hlkeyword{)}{\ }\hlkeyword{*}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlsymbol{i}\hlkeyword{/}\hlnumber{2}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{]}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}dopar\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }RNG{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{r}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }Compare{\ }against{\ }the{\ }equivalent{\ }sequential{\ }computations}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hlsymbol{resAll}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{i}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{n}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}:\usebox{\hlnormalsizeboxpercent}}{\ }\hlfunctioncall{foreach}\hlkeyword{(}\hlargument{j}{\ }\hlargument{=}{\ }\hlnumber{1}\hlkeyword{:}\hlsymbol{i}\hlkeyword{)}{\ }\hlkeyword{\usebox{\hlnormalsizeboxpercent}do\usebox{\hlnormalsizeboxpercent}}{\ }\hlkeyword{\usebox{\hlnormalsizeboxopenbrace}}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }set{\ }seed}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlpackage{doRNG}\hlkeyword{::}\hlfunctioncall{setRNG}\hlkeyword{(}\hlsymbol{rng}\hlkeyword{[[}\hlsymbol{k}\hlkeyword{]}\hlkeyword{]}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlsymbol{k}{\ }\hlassignement{\usebox{\hlnormalsizeboxlessthan}-}{\ }\hlsymbol{k}{\ }\hlkeyword{+}{\ }\hlnumber{1}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlcomment{\usebox{\hlnormalsizeboxhash}{\ }do{\ }your{\ }own{\ }computation{\ }...}\hspace*{\fill}\\
-\hlstd{}{\ }{\ }{\ }{\ }\hlfunctioncall{c}\hlkeyword{(}\hlsymbol{i}\hlkeyword{,}{\ }\hlsymbol{j}\hlkeyword{,}{\ }\hlfunctioncall{rnorm}\hlkeyword{(}\hlnumber{1}\hlkeyword{)}\hlkeyword{)}\hspace*{\fill}\\
-\hlstd{}\hlkeyword{\usebox{\hlnormalsizeboxclosebrace}}\hspace*{\fill}\\
-\hlstd{}\hspace*{\fill}\\
-\hlstd{}\hlfunctioncall{stopifnot}\hlkeyword{(}\hlfunctioncall{identical}\hlkeyword{(}\hlsymbol{resAll}\hlkeyword{[}\hlfunctioncall{seq}\hlkeyword{(}\hlnumber{2}\hlkeyword{,}{\ }\hlsymbol{n}\hlkeyword{,}{\ }\hlargument{by}{\ }\hlargument{=}{\ }\hlnumber{2}\hlkeyword{)}\hlkeyword{]}\hlkeyword{,}{\ }\hlsymbol{res}\hlkeyword{)}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlcomment{# generate sequence of seeds of length the number of computations}
+n <- 10
+rng <- \hlfunctioncall{RNGseq}(n * (n + 1)/2, 1234)
+
+\hlcomment{# run standard nested foreach loop}
+res <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{when}(i%%2 == 0) %:% \hlfunctioncall{foreach}(j = 1:i, r = rng[(i - 1) * i/2 + 1:i]) %dopar% 
+    \{
+        
+        \hlcomment{# set RNG seed}
+        rngtools::\hlfunctioncall{setRNG}(r)
+        
+        \hlcomment{# do your own computation ...}
+        \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+    \}
+
+\hlcomment{# Compare against the equivalent sequential computations}
+k <- 1
+resAll <- \hlfunctioncall{foreach}(i = 1:n) %:% \hlfunctioncall{foreach}(j = 1:i) %do% \{
+    \hlcomment{# set seed}
+    rngtools::\hlfunctioncall{setRNG}(rng[[k]])
+    k <- k + 1
+    
+    \hlcomment{# do your own computation ...}
+    \hlfunctioncall{c}(i, j, \hlfunctioncall{rnorm}(1))
+\}
+
+\hlfunctioncall{stopifnot}(\hlfunctioncall{identical}(resAll[\hlfunctioncall{seq}(2, n, by = 2)], res))
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1392,22 +986,18 @@ currently not supported (see \cref{sec:nested} for a work around).
 This behaviour can still be reproduced by setting:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{doRNGversion}\hlkeyword{(}\hlstring{"{}1.3"{}}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{doRNGversion}(\hlstring{"1.3"})
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
 To revert to the latest default behaviour:
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{doRNGversion}\hlkeyword{(}NULL\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{doRNGversion}(NULL)
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1517,11 +1107,9 @@ CHANGES
 \section*{Cleanup}
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{flushleft}
-\ttfamily\noindent
-\hlfunctioncall{stopCluster}\hlkeyword{(}\hlsymbol{cl}\hlkeyword{)}\mbox{}
-\normalfont
-\end{flushleft}
+\begin{alltt}
+\hlfunctioncall{stopCluster}(cl)
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 
@@ -1531,7 +1119,7 @@ CHANGES
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-R version 2.15.1 (2012-06-22)
+R version 2.15.2 (2012-10-26)
 Platform: i686-pc-linux-gnu (32-bit)
 
 locale:
@@ -1544,12 +1132,12 @@ attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] doRNG_1.4.4      pkgmaker_0.8     codetools_0.2-8  stringr_0.6      digest_0.5.2    
-[6] doParallel_1.0.1 iterators_1.0.6  foreach_1.4.0    knitr_0.6       
+ [1] doRNG_1.4.7      rngtools_1.0     pkgmaker_0.8.16  codetools_0.2-8  stringr_0.6.1   
+ [6] digest_0.5.2     doParallel_1.0.1 iterators_1.0.6  foreach_1.4.0    knitr_0.8       
 
 loaded via a namespace (and not attached):
-[1] compiler_2.15.1 evaluate_0.4.2  formatR_0.4     highlight_0.3.1 parser_0.0-14  
-[6] plyr_1.7.1      Rcpp_0.9.10     tools_2.15.1    xtable_1.7-0   
+[1] compiler_2.15.2 evaluate_0.4.2  formatR_0.6     plyr_1.7.1      tools_2.15.2   
+[6] xtable_1.7-0   
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

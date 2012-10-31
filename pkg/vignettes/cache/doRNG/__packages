@@ -1,5 +1,6 @@
 rbenchmark
 doRNG
+rngtools
 pkgmaker
 codetools
 stringr
