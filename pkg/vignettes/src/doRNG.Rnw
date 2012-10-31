@@ -156,9 +156,9 @@ attr(res, 'rng')
 \subsection{Seeding computations}
 
 Sequences of random streams for \code{"L'Ecuyer-CMRG"} are generated
-using a 6-length integer seed:
+using a 6-length integer seed, e.g.,:
 <<nextRNGstream>>=
-nextRNGStream(1:6)
+nextRNGStream(c(407L, 1:6))
 @
 
 However, the \code{\%dorng\%} operator provides alternative -- convenient --
@@ -431,7 +431,7 @@ rng <- RNGseq( n * p, 1234)
 res <- foreach(i=1:n) %:% foreach(j=1:p, r=rng[(i-1)*p + 1:p]) %dopar% {
     
 	# set RNG seed
-    doRNG::setRNG(r)
+    rngtools::setRNG(r)
 	
     # do your own computation ...
     c(i, j, rnorm(1))
@@ -441,7 +441,7 @@ res <- foreach(i=1:n) %:% foreach(j=1:p, r=rng[(i-1)*p + 1:p]) %dopar% {
 k <- 1
 res2 <- foreach(i=1:n) %:% foreach(j=1:p) %do%{
     # set seed
-    doRNG::setRNG(rng[[k]])
+	rngtools::setRNG(rng[[k]])
 	k <- k + 1
 	
     # do your own computation ...
@@ -463,7 +463,7 @@ rng <- RNGseq( n * (n+1) / 2, 1234)
 res <- foreach(i=1:n) %:% foreach(j=1:i, r=rng[(i-1)*i/2 + 1:i]) %dopar%{
 	
 	# set RNG seed
-	doRNG::setRNG(r)
+	rngtools::setRNG(r)
 	
 	# do your own computation ...
 	c(i, j, rnorm(1))
@@ -473,7 +473,7 @@ res <- foreach(i=1:n) %:% foreach(j=1:i, r=rng[(i-1)*i/2 + 1:i]) %dopar%{
 k <- 1
 res2 <- foreach(i=1:n) %:% foreach(j=1:i) %do%{
 	# set seed
-	doRNG::setRNG(rng[[k]])
+	rngtools::setRNG(rng[[k]])
 	k <- k + 1
 	
 	# do your own computation ...
@@ -504,7 +504,7 @@ rng <- RNGseq(n, 1234)
 resEven <- foreach(i=1:n, r=rng) %:% when(i %% 2 == 0) %dopar%{
 	
 	# set RNG seed
-	doRNG::setRNG(r)
+	rngtools::setRNG(r)
 	
 	# do your own computation ...
 	c(i, rnorm(1))
@@ -514,7 +514,7 @@ resEven <- foreach(i=1:n, r=rng) %:% when(i %% 2 == 0) %dopar%{
 resOdd <- foreach(i=1:n, r=rng) %:% when(i %% 2 == 1) %dopar%{
 	
 	# set RNG seed
-	doRNG::setRNG(r)
+	rngtools::setRNG(r)
 	
 	# do your own computation ...
 	c(i, rnorm(1))
@@ -524,7 +524,7 @@ resOdd <- foreach(i=1:n, r=rng) %:% when(i %% 2 == 1) %dopar%{
 resFL <- foreach(i=1:n, r=rng) %:% when(i %in% c(1,2,n-1,n)) %dopar%{
 	
 	# set RNG seed
-	doRNG::setRNG(r)
+	rngtools::setRNG(r)
 	
 	# do your own computation ...
 	c(i, rnorm(1))
@@ -551,7 +551,7 @@ rng <- RNGseq( n * (n+1) / 2, 1234)
 res <- foreach(i=1:n) %:% when(i %% 2 == 0) %:% foreach(j=1:i, r=rng[(i-1)*i/2 + 1:i]) %dopar%{
 	
 	# set RNG seed
-	doRNG::setRNG(r)
+	rngtools::setRNG(r)
 	
 	# do your own computation ...
 	c(i, j, rnorm(1))
@@ -561,7 +561,7 @@ res <- foreach(i=1:n) %:% when(i %% 2 == 0) %:% foreach(j=1:i, r=rng[(i-1)*i/2 +
 k <- 1
 resAll <- foreach(i=1:n) %:% foreach(j=1:i) %do%{
 	# set seed
-	doRNG::setRNG(rng[[k]])
+	rngtools::setRNG(rng[[k]])
 	k <- k + 1
 	
 	# do your own computation ...
