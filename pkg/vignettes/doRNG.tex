@@ -127,7 +127,7 @@
 \usepackage[minnames=1,maxnames=2]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 
-\bibliography{/tmp/tmp.PrYM8XZuTJ/doRNG/REFERENCES}
+\bibliography{/tmp/tmp.FsB5ZID5Yt/doRNG/REFERENCES}
 
 
 
@@ -143,7 +143,7 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.4.7}}
+{\small \Rpkg{doRNG} -- Version 1.5}}
 \author{Renaud Gaujoux}
 
 \begin{document}
@@ -188,7 +188,7 @@ x <- \hlfunctioncall{foreach}(i = 1:5) %dopar% \{
 \hlfunctioncall{unlist}(x)
 \end{alltt}
 \begin{verbatim}
-## [1] 1.269 2.853 3.022 4.844 5.846
+## [1] 1.703 2.694 3.313 4.540 5.440
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -602,9 +602,9 @@ pid
 \end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    30508    30508    30508    30508    30508
-##         30525    30534    30534    30525    30534
-## res2    30554    30563    30572    30554    30572
+## res1    22661    22661    22661    22661    22661
+##         22686    22695    22695    22686    22695
+## res2    22711    22720    22729    22720    22729
 \end{verbatim}
 \begin{alltt}
 \hlcomment{# results are identical}
@@ -1009,12 +1009,15 @@ To revert to the latest default behaviour:
 \begin{verbatim}
 
 *************************************************************************
-*                       Changes in version 1.4.2                        *
+*                       Changes in version 1.5                          *
 *************************************************************************
 
 CHANGES
-    o doRNG now depends on the package pkgmaker (>= 0.6.2)
+    o doRNG now depends on the package pkgmaker (>= 0.9)
     o improved vignette
+    o most of the general RNG utilities have been incorporated in a new
+    package called rngtools.
+    
 
 *************************************************************************
 *                       Changes in version 1.4.1                        *
@@ -1132,7 +1135,7 @@ attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
- [1] doRNG_1.4.7      rngtools_1.0     pkgmaker_0.8.16  codetools_0.2-8  stringr_0.6.1   
+ [1] doRNG_1.5        rngtools_1.0     pkgmaker_0.9.1   codetools_0.2-8  stringr_0.6.1   
  [6] digest_0.5.2     doParallel_1.0.1 iterators_1.0.6  foreach_1.4.0    knitr_0.8       
 
 loaded via a namespace (and not attached):

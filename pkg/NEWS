@@ -1,10 +1,13 @@
 *************************************************************************
-*                       Changes in version 1.4.2                        *
+*                       Changes in version 1.5                          *
 *************************************************************************
 
 CHANGES
-    o doRNG now depends on the package pkgmaker (>= 0.6.2)
+    o doRNG now depends on the package pkgmaker (>= 0.9)
     o improved vignette
+    o most of the general RNG utilities have been incorporated in a new
+    package called rngtools.
+    
 
 *************************************************************************
 *                       Changes in version 1.4.1                        *
