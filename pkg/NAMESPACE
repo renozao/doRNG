@@ -1,5 +1,4 @@
 export("%dorng%")
-export(doRNG)
 export(doRNGversion)
 export(registerDoRNG)
 importFrom(iterators,iter)

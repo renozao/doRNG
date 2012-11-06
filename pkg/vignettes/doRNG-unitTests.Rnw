@@ -17,21 +17,48 @@ authors <- packageDescription(pkg)$Author
 
 \usepackage[colorlinks]{hyperref}
 \author{\Sexpr{authors}}
-\title{\texttt{\Sexpr{pkg}}: Unit testing results\footnote{Vignette computed  on Mon Nov  5 11:03:20 2012}}
+\title{\texttt{\Sexpr{pkg}}: Unit testing results\footnote{Vignette computed  on Tue Nov  6 16:33:55 2012}}
 \date{\texttt{\Sexpr{pkg}} version \Sexpr{prettyVersion} as of \Sexpr{prettyDate}}
 \begin{document}
 \maketitle
 
+\section{Details}
 \begin{verbatim}
-RUNIT TEST PROTOCOL -- Mon Nov  5 11:03:20 2012 
+
+RUNIT TEST PROTOCOL -- Tue Nov  6 16:33:55 2012 
 *********************************************** 
 Number of test functions: 2 
+Number of deactivated test functions: 2 
 Number of errors: 0 
 Number of failures: 0 
 
  
 1 Test Suite : 
 package:doRNG - 2 test functions, 0 errors, 0 failures
+
+
+
+Details 
+*************************** 
+Test Suite: package:doRNG 
+Test function regexp: ^test. 
+Test file regexp: ^runit.*.[rR]$ 
+Involved directory: 
+/tmp/tmp.U1pqZP9Xsb/doRNG/unitTests 
+--------------------------- 
+Test file: /tmp/tmp.U1pqZP9Xsb/doRNG/unitTests/runit.doRepro.r 
+test.reproduce : DEACTIVATED, Development is not finished yet
+test.xapply : DEACTIVATED, Development is not finished yet
+--------------------------- 
+Test file: /tmp/tmp.U1pqZP9Xsb/doRNG/unitTests/runit.dorng.R 
+test.dorng: (78 checks) ... OK (12.24 seconds)
+test.registerDoRNG: (13 checks) ... OK (8.17 seconds)
+
+Total execution time
+***************************
+   user  system elapsed 
+  3.040   2.416  20.575 
+
 \end{verbatim}
 
 \section*{Session Information}
@@ -42,7 +69,7 @@ package:doRNG - 2 test functions, 0 errors, 0 failures
     parallel, stats, utils
   \item Other packages: codetools~0.2-8, digest~0.5.2, doMPI~0.1-5,
     doParallel~1.0.1, doRNG~1.5, foreach~1.4.0, iterators~1.0.6,
-    pkgmaker~0.9.1, Rmpi~0.6-1, rngtools~1.0, RUnit~0.4.26,
+    pkgmaker~0.9.2, Rmpi~0.6-1, rngtools~1.0, RUnit~0.4.26,
     stringr~0.6.1
   \item Loaded via a namespace (and not attached): compiler~2.15.2,
     plyr~1.7.1, xtable~1.7-0

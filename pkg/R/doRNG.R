@@ -100,9 +100,12 @@ doRNGseq <- function(n, seed=NULL, ...){
 	
 }
 
-#' Reproducible Parallel Foreach Backend
+#' Getting Information About doRNG Foreach Backend
 #' 
-#' \code{infoDoRNG} returns information about the doRNG backend.
+#' \code{infoDoRNG} returns information about the doRNG backend, e.g., version,
+#' number of workers.
+#' It is not meant to be called by the user.
+#' 
 #' 
 #' @param data a list of data used by the backend
 #' @param item the data item requested, as a character string 
@@ -111,10 +114,7 @@ doRNGseq <- function(n, seed=NULL, ...){
 #' @return \code{infoDoRNG} returns the requested info (usually as a character 
 #' string or a numeric value).
 #' 
-#' @export
-#' @name doRNG
-#' @aliases infoDoRNG
-#' @rdname doRNG
+#' @keywords internal
 #' @author Renaud Gaujoux
 #' 
 infoDoRNG <- function (data, item) 
@@ -126,15 +126,15 @@ infoDoRNG <- function (data, item)
 			, NULL)
 }
 
-##% \code{doRNG} implements the generic reproducible foreach backend. It should 
-##% not be called directly by the user.
-##% 
-##% @param obj a foreach description of the loop arguments
-##% @param ex the lopp expression
-##% @param envir the loop's evaluation environment
-##% @param data configuration data of the doRNG backend
-##% 
-##% @rdname doRNG
+#' \code{doRNG} implements the generic reproducible foreach backend. It should 
+#' not be called directly by the user.
+#' 
+#' @param obj a foreach description of the loop arguments
+#' @param ex the lopp expression
+#' @param envir the loop's evaluation environment
+#' @param data configuration data of the doRNG backend
+#' 
+#' @rdname infoDoRNG
 doRNG <- function (obj, ex, envir, data){
 		
 			
@@ -171,8 +171,10 @@ setDoBackend <- function(backend){
 	invisible(ob)
 }
 
-#' \code{\%dorng\%} provides an alternative operator \code{\%dopar\%}, that ensures reproducible 
-#' foreach loops.
+#' Reproducible Parallel Foreach Backend
+#' 
+#' \code{\%dorng\%} is a foreach operator that provides an alternative operator 
+#' \code{\%dopar\%}, which enable reproducible foreach loops to be performed.
 #' 
 #' @param obj a foreach object as returned by a call to \code{\link{foreach}}.
 #' @param ex the \code{R} expression to evaluate.
@@ -184,7 +186,6 @@ setDoBackend <- function(backend){
 #' @importFrom iterators iter
 #' @export 
 #' @rdname doRNG
-#' @aliases doRNG
 #' @usage obj \%dorng\% ex
 #' @seealso \code{\link{foreach}}, \code{\link[doParallel]{doParallel}}
 #' , \code{\link[doParallel]{registerDoParallel}}, \code{\link[doMPI]{doMPI}}
@@ -199,6 +200,24 @@ setDoBackend <- function(backend){
 #' set.seed(1234)
 #' s2 <- foreach(i=1:4) %dopar% { runif(1) }
 #' identical(s1, s2)
+#' 
+#' # single %dorng% loops are reproducible
+#' r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+#' r2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+#' identical(r1, r2)
+#' # the sequence os RNG seed is stored as an attribute
+#' attr(r1, 'rng')
+#' 
+#' # More examples can be found in demo `doRNG`
+#' \dontrun{
+#' demo('doRNG')
+#' }
+#' 
+#' @demo Some features of the %dorng% foreach operator 
+#' 
+#' library(doRNG)
+#' library(doParallel)
+#' registerDoParallel(cores=2)
 #' 
 #' # single %dorng% loops are reproducible
 #' r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
@@ -326,11 +345,16 @@ setDoBackend <- function(backend){
 	res
 }
 
+#' Registering doRNG for Persistent Reproducible Parallel Foreach Loops   
+#' 
 #' \code{registerDoRNG} registers the doRNG foreach backend.
-#' Subsequent \%dopar\% loops are actually performed using the previously 
-#' registered foreach backend, but the RNG is set, before each iteration, 
-#' with seeds, that generate a reproducible sequence of statistically 
-#' independent random streams.
+#' Subsequent \%dopar\% loops are then performed using the previously 
+#' registered foreach backend, but are internally performed as \code{\link{\%dorng\%}} loops,
+#' making them fully reproducible.
+#' 
+#' Briefly, the RNG is set, before each iteration, with seeds for L'Ecuyer's CMRG 
+#' that overall generate a reproducible sequence of statistically independent 
+#' random streams.
 #' 
 #' Note that (re-)registering a foreach backend other than doRNG, after a call 
 #' to \code{registerDoRNG} disables doRNG -- which then needs to be registered.
@@ -339,9 +363,8 @@ setDoBackend <- function(backend){
 #' @param once a logical to indicate if the RNG sequence should be seeded at the 
 #' beginning of each loop or only at the first loop. 
 #' 
+#' @seealso \code{\link{\%dorng\%}}
 #' @export
-#' @rdname doRNG
-#' 
 #' @examples 
 #' 
 #' library(doParallel)
