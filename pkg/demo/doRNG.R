@@ -37,7 +37,7 @@ stopCluster(cl)
 registerDoSEQ()
 
 # MPI cluster
-if( require(doMPI) ){
+library(doMPI)
 cl <- startMPIcluster(2)
 registerDoMPI(cl)
 
@@ -47,4 +47,3 @@ identical(s1, s2)
 
 closeCluster(cl)
 registerDoSEQ()
-}

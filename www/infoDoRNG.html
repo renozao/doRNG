@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>infoDoRNG. doRNG 1.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Renaud Gaujoux
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Getting Information About doRNG Foreach Backend</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='infoDoRNG.html'>infoDoRNG</a></span><span class="keyword">(</span><span class="symbol">data</span><span class="keyword">,</span> <span class="symbol">item</span><span class="keyword">)</span>
+
+<span class="functioncall"><a href='infoDoRNG.html'>doRNG</a></span><span class="keyword">(</span><span class="symbol">obj</span><span class="keyword">,</span> <span class="symbol">ex</span><span class="keyword">,</span> <span class="symbol">envir</span><span class="keyword">,</span> <span class="symbol">data</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>data</dt>
+      <dd>a list of data used by the backend</dd>
+      <dt>item</dt>
+      <dd>the data item requested, as a character
+  string (e.g. 'name', 'workers', 'version')</dd>
+      <dt>obj</dt>
+      <dd>a foreach description of the loop arguments</dd>
+      <dt>ex</dt>
+      <dd>the lopp expression</dd>
+      <dt>envir</dt>
+      <dd>the loop's evaluation environment</dd>
+      <dt>data</dt>
+      <dd>configuration data of the doRNG backend</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>infoDoRNG</code> returns the requested info (usually as a
+  character string or a numeric value).</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>infoDoRNG</code> returns information about the doRNG
+  backend, e.g., version, number of workers. It is not
+  meant to be called by the user.</p>
+  
+      <p><code>doRNG</code> implements the generic reproducible foreach
+  backend. It should not be called directly by the user.</p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>doRNG</li><li>infoDoRNG</li>
+    </ul>
+    <ul>
+      <li>internal</li>
+    </ul> -->
+      
+    
+    <h2>Author</h2>
+    
+  Renaud Gaujoux
+
+    
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

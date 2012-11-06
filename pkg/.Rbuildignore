@@ -6,3 +6,4 @@ vignettes/Rpackages\.bib
 vignettes/.*\.tex
 vignettes/vignette.mk
 ^makefile$
+^README.md$

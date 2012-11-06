@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>doRNGversion. doRNG 1.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Back Compatibility Option for doRNG</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='doRNGversion.html'>doRNGversion</a></span><span class="keyword">(</span><span class="symbol">x</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>version number to switch to, or missing to get
+  the currently active version number, or <code>NULL</code> to
+  reset to the default behaviour, i.e. of the latest
+  version.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a character string If <code>x</code> is missing this function
+  returns the version number from the current behaviour. If
+  <code>x</code> is specified, the function returns the old value
+  of the version number (invisible).</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Sets the behaviour of %dorng% foreach loops from a
+  given version number.</p>
+  
+    </div>
+
+    <div class="Behaviour changes in versions">
+      <h2>Behaviour changes in versions</h2>
+      
+      <p><span class='describe'> 1.4 The behaviour of <code>doRNGseed</code>,
+  and therefore of <code>%dorng%</code> loops, changed in the
+  case where the current RNG was L'Ecuyer-CMRG. Using
+  <code>set.seed</code> before a non-seeded loop used not to be
+  identical to seeding via <code>.options.RNG</code>. Another bug
+  was that non-seeded loops would share most of their RNG
+  seed!  </span></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>
+
+<span class="comment">## Seeding when current RNG is L'Ecuyer-CMRG</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>RNGkind</a></span><span class="keyword">(</span><span class="string">"L'Ecuyer"</span><span class="keyword">)</span>
+
+<span class="comment"># in version &gt;= 1.4 seeding behaviour changed to fix a bug</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>set.seed</a></span><span class="keyword">(</span><span class="number">123</span><span class="keyword">)</span>
+<span class="symbol">res</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">res2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stopifnot'>stopifnot</a></span><span class="keyword">(</span> <span class="keyword">!</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/attr'>attr</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="string">'rng'</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/attr'>attr</a></span><span class="keyword">(</span><span class="symbol">res2</span><span class="keyword">,</span> <span class="string">'rng'</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">)</span>
+<span class="symbol">res3</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">,</span> <span class="argument">.options.RNG</span><span class="argument">=</span><span class="number">123</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stopifnot'>stopifnot</a></span><span class="keyword">(</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="symbol">res3</span><span class="keyword">)</span> <span class="keyword">)</span>
+
+<span class="comment"># buggy behaviour in version &lt; 1.4</span>
+<span class="functioncall"><a href='doRNGversion.html'>doRNGversion</a></span><span class="keyword">(</span><span class="string">"1.3"</span><span class="keyword">)</span>
+<span class="symbol">res</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="symbol">res2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stopifnot'>stopifnot</a></span><span class="keyword">(</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/attr'>attr</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="string">'rng'</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">2</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">]</span><span class="keyword">,</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/attr'>attr</a></span><span class="keyword">(</span><span class="symbol">res2</span><span class="keyword">,</span> <span class="string">'rng'</span><span class="keyword">)</span><span class="keyword">[</span><span class="number">1</span><span class="keyword">:</span><span class="number">2</span><span class="keyword">]</span><span class="keyword">)</span> <span class="keyword">)</span>
+<span class="symbol">res3</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">,</span> <span class="argument">.options.RNG</span><span class="argument">=</span><span class="number">123</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stopifnot'>stopifnot</a></span><span class="keyword">(</span> <span class="keyword">!</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="symbol">res3</span><span class="keyword">)</span> <span class="keyword">)</span>
+
+<span class="comment"># restore default RNG</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>RNGkind</a></span><span class="keyword">(</span><span class="string">"default"</span><span class="keyword">)</span></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>doRNGversion</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

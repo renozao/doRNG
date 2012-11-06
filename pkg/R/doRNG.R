@@ -254,7 +254,7 @@ setDoBackend <- function(backend){
 #' registerDoSEQ()
 #' 
 #' # MPI cluster
-#' if( require(doMPI) ){
+#' library(doMPI)
 #' cl <- startMPIcluster(2)
 #' registerDoMPI(cl)
 #' 
@@ -264,7 +264,6 @@ setDoBackend <- function(backend){
 #' 
 #' closeCluster(cl)
 #' registerDoSEQ()
-#' }
 #' 
 #' 
 `%dorng%` <- function(obj, ex){

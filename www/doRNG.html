@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>%dorng%. doRNG 1.5</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Reproducible Parallel Foreach Backend</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="symbol">obj</span> <span class="keyword">%dorng%</span> <span class="symbol">ex</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>obj</dt>
+      <dd>a foreach object as returned by a call to
+  <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></code>.</dd>
+      <dt>ex</dt>
+      <dd>the <code>R</code> expression to evaluate.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>%dorng%</code> returns the result of the foreach loop.
+  See <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>%dopar%</a></code>. The whole sequence of RNG
+  seeds is stored in the result object as an attribute. Use
+  <code>attr(res, 'rng')</code> to retrieve it.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>%dorng%</code> is a foreach operator that provides an
+  alternative operator <code>%dopar%</code>, which enable
+  reproducible foreach loops to be performed.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/library'>library</a></span><span class="keyword">(</span><span class="symbol">doParallel</span><span class="keyword">)</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/doParallel/registerDoParallel'>registerDoParallel</a></span><span class="keyword">(</span><span class="argument">cores</span><span class="argument">=</span><span class="number">2</span><span class="keyword">)</span>
+
+<span class="comment"># standard %dopar% loops are _not_ reproducible</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>set.seed</a></span><span class="keyword">(</span><span class="number">1234</span><span class="keyword">)</span>
+<span class="symbol">s1</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">)</span> <span class="keyword">%dopar%</span> <span class="keyword">{</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">}</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>set.seed</a></span><span class="keyword">(</span><span class="number">1234</span><span class="keyword">)</span>
+<span class="symbol">s2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">)</span> <span class="keyword">%dopar%</span> <span class="keyword">{</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">}</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="symbol">s1</span><span class="keyword">,</span> <span class="symbol">s2</span><span class="keyword">)</span></div>
+<div class='output'>[1] FALSE
+</div>
+<div class='input'>
+<span class="comment"># single %dorng% loops are reproducible</span>
+<span class="symbol">r1</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">,</span> <span class="argument">.options.RNG</span><span class="argument">=</span><span class="number">1234</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="keyword">{</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">}</span>
+<span class="symbol">r2</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">4</span><span class="keyword">,</span> <span class="argument">.options.RNG</span><span class="argument">=</span><span class="number">1234</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="keyword">{</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span> <span class="keyword">}</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="symbol">r1</span><span class="keyword">,</span> <span class="symbol">r2</span><span class="keyword">)</span></div>
+<div class='output'>[1] TRUE
+</div>
+<div class='input'><span class="comment"># the sequence os RNG seed is stored as an attribute</span>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/attr'>attr</a></span><span class="keyword">(</span><span class="symbol">r1</span><span class="keyword">,</span> <span class="string">'rng'</span><span class="keyword">)</span></div>
+<div class='output'>[[1]]
+[1]         407  -305383241    69318028 -1161659107  -348804806 -1127582349  -343284712
+
+[[2]]
+[1]         407  1222430165 -1386318120  1144759979   748500427   690571908   329037778
+
+[[3]]
+[1]         407   215137210 -1421031558  1452323561 -2060097535   712279522  -278425444
+
+[[4]]
+[1]         407 -1017432992  1583835527  1997665660   821136125  1282044776  1045008570
+
+</div>
+<div class='input'>
+# More examples can be found in demo `doRNG`
+## <strong>Not run</strong>: 
+# demo('doRNG')
+# ## <strong>End(Not run)</strong>
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>%dorng%</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></code>,
+  <code><a href='http://www.inside-r.org/r-doc/doParallel/doParallel-package'>doParallel</a></code> ,
+  <code><a href='http://www.inside-r.org/r-doc/doParallel/registerDoParallel'>registerDoParallel</a></code>,
+  <code><a href='http://www.inside-r.org/r-doc/doMPI/doMPI-package'>doMPI</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
