@@ -53,6 +53,7 @@ library(foreach)
 #' ## Seeding when current RNG is L'Ecuyer-CMRG
 #' RNGkind("L'Ecuyer")
 #' 
+#' doRNGversion("1.4")
 #' # in version >= 1.4 seeding behaviour changed to fix a bug
 #' set.seed(123)
 #' res <- foreach(i=1:3) %dorng% runif(1)
@@ -71,6 +72,8 @@ library(foreach)
 #' 
 #' # restore default RNG  
 #' RNGkind("default")
+#' # restore to current doRNG version
+#' doRNGversion(NULL)
 #' 
 doRNGversion <- local({
 

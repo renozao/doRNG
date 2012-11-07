@@ -88,6 +88,7 @@
 <span class="comment">## Seeding when current RNG is L'Ecuyer-CMRG</span>
 <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>RNGkind</a></span><span class="keyword">(</span><span class="string">"L'Ecuyer"</span><span class="keyword">)</span>
 
+<span class="functioncall"><a href='doRNGversion.html'>doRNGversion</a></span><span class="keyword">(</span><span class="string">"1.4"</span><span class="keyword">)</span>
 <span class="comment"># in version &gt;= 1.4 seeding behaviour changed to fix a bug</span>
 <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>set.seed</a></span><span class="keyword">(</span><span class="number">123</span><span class="keyword">)</span>
 <span class="symbol">res</span> <span class="assignement">&lt;-</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></span><span class="keyword">(</span><span class="argument">i</span><span class="argument">=</span><span class="number">1</span><span class="keyword">:</span><span class="number">3</span><span class="keyword">)</span> <span class="keyword">%dorng%</span> <span class="functioncall"><a href='http://www.inside-r.org/r-doc/stats/Uniform'>runif</a></span><span class="keyword">(</span><span class="number">1</span><span class="keyword">)</span>
@@ -105,7 +106,9 @@
 <span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/stopifnot'>stopifnot</a></span><span class="keyword">(</span> <span class="keyword">!</span><span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/identical'>identical</a></span><span class="keyword">(</span><span class="symbol">res</span><span class="keyword">,</span> <span class="symbol">res3</span><span class="keyword">)</span> <span class="keyword">)</span>
 
 <span class="comment"># restore default RNG</span>
-<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>RNGkind</a></span><span class="keyword">(</span><span class="string">"default"</span><span class="keyword">)</span></div></pre>
+<span class="functioncall"><a href='http://www.inside-r.org/r-doc/base/Random'>RNGkind</a></span><span class="keyword">(</span><span class="string">"default"</span><span class="keyword">)</span>
+<span class="comment"># restore to current doRNG version</span>
+<span class="functioncall"><a href='doRNGversion.html'>doRNGversion</a></span><span class="keyword">(</span>NULL<span class="keyword">)</span></div></pre>
   </div>
   <div class="span4">
     <!-- <ul>
