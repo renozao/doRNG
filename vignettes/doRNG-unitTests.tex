@@ -1,0 +1,124 @@
+
+\documentclass[10pt]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+%\VignetteDepends{knitr}
+%\VignetteIndexEntry{doRNG-unitTests}
+%\VignetteCompiler{knitr}
+%\VignetteEngine{knitr::knitr}
+\usepackage{vmargin}
+\setmargrb{0.75in}{0.75in}{0.75in}{0.75in}
+
+
+
+
+\usepackage[colorlinks]{hyperref}
+\author{Renaud Gaujoux}
+\title{\texttt{doRNG}: Unit testing results\footnote{Vignette computed  on Mon Sep 23 14:30:09 2013}}
+\date{\texttt{doRNG} version 1.5.5 as of September 23, 2013}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+\maketitle
+
+\section{Details}
+\begin{verbatim}
+
+RUNIT TEST PROTOCOL -- Mon Sep 23 14:30:09 2013 
+*********************************************** 
+Number of test functions: 2 
+Number of deactivated test functions: 2 
+Number of errors: 0 
+Number of failures: 0 
+
+ 
+1 Test Suite : 
+package:doRNG - 2 test functions, 0 errors, 0 failures
+
+
+
+Details 
+*************************** 
+Test Suite: package:doRNG 
+Test function regexp: ^test. 
+Test file regexp: ^runit.*.[rR]$ 
+Involved directory: 
+/tmp/Rpkglib_3aca7115c4ca/doRNG/unitTests 
+--------------------------- 
+Test file: /tmp/Rpkglib_3aca7115c4ca/doRNG/unitTests/runit.doRepro.r 
+test.reproduce : DEACTIVATED, Development is not finished yet
+test.xapply : DEACTIVATED, Development is not finished yet
+--------------------------- 
+Test file: /tmp/Rpkglib_3aca7115c4ca/doRNG/unitTests/runit.dorng.R 
+test.dorng: (78 checks) ... OK (5.71 seconds)
+test.registerDoRNG: (13 checks) ... OK (3.04 seconds)
+
+Total execution time
+***************************
+   user  system elapsed 
+  2.504   2.096   8.867 
+
+\end{verbatim}
+
+\section*{Session Information}
+\begin{itemize}\raggedright
+  \item R version 3.0.1 (2013-05-16), \verb|x86_64-pc-linux-gnu|
+  \item Locale: \verb|LC_CTYPE=en_US.UTF-8|, \verb|LC_NUMERIC=C|, \verb|LC_TIME=en_US.UTF-8|, \verb|LC_COLLATE=en_US.UTF-8|, \verb|LC_MONETARY=en_US.UTF-8|, \verb|LC_MESSAGES=en_US.UTF-8|, \verb|LC_PAPER=C|, \verb|LC_NAME=C|, \verb|LC_ADDRESS=C|, \verb|LC_TELEPHONE=C|, \verb|LC_MEASUREMENT=en_US.UTF-8|, \verb|LC_IDENTIFICATION=C|
+  \item Base packages: base, datasets, graphics, grDevices, methods,
+    parallel, stats, utils
+  \item Other packages: doMPI~0.2, doParallel~1.0.3, doRNG~1.5.5,
+    foreach~1.4.1, iterators~1.0.6, pkgmaker~0.17.3, registry~0.2,
+    Rmpi~0.6-3, rngtools~1.2.3, RUnit~0.4.26
+  \item Loaded via a namespace (and not attached): codetools~0.2-8,
+    compiler~3.0.1, digest~0.6.3, stringr~0.6.2, tools~3.0.1,
+    xtable~1.7-1
+\end{itemize}
+
+\end{document}
+

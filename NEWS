@@ -1,0 +1,93 @@
+*************************************************************************
+*                       Changes in version 1.5                          *
+*************************************************************************
+
+CHANGES
+    o doRNG now depends on the package pkgmaker (>= 0.9)
+    o improved vignette
+    o most of the general RNG utilities have been incorporated in a new
+    package called rngtools.
+    
+
+*************************************************************************
+*                       Changes in version 1.4.1                        *
+*************************************************************************
+
+CHANGES
+    o when the current RNG was L'Ecuyer-CMRG, unseeded loops now use 
+    the current RNG stream as for the first stream in the RNG sequence 
+    and changes the current RNG to the next RNG stream of the last stream 
+    in the sequence. 
+
+BUG FIX
+    o fix error "'iter' not found" due to changes in foreach package 
+    dependencies -- that was announced by Rich Calaway.
+    o loops seeded with set.seed and .options.RNG were not reproducible
+    when current RNG was L'Ecuyer-CMRG (reported by Zhang Peng)
+    o separate unseeded loops were sharing most of their streams, 
+    when current RNG was L'Ecuyer-CMRG the RNG seed.
+    o nested/conditional loops were crashing with a bad error. 
+    They are still not supported but the error message is nicer and a 
+    work around has been added to the vignette (reported by Chanhee Yi 
+    and Zhang Peng).
+
+*************************************************************************
+*                       Changes in version 1.2.3                        *
+*************************************************************************
+
+BUG FIX
+    o fixed error when running a %dorng% loop on a fresh session, with no  
+    parallel backend registered.  
+
+CHANGES
+    o improved vignette
+    o added more unit tests
+    o changed the name of the RNG attribute on result of %dorng% looops 
+    from 'RNG' to 'rng'. It now contains the whole sequence of RNG seeds, 
+    instead of only the first one.
+    o RNGseq now accepts a list or a matrix describing the whole sequence 
+    of seeds. See vignette for more details.
+    o %dorng% loops can be seeded with a complete sequence of seeds passed 
+    as a list, a matrix, or an object with attribute 'rng', e.g. the 
+    results of %dorng% loops. See vignette for more details.
+    
+*************************************************************************
+*                       Changes in version 1.2.2                        *
+*************************************************************************
+
+BUG FIX
+    o separate %dorng% loops were using the same seed.
+
+NEW FEATURES
+    o add unit tests
+    o first seed is set as an attribute of the loop's result
+
+CHANGES
+    o function doRNGseed now returns the seed to use for the first 
+    iteration.
+    o RNGseq now change the current RNG state if called with no seed 
+    specific.  
+    
+DEFUNCT
+    o removed function CMRGseed
+
+*************************************************************************
+*                       Changes in version 1.2                          *
+*************************************************************************
+
+BUG FIX
+    o An error was thrown if using %dorng% loops before using any random
+    generator. Thanks to Eric Lehmann for reporting this.
+
+CHANGES
+    o add vignette
+    o use package doParallel in examples
+
+*************************************************************************
+*                       Changes in version 1.1                          *
+*************************************************************************
+
+CHANGES
+    o use R core RNG "L'Ecuyer-CMRG" and the parallel package, 
+    instead of the implementation provided by the rstream package.
+

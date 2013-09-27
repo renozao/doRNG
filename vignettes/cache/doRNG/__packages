@@ -1,0 +1,13 @@
+base
+codetools
+digest
+doParallel
+doRNG
+foreach
+iterators
+knitr
+pkgmaker
+rbenchmark
+registry
+rngtools
+stringr
