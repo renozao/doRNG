@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>registerDoRNG. doRNG 1.5.3</title>
+<title>registerDoRNG. doRNG 1.5.5</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -13,6 +13,9 @@
 <link href="css/highlight.css" rel="stylesheet">
 <!-- custom css -->
 <link href="css/staticdocs.css" rel="stylesheet">
+<!-- knitr files -->
+<script src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <!-- bootstrap javascript -->
 <script src="js/jquery.min.js"></script>
@@ -27,13 +30,13 @@
   </head>
 
   <body>
-    <div class="navbar">
+    <div class="navbar navbar-inverse">
   <div class="navbar-inner">
     <div class = "container">
-      <a class="brand" href="index.html">doRNG 1.5.3</a>
+      <a class="brand" href="index.html">doRNG 1.5.5</a>
       <div class="nav">
         <ul class="nav">
-        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+        <li><a href="PAGE-MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
        </ul>
    	  </div>
     </div>
@@ -49,6 +52,17 @@
 
 <div class="row">
   <div class="span8">
+    <div class="description">
+      <h2>Description</h2>
+      
+      <p><p><code>registerDoRNG</code> registers the doRNG foreach backend.
+  Subsequent %dopar% loops are then performed using the
+  previously registered foreach backend, but are internally
+  performed as <code><a href='doRNG.html'>%dorng%</a></code> loops, making them
+  fully reproducible.</p></p>
+  
+    </div>
+    
     <h2>Usage</h2>
     <pre>registerDoRNG(seed = NULL, once = TRUE)</pre>
     
@@ -63,17 +77,6 @@
   the first loop.</dd>
     </dl>
     
-    <div class="Description">
-      <h2>Description</h2>
-      
-      <p><code>registerDoRNG</code> registers the doRNG foreach backend.
-  Subsequent %dopar% loops are then performed using the
-  previously registered foreach backend, but are internally
-  performed as <code><a href='doRNG.html'>%dorng%</a></code> loops, making them
-  fully reproducible.</p>
-  
-    </div>
-
     <div class="Details">
       <h2>Details</h2>
       
@@ -89,44 +92,82 @@
     </div>
     
     <h2 id="examples">Examples</h2>
-    <pre class="examples"><div class='input'>library(doParallel)
-</div><div class='input'>cl <- makeCluster(2)
-</div><div class='input'>registerDoParallel(cl)
-</div><div class='input'></div><div class='input'># One can make reproducible loops using the %dorng% operator</div><div class='input'>r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
-</div><div class='input'># or convert %dopar% loops using registerDoRNG</div><div class='input'>registerDoRNG(1234)
-</div><div class='input'>r2 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>identical(r1, r2)
-</div>
-<div class='output'>[1] TRUE
-</div><div class='input'>stopCluster(cl)
-</div><div class='input'></div><div class='input'># Registering another foreach backend disables doRNG</div><div class='input'>cl <- makeCluster(3)
-</div><div class='input'>registerDoParallel(cl)
-</div><div class='input'>set.seed(1234)
-</div><div class='input'>s1 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>set.seed(1234)
-</div><div class='input'>s2 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>identical(s1, s2)
-</div>
-<div class='output'>[1] FALSE
-</div><div class='input'></div><div class='input'></div><div class='input'># doRNG is re-nabled by re-registering it</div><div class='input'>registerDoRNG()
-</div><div class='input'>set.seed(1234)
-</div><div class='input'>r3 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>identical(r2, r3)
-</div>
-<div class='output'>[1] TRUE
-</div><div class='input'># NB: the results are identical independently of the task scheduling</div><div class='input'># (r2 used 2 nodes, while r3 used 3 nodes)</div><div class='input'></div><div class='input'># argument `once=FALSE` reseeds doRNG's seed at the beginning of each loop</div><div class='input'>registerDoRNG(1234, once=FALSE)
-</div><div class='input'>r1 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>r2 <- foreach(i=1:4) %dopar% { runif(1) }
-</div><div class='input'>identical(r1, r2)
-</div>
-<div class='output'>[1] TRUE
-</div><div class='input'></div><div class='input'># Once doRNG is registered the seed can also be passed as an option to %dopar%</div><div class='input'>r1.2 <- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
-</div><div class='input'>r2.2 <- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
-</div><div class='input'>identical(r1.2, r2.2) && !identical(r1.2, r1)
-</div>
-<div class='output'>[1] TRUE
-</div><div class='input'></div><div class='input'></div><div class='input'>stopCluster(cl)
-</div></pre>
+    <pre><code class="r">
+library(doParallel)
+cl &lt;- makeCluster(2)
+registerDoParallel(cl)
+
+# One can make reproducible loops using the %dorng% operator
+r1 &lt;- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+# or convert %dopar% loops using registerDoRNG
+registerDoRNG(1234)
+r2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r1, r2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">stopCluster(cl)
+
+# Registering another foreach backend disables doRNG
+cl &lt;- makeCluster(3)
+registerDoParallel(cl)
+set.seed(1234)
+s1 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+set.seed(1234)
+s2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(s1, s2)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r">## Don&#39;t show: 
+ stopifnot(!identical(s1, s2)) 
+## End Don&#39;t show
+
+# doRNG is re-nabled by re-registering it
+registerDoRNG()
+set.seed(1234)
+r3 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r2, r3)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r"># NB: the results are identical independently of the task scheduling
+# (r2 used 2 nodes, while r3 used 3 nodes)
+
+# argument `once=FALSE` reseeds doRNG&#39;s seed at the beginning of each loop
+registerDoRNG(1234, once=FALSE)
+r1 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+r2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r1, r2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">
+# Once doRNG is registered the seed can also be passed as an option to %dopar%
+r1.2 &lt;- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+r2.2 &lt;- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+identical(r1.2, r2.2) &amp;&amp; !identical(r1.2, r1)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">## Don&#39;t show: 
+ stopifnot(identical(r1.2, r2.2) &amp;&amp; !identical(r1.2, r1)) 
+## End Don&#39;t show
+
+stopCluster(cl)
+
+</code></pre>
+
   </div>
   <div class="span4">
     <!-- <ul>
@@ -146,7 +187,7 @@
       
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
-<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+<p>Built by <a href="https://github.com/renozao/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
       </footer>
     </div>
   </body>
