@@ -144,8 +144,10 @@ test.dorng <- function(){
 		s.seq <- test_dopar("Sequential")
 		
 		# Multicore cluster
-		registerDoParallel(cores=2)
-		s <- test_dopar("Multicore", s.seq)
+    if( .Platform$OS.type != 'windows'){
+		  registerDoParallel(cores=2)
+		  s <- test_dopar("Multicore", s.seq)
+    }
 		
 		# SNOW-like cluster
 		cl <- makeCluster(2)
