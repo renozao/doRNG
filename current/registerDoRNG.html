@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>registerDoRNG. doRNG 1.5.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v2.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5.3</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Registering doRNG for Persistent Reproducible Parallel Foreach Loops</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre>registerDoRNG(seed = NULL, once = TRUE)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>seed</dt>
+      <dd>a numerical seed to use (as a single or
+  6-length numerical value)</dd>
+      <dt>once</dt>
+      <dd>a logical to indicate if the RNG sequence
+  should be seeded at the beginning of each loop or only at
+  the first loop.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>registerDoRNG</code> registers the doRNG foreach backend.
+  Subsequent %dopar% loops are then performed using the
+  previously registered foreach backend, but are internally
+  performed as <code><a href='doRNG.html'>%dorng%</a></code> loops, making them
+  fully reproducible.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Briefly, the RNG is set, before each iteration, with
+  seeds for L'Ecuyer's CMRG that overall generate a
+  reproducible sequence of statistically independent random
+  streams.</p>
+  
+      <p>Note that (re-)registering a foreach backend other than
+  doRNG, after a call to <code>registerDoRNG</code> disables
+  doRNG -- which then needs to be registered.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>library(doParallel)
+</div><div class='input'>cl <- makeCluster(2)
+</div><div class='input'>registerDoParallel(cl)
+</div><div class='input'></div><div class='input'># One can make reproducible loops using the %dorng% operator</div><div class='input'>r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'># or convert %dopar% loops using registerDoRNG</div><div class='input'>registerDoRNG(1234)
+</div><div class='input'>r2 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>identical(r1, r2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'>stopCluster(cl)
+</div><div class='input'></div><div class='input'># Registering another foreach backend disables doRNG</div><div class='input'>cl <- makeCluster(3)
+</div><div class='input'>registerDoParallel(cl)
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>s1 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>s2 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>identical(s1, s2)
+</div>
+<div class='output'>[1] FALSE
+</div><div class='input'></div><div class='input'></div><div class='input'># doRNG is re-nabled by re-registering it</div><div class='input'>registerDoRNG()
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>r3 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>identical(r2, r3)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'># NB: the results are identical independently of the task scheduling</div><div class='input'># (r2 used 2 nodes, while r3 used 3 nodes)</div><div class='input'></div><div class='input'># argument `once=FALSE` reseeds doRNG's seed at the beginning of each loop</div><div class='input'>registerDoRNG(1234, once=FALSE)
+</div><div class='input'>r1 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>r2 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>identical(r1, r2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'></div><div class='input'># Once doRNG is registered the seed can also be passed as an option to %dopar%</div><div class='input'>r1.2 <- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+</div><div class='input'>r2.2 <- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+</div><div class='input'>identical(r1.2, r2.2) && !identical(r1.2, r1)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'></div><div class='input'></div><div class='input'>stopCluster(cl)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>registerDoRNG</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='doRNG.html'>%dorng%</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

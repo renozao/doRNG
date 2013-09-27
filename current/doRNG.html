@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>%dorng%. doRNG 1.5.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v2.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5.3</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Reproducible Parallel Foreach Backend</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre>obj %dorng% ex</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>obj</dt>
+      <dd>a foreach object as returned by a call to
+  <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></code>.</dd>
+      <dt>ex</dt>
+      <dd>the <code>R</code> expression to evaluate.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p><code>%dorng%</code> returns the result of the foreach loop.
+  See <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>%dopar%</a></code>. The whole sequence of RNG
+  seeds is stored in the result object as an attribute. Use
+  <code>attr(res, 'rng')</code> to retrieve it.</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p><code>%dorng%</code> is a foreach operator that provides an
+  alternative operator <code>%dopar%</code>, which enable
+  reproducible foreach loops to be performed.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'>library(doParallel)
+</div><div class='input'>cl <- makeCluster(2)
+</div><div class='input'>registerDoParallel(cl)
+</div><div class='input'></div><div class='input'># standard %dopar% loops are _not_ reproducible</div><div class='input'>set.seed(1234)
+</div><div class='input'>s1 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>s2 <- foreach(i=1:4) %dopar% { runif(1) }
+</div><div class='input'>identical(s1, s2)
+</div>
+<div class='output'>[1] FALSE
+</div><div class='input'></div><div class='input'># single %dorng% loops are reproducible</div><div class='input'>r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>r2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>identical(r1, r2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'># the sequence os RNG seed is stored as an attribute</div><div class='input'>attr(r1, 'rng')
+</div>
+<div class='output'>[[1]]
+[1]         407  -305383241    69318028 -1161659107  -348804806 -1127582349  -343284712
+
+[[2]]
+[1]         407  1222430165 -1386318120  1144759979   748500427   690571908   329037778
+
+[[3]]
+[1]         407   215137210 -1421031558  1452323561 -2060097535   712279522  -278425444
+
+[[4]]
+[1]         407 -1017432992  1583835527  1997665660   821136125  1282044776  1045008570
+
+</div><div class='input'></div><div class='input'># stop cluster</div><div class='input'>stopCluster(cl)
+</div><div class='input'></div><div class='input'># More examples can be found in demo `doRNG`</div><div class='input'>## <strong>Not run</strong>: </div><div class='input'># demo('doRNG')</div><div class='input'># ## <strong>End(Not run)</strong></div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>%dorng%</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='http://www.inside-r.org/r-doc/foreach/foreach'>foreach</a></code>,
+  <code><a href='http://www.inside-r.org/r-doc/doParallel/doParallel-package'>doParallel</a></code> ,
+  <code><a href='http://www.inside-r.org/r-doc/doParallel/registerDoParallel'>registerDoParallel</a></code>,
+  <code><a href='http://www.inside-r.org/r-doc/doMPI/doMPI-package'>doMPI</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
