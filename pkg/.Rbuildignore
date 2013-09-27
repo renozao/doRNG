@@ -1,9 +1,0 @@
-\.project
-\.settings
-vignettes/figure$
-vignettes/cache$
-vignettes/Rpackages\.bib
-vignettes/.*\.tex
-vignettes/vignette.mk
-^makefile$
-^README.md$
