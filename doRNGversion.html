@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>doRNGversion. doRNG 1.5.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v2.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class = "container">
+      <a class="brand" href="index.html">doRNG 1.5.3</a>
+      <div class="nav">
+        <ul class="nav">
+        <li><a href="_MAN.html"><i class="icon-home icon-white"></i> Index</a></li>
+       </ul>
+   	  </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Back Compatibility Option for doRNG</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre>doRNGversion(x)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>x</dt>
+      <dd>version number to switch to, or missing to get
+  the currently active version number, or <code>NULL</code> to
+  reset to the default behaviour, i.e. of the latest
+  version.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+      
+      <p>a character string If <code>x</code> is missing this function
+  returns the version number from the current behaviour. If
+  <code>x</code> is specified, the function returns the old value
+  of the version number (invisible).</p>
+  
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+      
+      <p>Sets the behaviour of %dorng% foreach loops from a
+  given version number.</p>
+  
+    </div>
+
+    <div class="Behaviour changes in versions">
+      <h2>Behaviour changes in versions</h2>
+      
+      <p><ol>
+<li>1.4 The behaviour of <code>doRNGseed</code>,
+  and therefore of <code>%dorng%</code> loops, changed in the
+  case where the current RNG was L'Ecuyer-CMRG. Using
+  <code>set.seed</code> before a non-seeded loop used not to be
+  identical to seeding via <code>.options.RNG</code>. Another bug
+  was that non-seeded loops would share most of their RNG
+  seed!  </li>
+</ol></p>
+  
+      <p></p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'></div><div class='input'></div><div class='input'>## Seeding when current RNG is L'Ecuyer-CMRG</div><div class='input'>RNGkind("L'Ecuyer")
+</div><div class='input'></div><div class='input'>doRNGversion("1.4")
+</div><div class='input'># in version >= 1.4 seeding behaviour changed to fix a bug</div><div class='input'>set.seed(123)
+</div><div class='input'>res <- foreach(i=1:3) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>res2 <- foreach(i=1:3) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>stopifnot( !identical(attr(res, 'rng')[2:3], attr(res2, 'rng')[1:2]) )
+</div>
+<strong class='error'>Error in identical(attr(res, "rng")[2:3], attr(res2, "rng")[1:2]): object 'res' not found</strong><div class='input'>res3 <- foreach(i=1:3, .options.RNG=123) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>stopifnot( identical(res, res3) )
+</div>
+<strong class='error'>Error in identical(res, res3): object 'res' not found</strong><div class='input'></div><div class='input'># buggy behaviour in version < 1.4</div><div class='input'>doRNGversion("1.3")
+</div><div class='input'>res <- foreach(i=1:3) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>res2 <- foreach(i=1:3) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>stopifnot( identical(attr(res, 'rng')[2:3], attr(res2, 'rng')[1:2]) )
+</div>
+<strong class='error'>Error in identical(attr(res, "rng")[2:3], attr(res2, "rng")[1:2]): object 'res' not found</strong><div class='input'>res3 <- foreach(i=1:3, .options.RNG=123) %dorng% runif(1)
+</div>
+<strong class='error'>Error in summary.connection(connection): invalid connection</strong><div class='input'>stopifnot( !identical(res, res3) )
+</div>
+<strong class='error'>Error in identical(res, res3): object 'res' not found</strong><div class='input'></div><div class='input'># restore default RNG</div><div class='input'>RNGkind("default")
+</div><div class='input'># restore to current doRNG version</div><div class='input'>doRNGversion(NULL)
+</div></pre>
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>doRNGversion</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
