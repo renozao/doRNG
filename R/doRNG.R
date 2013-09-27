@@ -4,7 +4,7 @@
 # Creation: 17 Aug 2011
 ###############################################################################
 
-library(foreach)
+#library(foreach)
 
 # or-NULL operator (borrowed from Hadley Wickham)
 '%||%' <- function(x, y) if( !is.null(x) ) x else y
@@ -77,7 +77,7 @@ library(foreach)
 #' 
 doRNGversion <- local({
 
-	currentV <- "1.4" #as.character(packageVersion('doRNG')) 
+	currentV <- "1.5.3" #as.character(packageVersion('doRNG')) 
 	cache <- currentV
 	function(x){
 		if( missing(x) ) return(cache)
@@ -98,7 +98,7 @@ checkRNGversion <- function(x){
 doRNGseq <- function(n, seed=NULL, ...){
 	
 	# compute sequence using rngtools::RNGseq
-	library(rngtools)
+#	library(rngtools)
 	res <- RNGseq(n, seed, ..., version=if( checkRNGversion('1.4') >=0 ) 2 else 1)
 	
 }
@@ -125,7 +125,7 @@ infoDoRNG <- function (data, item)
 	switch(item
 			, workers = data$backend$info(data$backend$data, "workers")
 			, name = "doRNG"
-			, version = "doRNG 1.1" 
+			, version = "doRNG 1.5.3" 
 			, NULL)
 }
 
@@ -153,20 +153,28 @@ doRNG <- function (obj, ex, envir, data){
 			NULL
 	}
 	
-	data$nseed <- data$nseed + 1					
-	assign('data', data, pos=foreach:::.foreachGlobals)	
+#	data$nseed <- data$nseed + 1					
+#	assign('data', data, pos=foreach:::.foreachGlobals)	
 	
-	# directly register (temporarly) the computing backend
 	rngBackend <- getDoBackend()
+    # increment number of calls to doRNG
+    rngBackend$data$nseed <- rngBackend$data$nseed + 1
+    # directly register (temporarly) the computing backend
 	on.exit({setDoBackend(rngBackend)}, add=TRUE)
 	setDoBackend(rngBackend$data$backend)
 	do.call('%dorng%', list(obj, ex), envir=parent.frame())
 }
 
 ##% Get/Sets the registered foreach backend's data
-getDoBackend <- function(){	
-	c(foreach:::getDoPar()
-	, info= if( exists("info", where = foreach:::.foreachGlobals, inherits = FALSE) ) foreach:::.foreachGlobals$info else function(data, item) NULL)
+getDoBackend <- function(){
+    # one has to get the complete set of backend data from within the foreach Namespace
+    foreach_ns <- asNamespace('foreach')
+#    .foreachGlobals <- get('.foreachGlobals', foreach_ns)
+    .foreachGlobals <- ns_get('.foreachGlobals', foreach_ns)
+#    getDoPar <- get('getDoPar', foreach_ns)
+    getDoPar <- ns_get('getDoPar', foreach_ns)
+	c(getDoPar()
+	, info= if( exists("info", where = .foreachGlobals, inherits = FALSE) ) .foreachGlobals$info else function(data, item) NULL)
 }
 setDoBackend <- function(backend){
 	ob <- getDoBackend()
@@ -195,7 +203,8 @@ setDoBackend <- function(backend){
 #' @examples 
 #' 
 #' library(doParallel)
-#' registerDoParallel(cores=2)
+#' cl <- makeCluster(2)
+#' registerDoParallel(cl)
 #' 
 #' # standard %dopar% loops are _not_ reproducible
 #' set.seed(1234)
@@ -210,6 +219,9 @@ setDoBackend <- function(backend){
 #' identical(r1, r2)
 #' # the sequence os RNG seed is stored as an attribute
 #' attr(r1, 'rng')
+#' 
+#' # stop cluster
+#' stopCluster(cl)
 #' 
 #' # More examples can be found in demo `doRNG`
 #' \dontrun{
@@ -271,7 +283,7 @@ setDoBackend <- function(backend){
 #' 
 `%dorng%` <- function(obj, ex){
 	
-	library(rngtools)
+	#library(rngtools)
 	
 	# exit if nested or conditional loop
 	if( any(c('xforeach', 'filteredforeach') %in% class(obj)) )
@@ -279,7 +291,7 @@ setDoBackend <- function(backend){
 	
 	# if an RNG seed is provided then setup random streams 
 	# and add the list of RNGs to use as an iterated arguments for %dopar%
-	library(parallel)
+#	library(parallel)
 	obj$argnames <- c(obj$argnames, '.doRNG.stream')
 	it <- iter(obj)
 	argList <- as.list(it)
