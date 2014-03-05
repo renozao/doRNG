@@ -1,4 +1,15 @@
 *************************************************************************
+*                       Changes in version 1.6                          *
+*************************************************************************
+
+CHANGES
+    o doRNG now depends on the package pkgmaker (>= 0.20)
+    
+FIXES
+    o Check error due number of cores used. Now limited to 2 in examples,
+    vignette and unit test.
+
+*************************************************************************
 *                       Changes in version 1.5                          *
 *************************************************************************
 
