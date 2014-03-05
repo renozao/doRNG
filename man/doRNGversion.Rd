@@ -30,6 +30,10 @@
   seed! } }
 }
 \examples{
+\dontshow{# roxygen generated flag
+options(R_CHECK_RUNNING_EXAMPLES_=TRUE)
+}
+
 \dontshow{ registerDoSEQ() }
 
 ## Seeding when current RNG is L'Ecuyer-CMRG
