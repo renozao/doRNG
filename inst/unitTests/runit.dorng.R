@@ -181,7 +181,7 @@ test.registerDoRNG <- function(){
 	stopCluster(cl)
 	
 	# Registering another foreach backend disables doRNG
-	cl <- makeCluster(3)
+	cl <- makeCluster(2)
 	registerDoParallel(cl)
 	set.seed(1234)
 	s1 <- foreach(i=1:4) %dopar% { runif(1) }
