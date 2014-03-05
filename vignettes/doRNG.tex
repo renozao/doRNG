@@ -118,7 +118,7 @@
 \usepackage[minnames=1,maxnames=2,backend=bibtex]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 \bibliography{Rpackages}
-\bibliography{/tmp/Rpkglib_4960c112192/doRNG/REFERENCES}
+\bibliography{/tmp/Rpkglib_5bee6b6c676/doRNG/REFERENCES}
 
 
 
@@ -133,7 +133,7 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.5.5}}
+{\small \Rpkg{doRNG} -- Version 1.6}}
 \author{Renaud Gaujoux}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
@@ -175,7 +175,7 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 \hlkwd{unlist}\hlstd{(x)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.467 2.168 3.170 4.342 5.338
+## [1] 1.889 2.164 3.770 4.287 5.289
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -580,9 +580,9 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    18862    18862    18862    18862    18862
-##         18876    18885    18876    18876    18876
-## res2    18904    18914    18923    18904    18923
+## res1    24210    24210    24210    24210    24210
+##         24240    24251    24240    24240    24240
+## res2    24283    24303    24312    24312    24303
 \end{verbatim}
 \begin{alltt}
 \hlcom{# results are identical}
@@ -907,6 +907,7 @@ in practice, where parallelised computations typically take several minutes.
 \begin{alltt}
 \hlcom{# load rbenchmark}
 \hlkwd{library}\hlstd{(rbenchmark)}
+
 \hlcom{# comparison is done on sequential computations}
 \hlkwd{registerDoSEQ}\hlstd{()}
 \hlstd{rPar} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s} \hlstd{=} \hlnum{0}\hlstd{) \{}
@@ -919,6 +920,7 @@ in practice, where parallelised computations typically take several minutes.
         \hlkwd{Sys.sleep}\hlstd{(s)}
     \hlstd{\}}
 \hlstd{\}}
+
 \hlcom{# run benchmark}
 \hlstd{cmp} \hlkwb{<-} \hlkwd{benchmark}\hlstd{(}\hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),}
     \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwc{replications} \hlstd{=} \hlnum{5}\hlstd{)}
@@ -927,16 +929,16 @@ in practice, where parallelised computations typically take several minutes.
 \end{alltt}
 \begin{verbatim}
 ##              test replications elapsed relative user.self sys.self user.child sys.child
-## 1        rPar(10)            5   0.033    1.000     0.032    0.000          0         0
-## 2        rRNG(10)            5   0.062    1.879     0.060    0.000          0         0
-## 3        rPar(25)            5   0.063    1.909     0.064    0.000          0         0
-## 4        rRNG(25)            5   0.106    3.212     0.104    0.000          0         0
-## 5        rPar(50)            5   0.119    3.606     0.116    0.000          0         0
-## 6        rRNG(50)            5   0.185    5.606     0.184    0.000          0         0
-## 9  rPar(10, 0.05)            5   2.624   79.515     0.116    0.004          0         0
-## 10 rRNG(10, 0.05)            5   2.681   81.242     0.176    0.000          0         0
-## 7  rPar(50, 0.01)            5   2.994   90.727     0.460    0.008          0         0
-## 8  rRNG(50, 0.01)            5   3.157   95.667     0.616    0.016          0         0
+## 1        rPar(10)            5   0.068    1.000     0.067    0.000          0         0
+## 3        rPar(25)            5   0.119    1.750     0.119    0.000          0         0
+## 2        rRNG(10)            5   0.127    1.868     0.121    0.004          0         0
+## 4        rRNG(25)            5   0.221    3.250     0.209    0.004          0         0
+## 5        rPar(50)            5   0.239    3.515     0.239    0.000          0         0
+## 6        rRNG(50)            5   0.376    5.529     0.366    0.000          0         0
+## 9  rPar(10, 0.05)            5   2.578   37.912     0.074    0.000          0         0
+## 10 rRNG(10, 0.05)            5   2.669   39.250     0.149    0.004          0         0
+## 7  rPar(50, 0.01)            5   2.790   41.029     0.274    0.000          0         0
+## 8  rRNG(50, 0.01)            5   2.900   42.647     0.381    0.004          0         0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -976,6 +978,17 @@ To revert to the latest default behaviour:
 
 {\scriptsize
 \begin{verbatim}
+*************************************************************************
+*                       Changes in version 1.6                          *
+*************************************************************************
+
+CHANGES
+    o doRNG now depends on the package pkgmaker (>= 0.20)
+    
+FIXES
+    o Check error due number of cores used. Now limited to 2 in examples,
+    vignette and unit test.
+
 *************************************************************************
 *                       Changes in version 1.5                          *
 *************************************************************************
@@ -1102,8 +1115,8 @@ attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] doRNG_1.5.5      rngtools_1.2.3   doParallel_1.0.8 iterators_1.0.6  foreach_1.4.1   
-[6] pkgmaker_0.20    registry_0.2     knitr_1.5       
+[1] rbenchmark_1.0.0 doRNG_1.6        rngtools_1.2.3   doParallel_1.0.8 iterators_1.0.6 
+[6] foreach_1.4.1    pkgmaker_0.20    registry_0.2     knitr_1.5       
 
 loaded via a namespace (and not attached):
 [1] codetools_0.2-8 compiler_3.0.2  digest_0.6.4    evaluate_0.5.1  formatR_0.10   
