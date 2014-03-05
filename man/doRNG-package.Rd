@@ -21,6 +21,10 @@
   yes\cr }
 }
 \examples{
+\dontshow{# roxygen generated flag
+options(R_CHECK_RUNNING_EXAMPLES_=TRUE)
+}
+
 # register parallel backend
 library(doParallel)
 cl <- makeCluster(2)

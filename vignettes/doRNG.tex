@@ -118,7 +118,7 @@
 \usepackage[minnames=1,maxnames=2,backend=bibtex]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 \bibliography{Rpackages}
-\bibliography{/tmp/Rpkglib_3aca7115c4ca/doRNG/REFERENCES}
+\bibliography{/tmp/Rpkglib_5bee6b6c676/doRNG/REFERENCES}
 
 
 
@@ -133,7 +133,7 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.5.5}}
+{\small \Rpkg{doRNG} -- Version 1.6}}
 \author{Renaud Gaujoux}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 
@@ -167,6 +167,7 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 {\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: foreach\\\#\# Loading required package: iterators\\\#\# Loading required package: parallel}}\begin{alltt}
 \hlstd{cl} \hlkwb{<-} \hlkwd{makeCluster}\hlstd{(}\hlnum{2}\hlstd{)}
 \hlkwd{registerDoParallel}\hlstd{(cl)}
+
 \hlcom{# perform 5 tasks in parallel}
 \hlstd{x} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
     \hlstd{i} \hlopt{+} \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
@@ -174,7 +175,7 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 \hlkwd{unlist}\hlstd{(x)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.604 2.387 3.642 4.840 5.858
+## [1] 1.889 2.164 3.770 4.287 5.289
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -236,7 +237,7 @@ Loops that use this operator are \emph{de facto} reproducible.
 \end{alltt}
 
 
-{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: rngtools\\\#\# Loading required package: methods\\\#\# Loading required package: pkgmaker\\\#\# Loading required package: registry}}\begin{alltt}
+{\ttfamily\noindent\itshape\color{messagecolor}{\#\# Loading required package: rngtools\\\#\# Loading required package: methods}}\begin{alltt}
 \hlcom{# using %dorng%: loops _are_ reproducible}
 \hlkwd{set.seed}\hlstd{(}\hlnum{123}\hlstd{)}
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
@@ -497,6 +498,7 @@ it is important to note that the result depends on the current RNG kind
 \hlstd{def} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
     \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
 \hlstd{\}}
+
 \hlcom{# Marsaglia-Multicarry}
 \hlkwd{RNGkind}\hlstd{(}\hlstr{"Marsaglia"}\hlstd{)}
 \hlstd{mars} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
@@ -539,6 +541,7 @@ The following code illustrates this feature using 2 or 3 workers.
 \begin{alltt}
 \hlcom{# define a stochastic task to perform}
 \hlstd{task} \hlkwb{<-} \hlkwa{function}\hlstd{()} \hlkwd{c}\hlstd{(}\hlkwc{pid}\hlstd{=}\hlkwd{Sys.getpid}\hlstd{(),} \hlkwc{val}\hlstd{=}\hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{))}
+
 \hlcom{# using the previously registered cluster with 2 workers}
 \hlkwd{set.seed}\hlstd{(}\hlnum{123}\hlstd{)}
 \hlstd{res_2workers} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.combine}\hlstd{=rbind)} \hlopt{%dorng%} \hlstd{\{}
@@ -546,6 +549,7 @@ The following code illustrates this feature using 2 or 3 workers.
 \hlstd{\}}
 \hlcom{# stop cluster}
 \hlkwd{stopCluster}\hlstd{(cl)}
+
 \hlcom{# Sequential computation}
 \hlkwd{registerDoSEQ}\hlstd{()}
 \hlkwd{set.seed}\hlstd{(}\hlnum{123}\hlstd{)}
@@ -553,8 +557,17 @@ The following code illustrates this feature using 2 or 3 workers.
         \hlkwd{task}\hlstd{()}
 \hlstd{\}}
 \hlcom{#}
+
 \hlcom{# Using 3 workers}
-\hlstd{cl} \hlkwb{<-} \hlkwd{makeCluster}\hlstd{(}\hlnum{3}\hlstd{)}
+\hlcom{# NB: if re-running this vignette you should edit to force using 3 here }
+\hlstd{cl} \hlkwb{<-} \hlkwd{makeCluster}\hlstd{(} \hlkwa{if}\hlstd{(}\hlkwd{isManualVignette}\hlstd{())} \hlnum{3} \hlkwa{else} \hlnum{2}\hlstd{)}
+\hlkwd{length}\hlstd{(cl)}
+\end{alltt}
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+\begin{alltt}
+\hlcom{# register new cluster}
 \hlkwd{registerDoParallel}\hlstd{(cl)}
 \hlkwd{set.seed}\hlstd{(}\hlnum{123}\hlstd{)}
 \hlstd{res_3workers} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.combine}\hlstd{=rbind)} \hlopt{%dorng%} \hlstd{\{}
@@ -567,9 +580,9 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    15757    15757    15757    15757    15757
-##         15786    15795    15786    15795    15786
-## res2    15858    15872    15881    15872    15858
+## res1    24210    24210    24210    24210    24210
+##         24240    24251    24240    24240    24240
+## res2    24283    24303    24312    24312    24303
 \end{verbatim}
 \begin{alltt}
 \hlcom{# results are identical}
@@ -597,6 +610,7 @@ This is achieved by registering the \code{doRNG} backend:
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
     \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
 \hlstd{\}}
+
 \hlkwd{registerDoRNG}\hlstd{(}\hlnum{123}\hlstd{)}
 \hlstd{res_dopar} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
     \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
@@ -712,26 +726,33 @@ for simple loops:
 \begin{alltt}
 \hlcom{# doRNG must not be registered}
 \hlkwd{registerDoParallel}\hlstd{(cl)}
+
 \hlcom{# generate sequence of seeds of length the number of computations}
 \hlstd{n} \hlkwb{<-} \hlnum{10}
 \hlstd{p} \hlkwb{<-} \hlnum{5}
 \hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{p,} \hlnum{1234}\hlstd{)}
+
 \hlcom{# run standard nested foreach loop}
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{p,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{p} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{p])} \hlopt{%dopar%} \hlstd{\{}
+
     \hlcom{# set RNG seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{p)} \hlopt{%do%} \hlstd{\{}
     \hlcom{# set seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
     \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(res, res2))}
 \end{alltt}
 \end{kframe}
@@ -747,22 +768,28 @@ numbers of iterations performed in the inner loops:
 \hlcom{# generate sequence of seeds of length the number of computations}
 \hlstd{n} \hlkwb{<-} \hlnum{10}
 \hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{(n} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{/}\hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
+
 \hlcom{# run standard nested foreach loop}
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%} \hlstd{\{}
+
     \hlcom{# set RNG seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%} \hlstd{\{}
     \hlcom{# set seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
     \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(res, res2))}
 \end{alltt}
 \end{kframe}
@@ -783,29 +810,40 @@ filter, but only on its index in the unconditional-unfolded loop:
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# generate sequence of RNG}
 \hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n,} \hlnum{1234}\hlstd{)}
+
 \hlcom{# conditional loop: even iterations}
 \hlstd{resEven} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
+
     \hlcom{# set RNG seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# conditional loop: odd iterations}
 \hlstd{resOdd} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{1}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
+
     \hlcom{# set RNG seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# conditional loop: only first 2 and last 2}
 \hlstd{resFL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{, n} \hlopt{-} \hlnum{1}\hlstd{, n))} \hlopt{%dopar%} \hlstd{\{}
+
     \hlcom{# set RNG seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlcom{# compare results}
 \hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], resEven))}
 \hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], resOdd))}
@@ -826,23 +864,29 @@ example:
 \hlcom{# generate sequence of seeds of length the number of computations}
 \hlstd{n} \hlkwb{<-} \hlnum{10}
 \hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{(n} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{/}\hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
+
 \hlcom{# run standard nested foreach loop}
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}
     \hlstd{\{}
+
         \hlcom{# set RNG seed}
         \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
     \hlstd{\}}
+
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%} \hlstd{\{}
     \hlcom{# set seed}
     \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
     \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
+
 \hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], res))}
 \end{alltt}
 \end{kframe}
@@ -863,6 +907,7 @@ in practice, where parallelised computations typically take several minutes.
 \begin{alltt}
 \hlcom{# load rbenchmark}
 \hlkwd{library}\hlstd{(rbenchmark)}
+
 \hlcom{# comparison is done on sequential computations}
 \hlkwd{registerDoSEQ}\hlstd{()}
 \hlstd{rPar} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s} \hlstd{=} \hlnum{0}\hlstd{) \{}
@@ -875,6 +920,7 @@ in practice, where parallelised computations typically take several minutes.
         \hlkwd{Sys.sleep}\hlstd{(s)}
     \hlstd{\}}
 \hlstd{\}}
+
 \hlcom{# run benchmark}
 \hlstd{cmp} \hlkwb{<-} \hlkwd{benchmark}\hlstd{(}\hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),}
     \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwc{replications} \hlstd{=} \hlnum{5}\hlstd{)}
@@ -883,16 +929,16 @@ in practice, where parallelised computations typically take several minutes.
 \end{alltt}
 \begin{verbatim}
 ##              test replications elapsed relative user.self sys.self user.child sys.child
-## 1        rPar(10)            5   0.033    1.000     0.032    0.000          0         0
-## 2        rRNG(10)            5   0.062    1.879     0.060    0.000          0         0
-## 3        rPar(25)            5   0.063    1.909     0.064    0.000          0         0
-## 4        rRNG(25)            5   0.106    3.212     0.104    0.000          0         0
-## 5        rPar(50)            5   0.119    3.606     0.116    0.000          0         0
-## 6        rRNG(50)            5   0.185    5.606     0.184    0.000          0         0
-## 9  rPar(10, 0.05)            5   2.624   79.515     0.116    0.004          0         0
-## 10 rRNG(10, 0.05)            5   2.681   81.242     0.176    0.000          0         0
-## 7  rPar(50, 0.01)            5   2.994   90.727     0.460    0.008          0         0
-## 8  rRNG(50, 0.01)            5   3.157   95.667     0.616    0.016          0         0
+## 1        rPar(10)            5   0.068    1.000     0.067    0.000          0         0
+## 3        rPar(25)            5   0.119    1.750     0.119    0.000          0         0
+## 2        rRNG(10)            5   0.127    1.868     0.121    0.004          0         0
+## 4        rRNG(25)            5   0.221    3.250     0.209    0.004          0         0
+## 5        rPar(50)            5   0.239    3.515     0.239    0.000          0         0
+## 6        rRNG(50)            5   0.376    5.529     0.366    0.000          0         0
+## 9  rPar(10, 0.05)            5   2.578   37.912     0.074    0.000          0         0
+## 10 rRNG(10, 0.05)            5   2.669   39.250     0.149    0.004          0         0
+## 7  rPar(50, 0.01)            5   2.790   41.029     0.274    0.000          0         0
+## 8  rRNG(50, 0.01)            5   2.900   42.647     0.381    0.004          0         0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -932,6 +978,17 @@ To revert to the latest default behaviour:
 
 {\scriptsize
 \begin{verbatim}
+*************************************************************************
+*                       Changes in version 1.6                          *
+*************************************************************************
+
+CHANGES
+    o doRNG now depends on the package pkgmaker (>= 0.20)
+    
+FIXES
+    o Check error due number of cores used. Now limited to 2 in examples,
+    vignette and unit test.
+
 *************************************************************************
 *                       Changes in version 1.5                          *
 *************************************************************************
@@ -1045,25 +1102,25 @@ CHANGES
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-R version 3.0.1 (2013-05-16)
+R version 3.0.2 (2013-09-25)
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8       
  [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=C                 LC_NAME=C                  LC_ADDRESS=C              
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
 [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] doRNG_1.5.5      rngtools_1.2.3   pkgmaker_0.17.3  registry_0.2     doParallel_1.0.3
-[6] iterators_1.0.6  foreach_1.4.1    knitr_1.4.9     
+[1] rbenchmark_1.0.0 doRNG_1.6        rngtools_1.2.3   doParallel_1.0.8 iterators_1.0.6 
+[6] foreach_1.4.1    pkgmaker_0.20    registry_0.2     knitr_1.5       
 
 loaded via a namespace (and not attached):
-[1] codetools_0.2-8 compiler_3.0.1  digest_0.6.3    evaluate_0.4.7  formatR_0.9    
-[6] highr_0.2.1     stringr_0.6.2   tools_3.0.1     xtable_1.7-1   
+[1] codetools_0.2-8 compiler_3.0.2  digest_0.6.4    evaluate_0.5.1  formatR_0.10   
+[6] highr_0.3       stringr_0.6.2   tools_3.0.2     xtable_1.7-1   
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
