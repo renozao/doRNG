@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>registerDoRNG. doRNG 1.6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+<!-- knitr files -->
+<script src="js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v3.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">doRNG</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+	  <li><a href="PAGE-MAN.html"><span class="glyphicon glyphicon-home"></span> Index</a></li>
+    </ul>
+    <!-- <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>--> 
+    <ul class="nav navbar-nav navbar-right">
+      <li><p class="navbar-text">
+      <span style="font-size:14px" class="label label-primary">Version&nbsp;1.6</span>
+      &nbsp;</p></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Registering doRNG for Persistent Reproducible Parallel Foreach Loops</h1>
+
+<div class="row">
+  <div class="span8">
+    <div class="description">
+      <h2>Description</h2>
+      
+      <p><p><code>registerDoRNG</code> registers the doRNG foreach backend.
+  Subsequent %dopar% loops are then performed using the
+  previously registered foreach backend, but are internally
+  performed as <code><a href='doRNG.html'>%dorng%</a></code> loops, making them
+  fully reproducible.</p></p>
+  
+    </div>
+    
+    <h2>Usage</h2>
+    <pre>registerDoRNG(seed = NULL, once = TRUE)</pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>seed</dt>
+      <dd>a numerical seed to use (as a single or
+  6-length numerical value)</dd>
+      <dt>once</dt>
+      <dd>a logical to indicate if the RNG sequence
+  should be seeded at the beginning of each loop or only at
+  the first loop.</dd>
+    </dl>
+    
+    <div class="Details">
+      <h2>Details</h2>
+      
+      <p>Briefly, the RNG is set, before each iteration, with
+  seeds for L'Ecuyer's CMRG that overall generate a
+  reproducible sequence of statistically independent random
+  streams.</p>
+  
+      <p>Note that (re-)registering a foreach backend other than
+  doRNG, after a call to <code>registerDoRNG</code> disables
+  doRNG -- which then needs to be registered.</p>
+  
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre><code class="r">
+## Don&#39;t show: 
+# roxygen generated flag
+options(R_CHECK_RUNNING_EXAMPLES_=TRUE)
+## End Don&#39;t show
+
+library(doParallel)
+cl &lt;- makeCluster(2)
+registerDoParallel(cl)
+
+# One can make reproducible loops using the %dorng% operator
+r1 &lt;- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+# or convert %dopar% loops using registerDoRNG
+registerDoRNG(1234)
+r2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r1, r2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">stopCluster(cl)
+
+# Registering another foreach backend disables doRNG
+cl &lt;- makeCluster(2)
+registerDoParallel(cl)
+set.seed(1234)
+s1 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+set.seed(1234)
+s2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(s1, s2)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r">## Don&#39;t show: 
+ stopifnot(!identical(s1, s2)) 
+## End Don&#39;t show
+
+# doRNG is re-nabled by re-registering it
+registerDoRNG()
+set.seed(1234)
+r3 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r2, r3)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r"># NB: the results are identical independently of the task scheduling
+# (r2 used 2 nodes, while r3 used 3 nodes)
+
+# argument `once=FALSE` reseeds doRNG&#39;s seed at the beginning of each loop
+registerDoRNG(1234, once=FALSE)
+r1 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+r2 &lt;- foreach(i=1:4) %dopar% { runif(1) }
+identical(r1, r2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">
+# Once doRNG is registered the seed can also be passed as an option to %dopar%
+r1.2 &lt;- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+r2.2 &lt;- foreach(i=1:4, .options.RNG=456) %dopar% { runif(1) }
+identical(r1.2, r2.2) &amp;&amp; !identical(r1.2, r1)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">## Don&#39;t show: 
+ stopifnot(identical(r1.2, r2.2) &amp;&amp; !identical(r1.2, r1)) 
+## End Don&#39;t show
+
+stopCluster(cl)
+
+</code></pre>
+
+  </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>registerDoRNG</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='doRNG.html'>%dorng%</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      
+<p>Built by <a href="https://github.com/renozao/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
