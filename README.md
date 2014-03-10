@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/renozao/doRNG.png?branch=develop)](https://travis-ci.org/renozao/doRNG)
+
 # Introduction
 
 This `doRNG` package provides functions to perform reproducible parallel foreach loops, 
