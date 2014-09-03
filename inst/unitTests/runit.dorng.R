@@ -35,6 +35,14 @@ test.dorng <- function(){
 			msg <- function(...) paste(.msg, ':', ...)
 			noattr <- function(x){ attributes(x) <- NULL; x}
 			
+            # RNG restoration after %dorng%
+            rng0 <- getRNG()
+            foreach(i=1:4, .options.RNG = 123) %dorng% { runif(1) }
+            checkRNG(rng0, msg = "RNG is restored after seeded %dorng%")
+            #
+            foreach(i=1:4) %dorng% { runif(1) }
+            checkIdentical(RNGtype(), RNGtype(rng0), msg = "RNG kind is restored after unseeded %dorng%") 
+        
 			# standard %dopar% loops are _not_ reproducible
 			set.seed(1234)
 			s1 <- foreach(i=1:4) %dopar% { runif(1) }
@@ -166,6 +174,18 @@ test.dorng <- function(){
 
 test.registerDoRNG <- function(){
 	
+    # RNG restoration after %dorng% over doSEQ
+    registerDoSEQ()
+    registerDoRNG()
+    set.seed(123)
+    rng0 <- getRNG()
+    res1 <- foreach(i=1:4) %dorng% { runif(1) }
+    checkIdentical(RNGtype(), RNGtype(rng0), msg = "RNG kind is restored after unseeded %dorng%")
+    set.seed(123)
+    res2 <- foreach(i=1:4) %dorng% { runif(1) } 
+    checkIdentical(res1, res2, msg = "%dorng% loop over doSEQ are reproducible")
+    
+    
 	on.exit( stopCluster(cl) )
 	library(doParallel)
 	cl <- makeCluster(2)
