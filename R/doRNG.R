@@ -182,6 +182,16 @@ setDoBackend <- function(backend){
 	invisible(ob)
 }
 
+.getDoParName <- function(backend = getDoBackend(), version = FALSE) 
+{
+    if ( !is.null(backend[['info']]) ){
+        res <- backend[['info']](backend[['data']], "name")
+        if( version ) paste0(res, '(', backend[['info']](backend[['data']], "version"), ')')
+        res
+    }
+}
+
+
 #' Reproducible Parallel Foreach Backend
 #' 
 #' \code{\%dorng\%} is a foreach operator that provides an alternative operator 
@@ -285,6 +295,11 @@ setDoBackend <- function(backend){
 	
 	#library(rngtools)
 	
+#    str(obj)
+    # dump verbose messages if not in verbose mode
+    verbose <- !is.null(obj$verbose) && obj$verbose
+    if( !verbose ) message <- function(...) NULL
+        
 	# exit if nested or conditional loop
 	if( any(c('xforeach', 'filteredforeach') %in% class(obj)) )
 		stop("nested/conditional foreach loops are not supported yet.\nSee the package's vignette for a work around.")
@@ -314,24 +329,51 @@ setDoBackend <- function(backend){
 		}
 		rngSeed
 	}
-	
+    
+#    message("* Seed specification: ", str_out(rngSeed, 6, total = length(rngSeed) > 6))
 	# generate a sequence of streams
 #	print("before RNGseq")
-#	print(head(RNGseed()))
+#	showRNG()
 	obj$args$.doRNG.stream <- do.call("doRNGseq", c(list(n=length(argList), verbose=obj$verbose), rngSeed))
 #	print("after RNGseq")
-#	print(head(RNGseed()))
+#	showRNG()
 	#print(obj$args$.doRNG.stream)
+
+    message("* Registered backend: ", .getDoParName(version = TRUE))
+    dp <- getDoParName()
+    # directly register (temporarly) the computing backend
+    if( !is.null(dp) && dp == 'doRNG' ){
+        rngBackend <- getDoBackend()
+        message("* Registering computing backend: ", .getDoParName(rngBackend$data$backend, version = TRUE))
+        on.exit({
+            message("* Restoring previous backend: ", .getDoParName(rngBackend))
+            setDoBackend(rngBackend)
+        }, add=TRUE)
+        setDoBackend(rngBackend$data$backend)
+        dp <- getDoParName()
+    }
+    
 	## SEPCIAL CASE FOR doSEQ or doMPI
-	# TODO: figure out why doMPI draw once from the current RNG (must be linked
+	# TODO: figure out why doMPI draws once from the current RNG (must be linked
 	# to using own code to setup L'Ecuyer RNG)
 	# restore RNG settings as after RNGseq if doSEQ is the backend and no seed was passed
-	dp <- getDoParName()
-#	print(dp)
-	if( is.null(obj$options$RNG) && (is.null(dp) || dp=='doSEQ' || dp=='doMPI') ){
-#		print("reset as after RNGseq")
-		RNG.old <- RNGseed()
-		on.exit({RNGseed(RNG.old)}, add=TRUE)
+    if( is.null(obj$options$RNG) ){
+        RNG.old <- RNGseed()
+        on.exit({
+            rng_type_changed <- !identical(RNGtype(), RNGtype(RNG.old))
+            known_changing_cases <- is.null(dp) || dp=='doSEQ' || dp=='doMPI'
+            if( known_changing_cases || rng_type_changed){
+                if( rng_type_changed && !known_changing_cases ){
+                    warning("Foreach loop had changed the current RNG type: RNG was restored to same type, next state")
+                }else{
+                    message("* Detected known RNG side effect: ", dp)
+                }
+                message("* Restoring RNG as after RNG sequence generation")
+                if( verbose ) showRNG(RNG.old, indent = "  -")
+                RNGseed(RNG.old)
+                message("OK")
+            }
+        }, add=TRUE)
 	}
 	##
 	
@@ -343,14 +385,7 @@ setDoBackend <- function(backend){
 	ex <- as.call(list(as.name('{'),
 					quote({rngtools::RNGseed(.doRNG.stream);}),
 					substitute(ex)))
-	
-	# directly register (temporarly) the computing backend
-	if( !is.null(dp) && dp == 'doRNG' ){
-		rngBackend <- getDoBackend()
-		on.exit({setDoBackend(rngBackend)}, add=TRUE)
-		setDoBackend(rngBackend$data$backend)
-	}
-	
+    
 	# call the standard %dopar% operator
 	res <- do.call('%dopar%', list(obj, ex), envir=parent.frame())
 	# add seed sequence as an attribute
