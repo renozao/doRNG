@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>. doRNG 1.6.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Renaud Gaujoux">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+<!-- knitr files -->
+<script src="js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v3.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">doRNG</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+	  <li><a href=""><span class="glyphicon glyphicon-home"></span> Index</a></li>
+       <li><a href="PAGE-MAN.html">Documentation</a></li>
+       <li><a href="PAGE-DEMOS.html">Demos</a></li>
+       <li><a href="PAGE-REFERENCES.html">References</a></li>
+       <li><a href="PAGE-INSTALLATION.html">Installation</a></li>
+       <li class="active"><a href="PAGE-NEWS.html">News</a></li>
+    </ul>
+    <!-- <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>--> 
+    <ul class="nav navbar-nav navbar-right">
+      <li><p class="navbar-text">
+      <span style="font-size:14px" class="label label-primary">Version&nbsp;1.6.1</span>
+      &nbsp;<span style="background-color:red" class="badge label-danger">devel</span>
+      &nbsp;</p></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row"><div class="span8">
+  <ol>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.6.1</div>
+	  <div class="panel-body">
+	    <h4>FIXES</h4>
+
+<ul>
+<li>Non reproducible %dorng% loop when doRNG is registered over doSEQ 
+(Issue #1 reported by Brenton Kenkel). Actually due to %dorng% not 
+restoring the RNG (to state + 1) when doRNG is registered over doSEQ.</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.6</div>
+	  <div class="panel-body">
+	    <h4>CHANGES</h4>
+
+<ul>
+<li>doRNG now depends on the package pkgmaker (&gt;= 0.20)</li>
+</ul>
+
+<h4>FIXES</h4>
+
+<ul>
+<li>Check error due number of cores used. Now limited to 2 in examples,
+vignette and unit test.</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.5</div>
+	  <div class="panel-body">
+	    <h4>CHANGES</h4>
+
+<ul>
+<li>doRNG now depends on the package pkgmaker (&gt;= 0.9)</li>
+<li>improved vignette</li>
+<li>most of the general RNG utilities have been incorporated in a new
+package called rngtools.</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.4.1</div>
+	  <div class="panel-body">
+	    <h4>CHANGES</h4>
+
+<ul>
+<li>when the current RNG was L&#39;Ecuyer-CMRG, unseeded loops now use 
+the current RNG stream as for the first stream in the RNG sequence 
+and changes the current RNG to the next RNG stream of the last stream 
+in the sequence. </li>
+</ul>
+
+<h4>BUG FIX</h4>
+
+<ul>
+<li>fix error &ldquo;&#39;iter&#39; not found&rdquo; due to changes in foreach package 
+dependencies &ndash; that was announced by Rich Calaway.</li>
+<li>loops seeded with set.seed and .options.RNG were not reproducible
+when current RNG was L&#39;Ecuyer-CMRG (reported by Zhang Peng)</li>
+<li>separate unseeded loops were sharing most of their streams, 
+when current RNG was L&#39;Ecuyer-CMRG the RNG seed.</li>
+<li>nested/conditional loops were crashing with a bad error. 
+They are still not supported but the error message is nicer and a 
+work around has been added to the vignette (reported by Chanhee Yi 
+and Zhang Peng).</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.2.3</div>
+	  <div class="panel-body">
+	    <h4>BUG FIX</h4>
+
+<ul>
+<li>fixed error when running a %dorng% loop on a fresh session, with no<br/>
+parallel backend registered.<br/></li>
+</ul>
+
+<h4>CHANGES</h4>
+
+<ul>
+<li>improved vignette</li>
+<li>added more unit tests</li>
+<li>changed the name of the RNG attribute on result of %dorng% looops 
+from &#39;RNG&#39; to &#39;rng&#39;. It now contains the whole sequence of RNG seeds, 
+instead of only the first one.</li>
+<li>RNGseq now accepts a list or a matrix describing the whole sequence 
+of seeds. See vignette for more details.</li>
+<li>%dorng% loops can be seeded with a complete sequence of seeds passed 
+as a list, a matrix, or an object with attribute &#39;rng&#39;, e.g. the 
+results of %dorng% loops. See vignette for more details.</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.2.2</div>
+	  <div class="panel-body">
+	    <h4>BUG FIX</h4>
+
+<ul>
+<li>separate %dorng% loops were using the same seed.</li>
+</ul>
+
+<h4>NEW FEATURES</h4>
+
+<ul>
+<li>add unit tests</li>
+<li>first seed is set as an attribute of the loop&#39;s result</li>
+</ul>
+
+<h4>CHANGES</h4>
+
+<ul>
+<li>function doRNGseed now returns the seed to use for the first 
+iteration.</li>
+<li>RNGseq now change the current RNG state if called with no seed 
+specific.<br/></li>
+</ul>
+
+<h4>DEFUNCT</h4>
+
+<ul>
+<li>removed function CMRGseed</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.2</div>
+	  <div class="panel-body">
+	    <h4>BUG FIX</h4>
+
+<ul>
+<li>An error was thrown if using %dorng% loops before using any random
+generator. Thanks to Eric Lehmann for reporting this.</li>
+</ul>
+
+<h4>CHANGES</h4>
+
+<ul>
+<li>add vignette</li>
+<li>use package doParallel in examples</li>
+</ul>
+
+	  </div>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">Changes in version 1.1</div>
+	  <div class="panel-body">
+	    <h4>CHANGES</h4>
+
+<ul>
+<li>use R core RNG &ldquo;L&#39;Ecuyer-CMRG&rdquo; and the parallel package, 
+instead of the implementation provided by the rstream package.</li>
+</ul>
+
+	  </div>
+	</div>
+  </ol>
+</div></div>
+      
+      <footer>
+      
+<p>Built by <a href="https://github.com/renozao/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Some features of the %dorng% foreach operator. doRNG 1.6.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<!-- bootstrap css -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<!-- highlighting css -->
+<link href="css/highlight.css" rel="stylesheet">
+<!-- custom css -->
+<link href="css/staticdocs.css" rel="stylesheet">
+<!-- knitr files -->
+<script src="js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- bootstrap javascript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- d3 word cloud -->
+<script src="js/d3.v3.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">doRNG</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+	  <li><a href="PAGE-DEMOS.html"><span class="glyphicon glyphicon-home"></span> Index</a></li>
+    </ul>
+    <!-- <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>--> 
+    <ul class="nav navbar-nav navbar-right">
+      <li><p class="navbar-text">
+      <span style="font-size:14px" class="label label-primary">Version&nbsp;1.6.1</span>
+      &nbsp;<span style="background-color:red" class="badge label-danger">devel</span>
+      &nbsp;</p></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Some features of the %dorng% foreach operator</h1><br />
+
+<div class="row"><div class="span8">
+  <pre>
+  <div class='input'>library(doRNG)
+</div><div class='input'>library(doParallel)
+</div><div class='input'>registerDoParallel(cores=2)
+</div><div class='input'></div><div class='input'># single %dorng% loops are reproducible
+</div><div class='input'>r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>r2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>identical(r1, r2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'># the sequence os RNG seed is stored as an attribute
+</div><div class='input'>attr(r1, 'rng')
+</div>
+<div class='output'>[[1]]
+[1]         407  -305383241    69318028 -1161659107  -348804806 -1127582349  -343284712
+
+[[2]]
+[1]         407  1222430165 -1386318120  1144759979   748500427   690571908   329037778
+
+[[3]]
+[1]         407   215137210 -1421031558  1452323561 -2060097535   712279522  -278425444
+
+[[4]]
+[1]         407 -1017432992  1583835527  1997665660   821136125  1282044776  1045008570
+
+</div><div class='input'></div><div class='input'># sequences of %dorng% loops are reproducible
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>s1 <- foreach(i=1:4) %dorng% { runif(1) }
+</div><div class='input'>s2 <- foreach(i=1:4) %dorng% { runif(1) }
+</div><div class='input'># two consecutive (unseed) %dorng% loops are not identical
+</div><div class='input'>identical(s1, s2)
+</div>
+<div class='output'>[1] FALSE
+</div><div class='input'></div><div class='input'># But the whole sequence of loops is reproducible
+</div><div class='input'>set.seed(1234)
+</div><div class='input'>s1.2 <- foreach(i=1:4) %dorng% { runif(1) }
+</div><div class='input'>s2.2 <- foreach(i=1:4) %dorng% { runif(1) }
+</div><div class='input'>identical(s1, s1.2) && identical(s2, s2.2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'># it gives the same result as with .options.RNG
+</div><div class='input'>identical(r1, s1)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'></div><div class='input'># Works with SNOW-like and MPI clusters
+</div><div class='input'># SNOW-like cluster
+</div><div class='input'>cl <- makeCluster(2)
+</div><div class='input'>registerDoParallel(cl)
+</div><div class='input'></div><div class='input'>s1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>s2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>identical(s1, s2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'></div><div class='input'>stopCluster(cl)
+</div><div class='input'>registerDoSEQ()
+</div><div class='input'></div><div class='input'># MPI cluster
+</div><div class='input'>library(doMPI)
+</div>
+<strong class='message'>Loading required package: Rmpi</strong><div class='input'>cl <- startMPIcluster(2)
+</div>
+<div class='output'>	2 slaves are spawned successfully. 0 failed.
+</div><div class='input'>registerDoMPI(cl)
+</div><div class='input'></div><div class='input'>s1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>s2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }
+</div><div class='input'>identical(s1, s2)
+</div>
+<div class='output'>[1] TRUE
+</div><div class='input'></div><div class='input'>closeCluster(cl)
+</div><div class='input'>registerDoSEQ()</div>
+  </pre>
+</div></div>
+      
+      <footer>
+      
+<p>Built by <a href="https://github.com/renozao/staticdocs">staticdocs</a>. Styled with <a href="http://twitter.github.com/bootstrap">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
