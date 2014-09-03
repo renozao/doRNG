@@ -430,7 +430,7 @@ registerDoRNG <- function(seed=NULL, once=TRUE){
 	backend <- getDoBackend()
 	
 	# use stored backend if registerDoRNG was called repeatedly
-	if( getDoParName() == 'doRNG' )
+	if( identical(getDoParName(), 'doRNG') )
 		backend <- backend$data$backend
 	
 	# set the current RNG with seed immediately if only used once
