@@ -23,7 +23,15 @@
 #	
 #}
 
-
+# 1-length loop
+test.dorng1 <- function(){
+    
+    set.seed(123)
+    x <- foreach(i=1) %dorng% { runif(1) }
+    y <- foreach(i=1, .options.RNG = 123) %dorng% { runif(1) }
+    checkIdentical(x, y)
+    
+}
 
 test.dorng <- function(){
 	

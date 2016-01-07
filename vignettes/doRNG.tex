@@ -117,7 +117,7 @@
 \usepackage[minnames=1,maxnames=2,backend=bibtex]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 \bibliography{Rpackages}
-\bibliography{/tmp/Rpkglib_724b52455c99/doRNG/REFERENCES}
+\bibliography{/tmp/Rpkglib_208859b806a6/doRNG/REFERENCES}
 
 
 \newcommand{\citet}[1]{\citeauthor{#1}~\cite{#1}}
@@ -131,7 +131,7 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.6.1}}
+{\small \Rpkg{doRNG} -- Version 1.6.2}}
 \author{Renaud Gaujoux}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
@@ -171,7 +171,7 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 \hlkwd{unlist}\hlstd{(x)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.420 2.931 3.924 4.248 5.393
+## [1] 1.569445 2.038106 3.640668 4.329294 5.642481
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -539,9 +539,9 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    29877    29877    29877    29877    29877
-##         29894    29903    29894    29903    29894
-## res2    29924    29933    29942    29924    29933
+## res1     8917     8917     8917     8917     8917
+##          8934     8943     8934     8943     8943
+## res2     8962     8985     8996     8962     8985
 \end{verbatim}
 \begin{alltt}
 \hlcom{# results are identical}
@@ -649,13 +649,13 @@ Nested and conditional foreach loops are currently not supported and generate an
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\begin{alltt}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in foreach(i = 1:10) \%:\% foreach(j = 1:i) \%dorng\% \{: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\begin{alltt}
 \hlcom{# conditional loop}
 \hlkwd{try}\hlstd{(} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{) \} )}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in foreach(i = 1:10) \%:\% when(i\%\%2 == 0) \%dorng\% \{: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\end{kframe}
 \end{knitrout}
 
 In this section, we propose a general work around for this kind of loops, that will 
@@ -682,7 +682,7 @@ for simple loops:
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{p,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{p} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{p])} \hlopt{%dopar%} \hlstd{\{}
 
         \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+    \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -692,7 +692,7 @@ for simple loops:
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{p)} \hlopt{%do%}\hlstd{\{}
     \hlcom{# set seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
         \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
     \hlcom{# do your own computation ...}
@@ -718,7 +718,7 @@ numbers of iterations performed in the inner loops:
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -728,7 +728,7 @@ numbers of iterations performed in the inner loops:
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%}\hlstd{\{}
         \hlcom{# set seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
         \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
         \hlcom{# do your own computation ...}
@@ -762,7 +762,7 @@ filter, but only on its index in the unconditional-unfolded loop:
 \hlstd{resEven} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -772,7 +772,7 @@ filter, but only on its index in the unconditional-unfolded loop:
 \hlstd{resOdd} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{1}\hlstd{)} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -782,7 +782,7 @@ filter, but only on its index in the unconditional-unfolded loop:
 \hlstd{resFL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,n}\hlopt{-}\hlnum{1}\hlstd{,n))} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -812,7 +812,7 @@ example:
 \hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -822,7 +822,7 @@ example:
 \hlstd{k} \hlkwb{<-} \hlnum{1}
 \hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%}\hlstd{\{}
         \hlcom{# set seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
         \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
         \hlcom{# do your own computation ...}
@@ -913,17 +913,17 @@ To revert to the latest default behaviour:
 {\scriptsize
 \begin{verbatim}
 *************************************************************************
-*                       Changes in version 1.6.1                        *
+Changes in version 1.6.2
 *************************************************************************
 
 FIXES
     o Non reproducible %dorng% loop when doRNG is registered over doSEQ 
     (Issue #1 reported by Brenton Kenkel). Actually due to %dorng% not 
     restoring the RNG (to state + 1) when doRNG is registered over doSEQ.
-    
+    o %dorng% was not working properly on loops of length one (Issue #2)  
 
 *************************************************************************
-*                       Changes in version 1.6                          *
+Changes in version 1.6
 *************************************************************************
 
 CHANGES
@@ -934,7 +934,7 @@ FIXES
     vignette and unit test.
 
 *************************************************************************
-*                       Changes in version 1.5                          *
+Changes in version 1.5
 *************************************************************************
 
 CHANGES
@@ -945,7 +945,7 @@ CHANGES
     
 
 *************************************************************************
-*                       Changes in version 1.4.1                        *
+Changes in version 1.4.1
 *************************************************************************
 
 CHANGES
@@ -967,7 +967,7 @@ BUG FIX
     and Zhang Peng).
 
 *************************************************************************
-*                       Changes in version 1.2.3                        *
+Changes in version 1.2.3
 *************************************************************************
 
 BUG FIX
@@ -987,7 +987,7 @@ CHANGES
     results of %dorng% loops. See vignette for more details.
     
 *************************************************************************
-*                       Changes in version 1.2.2                        *
+Changes in version 1.2.2
 *************************************************************************
 
 BUG FIX
@@ -1007,7 +1007,7 @@ DEFUNCT
     o removed function CMRGseed
 
 *************************************************************************
-*                       Changes in version 1.2                          *
+Changes in version 1.2
 *************************************************************************
 
 BUG FIX
@@ -1019,7 +1019,7 @@ CHANGES
     o use package doParallel in examples
 
 *************************************************************************
-*                       Changes in version 1.1                          *
+Changes in version 1.1
 *************************************************************************
 
 CHANGES
@@ -1044,8 +1044,9 @@ CHANGES
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-R version 3.1.1 (2014-07-10)
+R version 3.2.3 (2015-12-10)
 Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 15.10
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_ZA.UTF-8       
@@ -1057,12 +1058,13 @@ attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] doRNG_1.6.1      rngtools_1.2.4   doParallel_1.0.8 iterators_1.0.7  foreach_1.4.2   
-[6] pkgmaker_0.25.7  registry_0.2     knitr_1.6       
+[1] doRNG_1.6.2       rngtools_1.2.4    doParallel_1.0.10 iterators_1.0.8  
+[5] foreach_1.4.3     knitr_1.11        pkgmaker_0.25.10  registry_0.3     
 
 loaded via a namespace (and not attached):
-[1] codetools_0.2-9 compiler_3.1.1  digest_0.6.4    evaluate_0.5.5  formatR_1.0    
-[6] highr_0.3       stringr_0.6.2   tools_3.1.1     xtable_1.7-3   
+ [1] codetools_0.2-14 digest_0.6.8     xtable_1.8-0     formatR_1.2.1    magrittr_1.5    
+ [6] evaluate_0.8     highr_0.5.1      stringi_1.0-1    tools_3.2.3      stringr_1.0.0   
+[11] compiler_3.2.3  
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

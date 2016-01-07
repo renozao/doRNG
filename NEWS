@@ -1,11 +1,12 @@
 *************************************************************************
-Changes in version 1.6.1
+Changes in version 1.6.2
 *************************************************************************
 
 FIXES
     o Non reproducible %dorng% loop when doRNG is registered over doSEQ 
     (Issue #1 reported by Brenton Kenkel). Actually due to %dorng% not 
     restoring the RNG (to state + 1) when doRNG is registered over doSEQ.
+    o %dorng% was not working properly on loops of length one (Issue #2)  
 
 *************************************************************************
 Changes in version 1.6

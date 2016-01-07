@@ -99,7 +99,7 @@ doRNGseq <- function(n, seed=NULL, ...){
 	
 	# compute sequence using rngtools::RNGseq
 #	library(rngtools)
-	res <- RNGseq(n, seed, ..., version=if( checkRNGversion('1.4') >=0 ) 2 else 1)
+	res <- RNGseq(n, seed, ..., version=if( checkRNGversion('1.4') >=0 ) 2 else 1, simplify = FALSE)
 	
 }
 
