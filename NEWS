@@ -1,5 +1,15 @@
 *************************************************************************
-*                       Changes in version 1.6                          *
+Changes in version 1.6.2
+*************************************************************************
+
+FIXES
+    o Non reproducible %dorng% loop when doRNG is registered over doSEQ 
+    (Issue #1 reported by Brenton Kenkel). Actually due to %dorng% not 
+    restoring the RNG (to state + 1) when doRNG is registered over doSEQ.
+    o %dorng% was not working properly on loops of length one (Issue #2)  
+
+*************************************************************************
+Changes in version 1.6
 *************************************************************************
 
 CHANGES
@@ -10,7 +20,7 @@ FIXES
     vignette and unit test.
 
 *************************************************************************
-*                       Changes in version 1.5                          *
+Changes in version 1.5
 *************************************************************************
 
 CHANGES
@@ -21,7 +31,7 @@ CHANGES
     
 
 *************************************************************************
-*                       Changes in version 1.4.1                        *
+Changes in version 1.4.1
 *************************************************************************
 
 CHANGES
@@ -43,7 +53,7 @@ BUG FIX
     and Zhang Peng).
 
 *************************************************************************
-*                       Changes in version 1.2.3                        *
+Changes in version 1.2.3
 *************************************************************************
 
 BUG FIX
@@ -63,7 +73,7 @@ CHANGES
     results of %dorng% loops. See vignette for more details.
     
 *************************************************************************
-*                       Changes in version 1.2.2                        *
+Changes in version 1.2.2
 *************************************************************************
 
 BUG FIX
@@ -83,7 +93,7 @@ DEFUNCT
     o removed function CMRGseed
 
 *************************************************************************
-*                       Changes in version 1.2                          *
+Changes in version 1.2
 *************************************************************************
 
 BUG FIX
@@ -95,7 +105,7 @@ CHANGES
     o use package doParallel in examples
 
 *************************************************************************
-*                       Changes in version 1.1                          *
+Changes in version 1.1
 *************************************************************************
 
 CHANGES

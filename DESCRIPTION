@@ -2,8 +2,8 @@ Package: doRNG
 Type: Package
 Title: Generic Reproducible Parallel Backend for foreach
     Loops
-Version: 1.6
-Date: 2013-09-12
+Version: 1.6.2
+Date: 2016-01-07
 Author: Renaud Gaujoux
 Maintainer: Renaud Gaujoux <renaud@tx.technion.ac.il>
 Description: This package provides functions to perform

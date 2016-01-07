@@ -113,13 +113,11 @@
 %%%% END: PKGMAKER COMMANDS %%%%%%
 
 
-
 % REFERENCES
 \usepackage[minnames=1,maxnames=2,backend=bibtex]{biblatex}
 \AtEveryCitekey{\clearfield{url}}
 \bibliography{Rpackages}
-\bibliography{/tmp/Rpkglib_5bee6b6c676/doRNG/REFERENCES}
-
+\bibliography{/tmp/Rpkglib_208859b806a6/doRNG/REFERENCES}
 
 
 \newcommand{\citet}[1]{\citeauthor{#1}~\cite{#1}}
@@ -133,10 +131,9 @@
 \newcommand{\dorng}{\code{\%dorng\%}\xspace}
 
 \title{Using the \code{doRNG} package\\
-{\small \Rpkg{doRNG} -- Version 1.6}}
+{\small \Rpkg{doRNG} -- Version 1.6.2}}
 \author{Renaud Gaujoux}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-
 \begin{document}
 
 \maketitle
@@ -155,7 +152,6 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 
 
 
-
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
@@ -169,17 +165,16 @@ The \citeCRANpkg{foreach} provides a very convenient way to perform parallel com
 \hlkwd{registerDoParallel}\hlstd{(cl)}
 
 \hlcom{# perform 5 tasks in parallel}
-\hlstd{x} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
-    \hlstd{i} \hlopt{+} \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+\hlstd{x} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
+        \hlstd{i} \hlopt{+} \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
 \hlstd{\}}
 \hlkwd{unlist}\hlstd{(x)}
 \end{alltt}
 \begin{verbatim}
-## [1] 1.889 2.164 3.770 4.287 5.289
+## [1] 1.569445 2.038106 3.640668 4.329294 5.642481
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 For each parallel environment a \emph{backend} is implemented as a specialised \code{\%dopar\%} operator, which performs the setup and pre/post-processing specifically required by the environment (e.g. export of variable to each worker).
 The \code{foreach} function and the \code{\%dopar\%} operator handle the generic
@@ -204,7 +199,6 @@ In particular, standard \code{\%dopar\%} loops are not reproducible:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 A random number generator commonly used to achieve reproducibility is the
 combined multiple-recursive generator from \citet{Lecuyer1999}.
@@ -251,7 +245,6 @@ Loops that use this operator are \emph{de facto} reproducible.
 \end{kframe}
 \end{knitrout}
 
-
 \subsection{How it works}
 For a loop with $N$ iterations, the \code{\%dorng\%} operator internally
 performs the following tasks:
@@ -271,7 +264,7 @@ performs the following tasks:
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{attr}\hlstd{(res,} \hlstr{"rng"}\hlstd{)}
+\hlkwd{attr}\hlstd{(res,} \hlstr{'rng'}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## [[1]]
@@ -291,7 +284,6 @@ performs the following tasks:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{enumerate}
 
 \subsection{Seeding computations}
@@ -309,7 +301,6 @@ using a 6-length integer seed, e.g.,:
 \end{kframe}
 \end{knitrout}
 
-
 However, the \code{\%dorng\%} operator provides alternative -- convenient --
 ways of seeding reproducible loops.
 
@@ -326,12 +317,8 @@ ways of seeding reproducible loops.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# use a single numeric as a seed}
-\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
-\hlstd{s2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
+\hlstd{s2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(s, s2)}
 \end{alltt}
 \begin{verbatim}
@@ -339,7 +326,6 @@ ways of seeding reproducible loops.
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 \noindent \textbf{Note}: calling \code{set.seed} before the loop is equivalent 
 to passing the seed in \code{.options.RNG}. 
@@ -350,12 +336,10 @@ The kind of Normal generator may also be passed in \code{.options.RNG}:
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{## Pass the Normal RNG kind to use within the loop results are identical if not using the}
-\hlcom{## Normal kind in the loop}
-\hlstd{optsN} \hlkwb{<-} \hlkwd{list}\hlstd{(}\hlnum{123}\hlstd{,} \hlkwc{normal.kind} \hlstd{=} \hlstr{"Ahrens"}\hlstd{)}
-\hlstd{resN.U} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= optsN)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlcom{## Pass the Normal RNG kind to use within the loop}
+\hlcom{# results are identical if not using the Normal kind in the loop}
+\hlstd{optsN} \hlkwb{<-} \hlkwd{list}\hlstd{(}\hlnum{123}\hlstd{,} \hlkwc{normal.kind}\hlstd{=}\hlstr{"Ahrens"}\hlstd{)}
+\hlstd{resN.U} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=optsN)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(resN.U[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{], res[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -363,15 +347,9 @@ The kind of Normal generator may also be passed in \code{.options.RNG}:
 \end{verbatim}
 \begin{alltt}
 \hlcom{# Results are different if the Normal kind is used and is not the same}
-\hlstd{resN} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
-\hlstd{resN1} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= optsN)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
-\hlstd{resN2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= optsN)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{resN} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{) \}}
+\hlstd{resN1} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=optsN)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{) \}}
+\hlstd{resN2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=optsN)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(resN[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{], resN1[}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -385,17 +363,14 @@ The kind of Normal generator may also be passed in \code{.options.RNG}:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \item[\code{.options.RNG} with 6-length:] the actual 6-length integer seed used
 for the first RNG stream may be passed via \code{options.RNG}: 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# use a 6-length numeric}
-\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{6}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
-\hlkwd{attr}\hlstd{(s,} \hlstr{"rng"}\hlstd{)[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{]}
+\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{6}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
+\hlkwd{attr}\hlstd{(s,} \hlstr{'rng'}\hlstd{)[}\hlnum{1}\hlopt{:}\hlnum{3}\hlstd{]}
 \end{alltt}
 \begin{verbatim}
 ## [[1]]
@@ -409,7 +384,6 @@ for the first RNG stream may be passed via \code{options.RNG}:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \item[\code{.options.RNG} with 7-length:] a 7-length integer seed may also be
 passed via \code{options.RNG}, which is useful to seed a loop with the value of
 \code{.Random.seed} as used in some iteration of another loop\footnote{Note that
@@ -419,10 +393,8 @@ the first element of the seed must have unit 7 (e.g. 407 or 107).}:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# use a 7-length numeric, used as first value for .Random.seed}
-\hlstd{seed} \hlkwb{<-} \hlkwd{attr}\hlstd{(res,} \hlstr{"rng"}\hlstd{)[[}\hlnum{2}\hlstd{]]}
-\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= seed)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{seed} \hlkwb{<-} \hlkwd{attr}\hlstd{(res,} \hlstr{'rng'}\hlstd{)[[}\hlnum{2}\hlstd{]]}
+\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=seed)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(s[}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{], res[}\hlnum{2}\hlopt{:}\hlnum{5}\hlstd{])}
 \end{alltt}
 \begin{verbatim}
@@ -430,7 +402,6 @@ the first element of the seed must have unit 7 (e.g. 407 or 107).}:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \item[\code{.options.RNG} with complete sequence of seeds:] the complete
 description of the sequence of seeds to be used may be
 passed via \code{options.RNG}, as a list or a matrix with the seeds in columns.
@@ -444,17 +415,15 @@ details:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# reproduce previous %dorng% loop}
-\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= res)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{s} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=res)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(s, res)}
 \end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
 \begin{alltt}
-\hlcom{## use completely custom sequence of seeds (e.g. using RNG 'Marsaglia-Multicarry') as a}
-\hlcom{## matrix}
+\hlcom{## use completely custom sequence of seeds (e.g. using RNG "Marsaglia-Multicarry")}
+\hlcom{# as a matrix}
 \hlstd{seedM} \hlkwb{<-} \hlkwd{rbind}\hlstd{(}\hlkwd{rep}\hlstd{(}\hlnum{401}\hlstd{,} \hlnum{5}\hlstd{),} \hlkwd{mapply}\hlstd{(rep,} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlnum{2}\hlstd{))}
 \hlstd{seedM}
 \end{alltt}
@@ -465,14 +434,10 @@ details:
 ## [3,]    1    2    3    4    5
 \end{verbatim}
 \begin{alltt}
-\hlstd{sM} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= seedM)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{sM} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=seedM)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlcom{# same seeds passed as a list}
-\hlstd{seedL} \hlkwb{<-} \hlkwd{lapply}\hlstd{(}\hlkwd{seq}\hlstd{(}\hlkwd{ncol}\hlstd{(seedM)),} \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{) seedM[, i])}
-\hlstd{sL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{= seedL)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{seedL} \hlkwb{<-} \hlkwd{lapply}\hlstd{(}\hlkwd{seq}\hlstd{(}\hlkwd{ncol}\hlstd{(seedM)),} \hlkwa{function}\hlstd{(}\hlkwc{i}\hlstd{) seedM[,i])}
+\hlstd{sL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=seedL)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(sL, sM)}
 \end{alltt}
 \begin{verbatim}
@@ -480,7 +445,6 @@ details:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{description}
 
 \subsection{Difference between \texttt{set.seed} and \texttt{.options.RNG}}
@@ -494,16 +458,12 @@ it is important to note that the result depends on the current RNG kind
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# default RNG kind}
-\hlkwd{RNGkind}\hlstd{(}\hlstr{"default"}\hlstd{)}
-\hlstd{def} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlkwd{RNGkind}\hlstd{(}\hlstr{'default'}\hlstd{)}
+\hlstd{def} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 
 \hlcom{# Marsaglia-Multicarry}
-\hlkwd{RNGkind}\hlstd{(}\hlstr{"Marsaglia"}\hlstd{)}
-\hlstd{mars} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlkwd{RNGkind}\hlstd{(}\hlstr{'Marsaglia'}\hlstd{)}
+\hlstd{mars} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{123}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(def, mars)}
 \end{alltt}
 \begin{verbatim}
@@ -511,11 +471,10 @@ it is important to note that the result depends on the current RNG kind
 \end{verbatim}
 \begin{alltt}
 \hlcom{# revert to default RNG kind}
-\hlkwd{RNGkind}\hlstd{(}\hlstr{"default"}\hlstd{)}
+\hlkwd{RNGkind}\hlstd{(}\hlstr{'default'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 This is a ``normal'' behaviour, which is a side-effect of the expected equivalence between 
 \code{set.seed} and \code{.options.RNG}.
@@ -580,9 +539,9 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{alltt}
 \begin{verbatim}
 ##      result.1 result.2 result.3 result.4 result.5
-## res1    24210    24210    24210    24210    24210
-##         24240    24251    24240    24240    24240
-## res2    24283    24303    24312    24312    24303
+## res1     8917     8917     8917     8917     8917
+##          8934     8943     8934     8943     8943
+## res2     8962     8985     8996     8962     8985
 \end{verbatim}
 \begin{alltt}
 \hlcom{# results are identical}
@@ -593,7 +552,6 @@ The following code illustrates this feature using 2 or 3 workers.
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 \section{Reproducible \texttt{\%dopar\%} loops}
 
@@ -607,21 +565,17 @@ This is achieved by registering the \code{doRNG} backend:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{set.seed}\hlstd{(}\hlnum{123}\hlstd{)}
-\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 
 \hlkwd{registerDoRNG}\hlstd{(}\hlnum{123}\hlstd{)}
-\hlstd{res_dopar} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
-    \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{)}
-\hlstd{\}}
+\hlstd{res_dopar} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{5}\hlstd{)} \hlopt{%dopar%} \hlstd{\{} \hlkwd{runif}\hlstd{(}\hlnum{3}\hlstd{) \}}
 \hlkwd{identical}\hlstd{(res_dopar, res)}
 \end{alltt}
 \begin{verbatim}
 ## [1] TRUE
 \end{verbatim}
 \begin{alltt}
-\hlkwd{attr}\hlstd{(res_dopar,} \hlstr{"rng"}\hlstd{)}
+\hlkwd{attr}\hlstd{(res_dopar,} \hlstr{'rng'}\hlstd{)}
 \end{alltt}
 \begin{verbatim}
 ## [[1]]
@@ -641,7 +595,6 @@ This is achieved by registering the \code{doRNG} backend:
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 \section{Reproducibile sets of loops}
 
@@ -683,7 +636,6 @@ Sequences of multiple loops are reproducible, whether using the
 \end{kframe}
 \end{knitrout}
 
-
 \section{Nested and conditional loops}
 \label{sec:nested}
 
@@ -693,23 +645,18 @@ Nested and conditional foreach loops are currently not supported and generate an
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# nested loop}
-\hlkwd{try}\hlstd{(}\hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{)}
-\hlstd{\})}
+\hlkwd{try}\hlstd{(} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{) \} )}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\begin{alltt}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in foreach(i = 1:10) \%:\% foreach(j = 1:i) \%dorng\% \{: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\begin{alltt}
 \hlcom{# conditional loop}
-\hlkwd{try}\hlstd{(}\hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{)}
-\hlstd{\})}
+\hlkwd{try}\hlstd{(} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlnum{10}\hlstd{)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{) \} )}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in foreach(i = 1:10) \%:\% when(i\%\%2 == 0) \%dorng\% \{: nested/conditional foreach loops are not supported yet.\\\#\# See the package's vignette for a work around.}}\end{kframe}
 \end{knitrout}
-
 
 In this section, we propose a general work around for this kind of loops, that will 
 eventually be incorporated in the \code{\%dorng\%} operator -- when I find out how to 
@@ -728,15 +675,14 @@ for simple loops:
 \hlkwd{registerDoParallel}\hlstd{(cl)}
 
 \hlcom{# generate sequence of seeds of length the number of computations}
-\hlstd{n} \hlkwb{<-} \hlnum{10}
-\hlstd{p} \hlkwb{<-} \hlnum{5}
-\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{p,} \hlnum{1234}\hlstd{)}
+\hlstd{n} \hlkwb{<-} \hlnum{10}\hlstd{; p} \hlkwb{<-} \hlnum{5}
+\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{( n} \hlopt{*} \hlstd{p,} \hlnum{1234}\hlstd{)}
 
 \hlcom{# run standard nested foreach loop}
-\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{p,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{p} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{p])} \hlopt{%dopar%} \hlstd{\{}
+\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{p,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{p} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{p])} \hlopt{%dopar%} \hlstd{\{}
 
-    \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlcom{# set RNG seed}
+    \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
     \hlcom{# do your own computation ...}
     \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
@@ -744,20 +690,19 @@ for simple loops:
 
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
-\hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{p)} \hlopt{%do%} \hlstd{\{}
+\hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{p)} \hlopt{%do%}\hlstd{\{}
     \hlcom{# set seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
-    \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
     \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(res, res2))}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(res, res2) )}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 The following is a more complex example with unequal -- but \textbf{known \emph{a priori}} -- 
 numbers of iterations performed in the inner loops:
@@ -767,34 +712,33 @@ numbers of iterations performed in the inner loops:
 \begin{alltt}
 \hlcom{# generate sequence of seeds of length the number of computations}
 \hlstd{n} \hlkwb{<-} \hlnum{10}
-\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{(n} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{/}\hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
+\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{( n} \hlopt{*} \hlstd{(n}\hlopt{+}\hlnum{1}\hlstd{)} \hlopt{/} \hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
 
 \hlcom{# run standard nested foreach loop}
-\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%} \hlstd{\{}
+\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}\hlstd{\{}
 
-    \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlcom{# set RNG seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
-\hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%} \hlstd{\{}
-    \hlcom{# set seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
-    \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+\hlstd{res2} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%}\hlstd{\{}
+        \hlcom{# set seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(res, res2))}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(res, res2) )}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 \subsection{Conditional loops}
 The work around used for nested loops applies to conditional loops that use the \code{when()} 
@@ -806,52 +750,51 @@ filter, but only on its index in the unconditional-unfolded loop:
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# un-conditional single loop}
-\hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{.options.RNG} \hlstd{=} \hlnum{1234}\hlstd{)} \hlopt{%dorng%} \hlstd{\{}
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+\hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{.options.RNG}\hlstd{=}\hlnum{1234}\hlstd{)} \hlopt{%dorng%}\hlstd{\{}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
 \hlcom{# generate sequence of RNG}
 \hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n,} \hlnum{1234}\hlstd{)}
 
 \hlcom{# conditional loop: even iterations}
-\hlstd{resEven} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
+\hlstd{resEven} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%dopar%}\hlstd{\{}
 
-    \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlcom{# set RNG seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
 \hlcom{# conditional loop: odd iterations}
-\hlstd{resOdd} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{1}\hlstd{)} \hlopt{%dopar%} \hlstd{\{}
+\hlstd{resOdd} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{1}\hlstd{)} \hlopt{%dopar%}\hlstd{\{}
 
-    \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlcom{# set RNG seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
 \hlcom{# conditional loop: only first 2 and last 2}
-\hlstd{resFL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r} \hlstd{= rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{, n} \hlopt{-} \hlnum{1}\hlstd{, n))} \hlopt{%dopar%} \hlstd{\{}
+\hlstd{resFL} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n,} \hlkwc{r}\hlstd{=rng)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%in%} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,n}\hlopt{-}\hlnum{1}\hlstd{,n))} \hlopt{%dopar%}\hlstd{\{}
 
-    \hlcom{# set RNG seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlcom{# set RNG seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
 \hlcom{# compare results}
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], resEven))}
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], resOdd))}
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{, n} \hlopt{-} \hlnum{1}\hlstd{, n)], resFL))}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{,n,}\hlkwc{by}\hlstd{=}\hlnum{2}\hlstd{)], resEven) )}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{1}\hlstd{,n,}\hlkwc{by}\hlstd{=}\hlnum{2}\hlstd{)], resOdd) )}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(resAll[}\hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,}\hlnum{2}\hlstd{,n}\hlopt{-}\hlnum{1}\hlstd{,n)], resFL) )}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 \subsection{Nested conditional loops}
 
@@ -863,35 +806,33 @@ example:
 \begin{alltt}
 \hlcom{# generate sequence of seeds of length the number of computations}
 \hlstd{n} \hlkwb{<-} \hlnum{10}
-\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{(n} \hlopt{*} \hlstd{(n} \hlopt{+} \hlnum{1}\hlstd{)}\hlopt{/}\hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
+\hlstd{rng} \hlkwb{<-} \hlkwd{RNGseq}\hlstd{( n} \hlopt{*} \hlstd{(n}\hlopt{+}\hlnum{1}\hlstd{)} \hlopt{/} \hlnum{2}\hlstd{,} \hlnum{1234}\hlstd{)}
 
 \hlcom{# run standard nested foreach loop}
-\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{when}\hlstd{(i}\hlopt{%%}\hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r} \hlstd{= rng[(i} \hlopt{-} \hlnum{1}\hlstd{)} \hlopt{*} \hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}
-    \hlstd{\{}
+\hlstd{res} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{when}\hlstd{(i} \hlopt{%%} \hlnum{2} \hlopt{==} \hlnum{0}\hlstd{)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i,} \hlkwc{r}\hlstd{=rng[(i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{*}\hlstd{i}\hlopt{/}\hlnum{2} \hlopt{+} \hlnum{1}\hlopt{:}\hlstd{i])} \hlopt{%dopar%}\hlstd{\{}
 
         \hlcom{# set RNG seed}
-        \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(r)}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(r)}
 
         \hlcom{# do your own computation ...}
         \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
-    \hlstd{\}}
+\hlstd{\}}
 
 \hlcom{# Compare against the equivalent sequential computations}
 \hlstd{k} \hlkwb{<-} \hlnum{1}
-\hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%} \hlstd{\{}
-    \hlcom{# set seed}
-    \hlstd{rngtools::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
-    \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
+\hlstd{resAll} \hlkwb{<-} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%:%} \hlkwd{foreach}\hlstd{(}\hlkwc{j}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{i)} \hlopt{%do%}\hlstd{\{}
+        \hlcom{# set seed}
+        \hlstd{rngtools}\hlopt{::}\hlkwd{setRNG}\hlstd{(rng[[k]])}
+        \hlstd{k} \hlkwb{<-} \hlstd{k} \hlopt{+} \hlnum{1}
 
-    \hlcom{# do your own computation ...}
-    \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
+        \hlcom{# do your own computation ...}
+        \hlkwd{c}\hlstd{(i, j,} \hlkwd{rnorm}\hlstd{(}\hlnum{1}\hlstd{))}
 \hlstd{\}}
 
-\hlkwd{stopifnot}\hlstd{(}\hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{, n,} \hlkwc{by} \hlstd{=} \hlnum{2}\hlstd{)], res))}
+\hlkwd{stopifnot}\hlstd{(} \hlkwd{identical}\hlstd{(resAll[}\hlkwd{seq}\hlstd{(}\hlnum{2}\hlstd{,n,}\hlkwc{by}\hlstd{=}\hlnum{2}\hlstd{)], res) )}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 \section{Performance overhead}
 
@@ -910,39 +851,34 @@ in practice, where parallelised computations typically take several minutes.
 
 \hlcom{# comparison is done on sequential computations}
 \hlkwd{registerDoSEQ}\hlstd{()}
-\hlstd{rPar} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s} \hlstd{=} \hlnum{0}\hlstd{) \{}
-    \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%dopar%} \hlstd{\{}
-        \hlkwd{Sys.sleep}\hlstd{(s)}
-    \hlstd{\}}
-\hlstd{\}}
-\hlstd{rRNG} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s} \hlstd{=} \hlnum{0}\hlstd{) \{}
-    \hlkwd{foreach}\hlstd{(}\hlkwc{i} \hlstd{=} \hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%dorng%} \hlstd{\{}
-        \hlkwd{Sys.sleep}\hlstd{(s)}
-    \hlstd{\}}
-\hlstd{\}}
+\hlstd{rPar} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s}\hlstd{=}\hlnum{0}\hlstd{)\{} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%dopar%} \hlstd{\{} \hlkwd{Sys.sleep}\hlstd{(s) \} \}}
+\hlstd{rRNG} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{s}\hlstd{=}\hlnum{0}\hlstd{)\{} \hlkwd{foreach}\hlstd{(}\hlkwc{i}\hlstd{=}\hlnum{1}\hlopt{:}\hlstd{n)} \hlopt{%dorng%} \hlstd{\{} \hlkwd{Sys.sleep}\hlstd{(s) \} \}}
 
 \hlcom{# run benchmark}
-\hlstd{cmp} \hlkwb{<-} \hlkwd{benchmark}\hlstd{(}\hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),}
-    \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{0.01}\hlstd{),} \hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{0.05}\hlstd{),} \hlkwc{replications} \hlstd{=} \hlnum{5}\hlstd{)}
+\hlstd{cmp} \hlkwb{<-} \hlkwd{benchmark}\hlstd{(}\hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{)}
+                        \hlstd{,} \hlkwd{rPar}\hlstd{(}\hlnum{25}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{25}\hlstd{)}
+                        \hlstd{,} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{)}
+                        \hlstd{,} \hlkwd{rPar}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{.01}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{.01}\hlstd{)}
+            \hlstd{,} \hlkwd{rPar}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{.05}\hlstd{),} \hlkwd{rRNG}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{.05}\hlstd{)}
+                        \hlstd{,} \hlkwc{replications}\hlstd{=}\hlnum{5}\hlstd{)}
 \hlcom{# order by increasing elapsed time}
 \hlstd{cmp[}\hlkwd{order}\hlstd{(cmp}\hlopt{$}\hlstd{elapsed), ]}
 \end{alltt}
 \begin{verbatim}
 ##              test replications elapsed relative user.self sys.self user.child sys.child
-## 1        rPar(10)            5   0.068    1.000     0.067    0.000          0         0
-## 3        rPar(25)            5   0.119    1.750     0.119    0.000          0         0
-## 2        rRNG(10)            5   0.127    1.868     0.121    0.004          0         0
-## 4        rRNG(25)            5   0.221    3.250     0.209    0.004          0         0
-## 5        rPar(50)            5   0.239    3.515     0.239    0.000          0         0
-## 6        rRNG(50)            5   0.376    5.529     0.366    0.000          0         0
-## 9  rPar(10, 0.05)            5   2.578   37.912     0.074    0.000          0         0
-## 10 rRNG(10, 0.05)            5   2.669   39.250     0.149    0.004          0         0
-## 7  rPar(50, 0.01)            5   2.790   41.029     0.274    0.000          0         0
-## 8  rRNG(50, 0.01)            5   2.900   42.647     0.381    0.004          0         0
+## 1        rPar(10)            5   0.031    1.000     0.031    0.000          0         0
+## 3        rPar(25)            5   0.054    1.742     0.055    0.000          0         0
+## 2        rRNG(10)            5   0.058    1.871     0.053    0.004          0         0
+## 4        rRNG(25)            5   0.093    3.000     0.093    0.000          0         0
+## 5        rPar(50)            5   0.096    3.097     0.096    0.000          0         0
+## 6        rRNG(50)            5   0.158    5.097     0.153    0.004          0         0
+## 9  rPar(10, 0.05)            5   2.597   83.774     0.094    0.000          0         0
+## 10 rRNG(10, 0.05)            5   2.655   85.645     0.147    0.003          0         0
+## 7  rPar(50, 0.01)            5   2.956   95.355     0.433    0.000          0         0
+## 8  rRNG(50, 0.01)            5   3.026   97.613     0.502    0.005          0         0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 \section{Known issues}
 \label{sec:issues}
@@ -958,11 +894,10 @@ This behaviour can still be reproduced by setting:
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{doRNGversion}\hlstd{(}\hlstr{"1.3"}\hlstd{)}
+\hlkwd{doRNGversion}\hlstd{(}\hlstr{'1.3'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 To revert to the latest default behaviour:
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -971,7 +906,6 @@ To revert to the latest default behaviour:
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{itemize} 
 
 \section{News and changes}
@@ -979,7 +913,17 @@ To revert to the latest default behaviour:
 {\scriptsize
 \begin{verbatim}
 *************************************************************************
-*                       Changes in version 1.6                          *
+Changes in version 1.6.2
+*************************************************************************
+
+FIXES
+    o Non reproducible %dorng% loop when doRNG is registered over doSEQ 
+    (Issue #1 reported by Brenton Kenkel). Actually due to %dorng% not 
+    restoring the RNG (to state + 1) when doRNG is registered over doSEQ.
+    o %dorng% was not working properly on loops of length one (Issue #2)  
+
+*************************************************************************
+Changes in version 1.6
 *************************************************************************
 
 CHANGES
@@ -990,7 +934,7 @@ FIXES
     vignette and unit test.
 
 *************************************************************************
-*                       Changes in version 1.5                          *
+Changes in version 1.5
 *************************************************************************
 
 CHANGES
@@ -1001,7 +945,7 @@ CHANGES
     
 
 *************************************************************************
-*                       Changes in version 1.4.1                        *
+Changes in version 1.4.1
 *************************************************************************
 
 CHANGES
@@ -1023,7 +967,7 @@ BUG FIX
     and Zhang Peng).
 
 *************************************************************************
-*                       Changes in version 1.2.3                        *
+Changes in version 1.2.3
 *************************************************************************
 
 BUG FIX
@@ -1043,7 +987,7 @@ CHANGES
     results of %dorng% loops. See vignette for more details.
     
 *************************************************************************
-*                       Changes in version 1.2.2                        *
+Changes in version 1.2.2
 *************************************************************************
 
 BUG FIX
@@ -1063,7 +1007,7 @@ DEFUNCT
     o removed function CMRGseed
 
 *************************************************************************
-*                       Changes in version 1.2                          *
+Changes in version 1.2
 *************************************************************************
 
 BUG FIX
@@ -1075,13 +1019,12 @@ CHANGES
     o use package doParallel in examples
 
 *************************************************************************
-*                       Changes in version 1.1                          *
+Changes in version 1.1
 *************************************************************************
 
 CHANGES
     o use R core RNG "L'Ecuyer-CMRG" and the parallel package, 
     instead of the implementation provided by the rstream package.
-
 
 \end{verbatim}
 }
@@ -1096,35 +1039,35 @@ CHANGES
 \end{kframe}
 \end{knitrout}
 
-
 \section*{Session information}
 \addcontentsline{toc}{section}{Session information}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{verbatim}
-R version 3.0.2 (2013-09-25)
+R version 3.2.3 (2015-12-10)
 Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 15.10
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_US.UTF-8       
- [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
-[10] LC_TELEPHONE=C             LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C               LC_TIME=en_ZA.UTF-8       
+ [4] LC_COLLATE=en_US.UTF-8     LC_MONETARY=en_ZA.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_ZA.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+[10] LC_TELEPHONE=C             LC_MEASUREMENT=en_ZA.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] methods   parallel  stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] rbenchmark_1.0.0 doRNG_1.6        rngtools_1.2.3   doParallel_1.0.8 iterators_1.0.6 
-[6] foreach_1.4.1    pkgmaker_0.20    registry_0.2     knitr_1.5       
+[1] doRNG_1.6.2       rngtools_1.2.4    doParallel_1.0.10 iterators_1.0.8  
+[5] foreach_1.4.3     knitr_1.11        pkgmaker_0.25.10  registry_0.3     
 
 loaded via a namespace (and not attached):
-[1] codetools_0.2-8 compiler_3.0.2  digest_0.6.4    evaluate_0.5.1  formatR_0.10   
-[6] highr_0.3       stringr_0.6.2   tools_3.0.2     xtable_1.7-1   
+ [1] codetools_0.2-14 digest_0.6.8     xtable_1.8-0     formatR_1.2.1    magrittr_1.5    
+ [6] evaluate_0.8     highr_0.5.1      stringi_1.0-1    tools_3.2.3      stringr_1.0.0   
+[11] compiler_3.2.3  
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 
 \printbibliography[heading=bibintoc]
 

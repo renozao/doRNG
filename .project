@@ -10,10 +10,16 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>de.walware.docmlet.tex.builders.Tex</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>de.walware.statet.base.StatetNature</nature>
 		<nature>de.walware.statet.r.RNature</nature>
 		<nature>de.walware.statet.r.RPkgNature</nature>
+		<nature>de.walware.docmlet.tex.natures.Tex</nature>
 	</natures>
 </projectDescription>
