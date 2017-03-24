@@ -18,7 +18,6 @@ License: GPL (>=2)
 LazyLoad: yes
 URL: https://renozao.github.io/doRNG
 BugReports: http://github.com/renozao/doRNG/issues
-SCM: github:renozao, r-forge
 VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0),
@@ -26,6 +25,7 @@ Depends:
     rngtools (>= 1.2.4)
 Imports:
     stats,
+    utils,
     iterators,
     pkgmaker (>= 0.20)
 Suggests:
