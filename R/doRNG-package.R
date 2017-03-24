@@ -9,16 +9,13 @@
 #' \tabular{ll}{
 #' Package: \tab doRNG\cr
 #' Type: \tab Package\cr
-#' Version: \tab 1.2.3\cr
-#' Date: \tab 2012-03-30\cr
+#' Version: \tab 1.6.2\cr
+#' Date: \tab 2017-03-24\cr
 #' License: \tab GPL (>= 2)\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
-#' @author
-#' Renaud Gaujoux \email{renaud@@cbio.uct.ac.za},
-#'
-#' Maintainer: Renaud Gaujoux \email{renaud@@cbio.uct.ac.za},
+#' @encoding UTF-8  
 #' @name doRNG-package
 #' @docType package
 #' @title Generic Reproducible Parallel Backend for foreach Loops
@@ -79,5 +76,5 @@
 #' 
 #' stopCluster(cl) 
 #'
-NULL
+"_PACKAGE"
 
