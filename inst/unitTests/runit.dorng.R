@@ -171,6 +171,7 @@ test.dorng <- function(){
 		test_dopar("SNOW-like cluster", s.seq)
 		stopCluster(cl)
 		
+    DEACTIVATED("doMPI test because doMPI::startMPIcluster hangs inexplicably")
 		# Works with doMPI
 		if( require(doMPI) ){
 			cl <- startMPIcluster(2)

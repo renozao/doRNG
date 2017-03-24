@@ -9,6 +9,7 @@
 # or-NULL operator (borrowed from Hadley Wickham)
 '%||%' <- function(x, y) if( !is.null(x) ) x else y
 
+#' @importFrom utils head
 .collapse <- function(x, n=length(x), sep=', '){
 	
 	res <- paste(if( missing(n) ) x else head(x, n), collapse=', ')
