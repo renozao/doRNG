@@ -9,7 +9,6 @@ sudo: required
 r_binary_packages:
   - rmpi
   - devtools
-  - rbenchmark
 cache: packages
 r:
   - release
