@@ -7,3 +7,4 @@ vignettes/.*\.tex
 vignettes/vignette.mk
 ^makefile$
 ^README.md$
+.travis.yml
