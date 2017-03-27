@@ -82,7 +82,7 @@ stopCluster(cl)
 }
 \references{
 L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random number generators.”
-_Operations Research_, *47*(1). <URL: http://www.jstor.org/stable/10.2307/222902>.
+_Operations Research_, *47*(1). <DOI:10.1287/opre.47.1.159> <URL: http://www.jstor.org/stable/10.2307/222902>.
 }
 \seealso{
 \code{\link{doRNG}}, \code{\link{RNGseq}}
