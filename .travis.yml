@@ -9,6 +9,7 @@ sudo: required
 r_binary_packages:
   - rmpi
   - devtools
+  - git2r
 cache: packages
 r:
   - release
