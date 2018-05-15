@@ -14,4 +14,8 @@ cache: packages
 r:
   - release
   - devel
+r_packages:
+  - covr
 warnings_are_errors: false
+after_success:
+  - Rscript -e 'covr::codecov()'

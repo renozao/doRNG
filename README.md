@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/renozao/doRNG.png?branch=develop)](https://travis-ci.org/renozao/doRNG)
+[![Build Status](https://travis-ci.org/renozao/doRNG.png?branch=master)](https://travis-ci.org/renozao/doRNG)
+[![codecov](https://codecov.io/gh/renozao/doRNG/branch/master/graph/badge.svg)](https://codecov.io/gh/renozao/doRNG)
 
 # Introduction
 
