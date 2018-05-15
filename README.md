@@ -9,4 +9,4 @@ It enables to easily convert standard %dopar% loops into fully reproducible loop
 the task scheduling strategy, or the chosen parallel environment and associated foreach backend.
 
 The package `doRNG` is available from CRAN at http://cran.r-project.org/web/packages/doRNG.
-The development project is hosted on `R-forge` at http://r-forge.r-project.org/projects/dorng/
+The development project is hosted on `GitHub` at https://github.com/renozao/doRNG
