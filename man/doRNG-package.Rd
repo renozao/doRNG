@@ -14,16 +14,6 @@ independently of the number of workers, the task scheduling strategy,
 or the chosen parallel environment and associated foreach backend.
 It has been tested with the following foreach backend: doMC, doSNOW, doMPI.
 }
-\details{
-\tabular{ll}{
-Package: \tab doRNG\cr
-Type: \tab Package\cr
-Version: \tab 1.6.2\cr
-Date: \tab 2017-03-24\cr
-License: \tab GPL (>= 2)\cr
-LazyLoad: \tab yes\cr
-}
-}
 \examples{
 \dontshow{
 options(R_CHECK_RUNNING_EXAMPLES_=TRUE) ## roxygen generated flag
@@ -82,9 +72,13 @@ stopCluster(cl)
 }
 \references{
 L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random number generators.”
-_Operations Research_, *47*(1). <DOI:10.1287/opre.47.1.159> <URL: http://www.jstor.org/stable/10.2307/222902>.
+_Operations Research_, *47*(1). doi: 10.1287/opre.47.1.159 (URL: http://doi.org/10.1287/opre.47.1.159).
 }
 \seealso{
 \code{\link{doRNG}}, \code{\link{RNGseq}}
+}
+\author{
+\strong{Maintainer}: Renaud Gaujoux \email{renozao@protonmail.com}
+
 }
 \keyword{package}

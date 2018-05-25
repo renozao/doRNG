@@ -130,7 +130,7 @@ infoDoRNG <- function (data, item)
 			, NULL)
 }
 
-#' \code{doRNG} implements the generic reproducible foreach backend. It should 
+#' @describeIn infoDoRNG implements the generic reproducible foreach backend. It should 
 #' not be called directly by the user.
 #' 
 #' @param obj a foreach description of the loop arguments
@@ -138,7 +138,6 @@ infoDoRNG <- function (data, item)
 #' @param envir the loop's evaluation environment
 #' @param data configuration data of the doRNG backend
 #' 
-#' @rdname infoDoRNG
 doRNG <- function (obj, ex, envir, data){
 		
 			
@@ -207,7 +206,6 @@ setDoBackend <- function(backend){
 #' 
 #' @importFrom iterators iter
 #' @export 
-#' @rdname doRNG
 #' @usage obj \%dorng\% ex
 #' @seealso \code{\link{foreach}}, \code{\link[doParallel]{doParallel}}
 #' , \code{\link[doParallel]{registerDoParallel}}, \code{\link[doMPI]{doMPI}}

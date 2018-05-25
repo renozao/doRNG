@@ -31,10 +31,13 @@ string or a numeric value).
 \code{infoDoRNG} returns information about the doRNG backend, e.g., version,
 number of workers.
 It is not meant to be called by the user.
-
-\code{doRNG} implements the generic reproducible foreach backend. It should 
-not be called directly by the user.
 }
+\section{Functions}{
+\itemize{
+\item \code{doRNG}: implements the generic reproducible foreach backend. It should 
+not be called directly by the user.
+}}
+
 \author{
 Renaud Gaujoux
 }

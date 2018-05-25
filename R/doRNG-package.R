@@ -6,15 +6,6 @@
 #' or the chosen parallel environment and associated foreach backend.
 #' It has been tested with the following foreach backend: doMC, doSNOW, doMPI. 
 #' 
-#' \tabular{ll}{
-#' Package: \tab doRNG\cr
-#' Type: \tab Package\cr
-#' Version: \tab 1.6.2\cr
-#' Date: \tab 2017-03-24\cr
-#' License: \tab GPL (>= 2)\cr
-#' LazyLoad: \tab yes\cr
-#' }
-#'
 #' @encoding UTF-8  
 #' @name doRNG-package
 #' @docType package
