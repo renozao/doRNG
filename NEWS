@@ -1,4 +1,16 @@
 *************************************************************************
+Changes in version 1.7
+*************************************************************************
+CHANGES
+    o Unit tests are now run through testthat
+    o Minor fixes in man pages and README file
+    o Now depends on rngtools >= 1.3
+    
+FIXES
+    o Enabled running %dorng% loops within a package (incorporating 
+    the solution proposed by Elizabeth Byerly in PR#3) 
+
+*************************************************************************
 Changes in version 1.6.2
 *************************************************************************
 
