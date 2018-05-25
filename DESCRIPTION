@@ -30,13 +30,12 @@ Suggests:
     doMPI,
     doRedis,
     rbenchmark,
-    RUnit,
     devtools,
     knitr,
-    bibtex
+    bibtex,
+    testthat
 Collate:
     'doRNG-package.R'
     'doRNG.R'
-RoxygenNote: 6.0.0.9000
+RoxygenNote: 6.0.1.9000
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
-
