@@ -162,7 +162,7 @@ doRNG <- function (obj, ex, envir, data){
     # directly register (temporarly) the computing backend
 	on.exit({setDoBackend(rngBackend)}, add=TRUE)
 	setDoBackend(rngBackend$data$backend)
-	do.call('%dorng%', list(obj, ex), envir=parent.frame())
+	do.call('%dorng%', list(obj, ex), envir = envir)
 }
 
 ##% Get/Sets the registered foreach backend's data
