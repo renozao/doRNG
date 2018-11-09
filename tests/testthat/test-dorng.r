@@ -89,6 +89,25 @@ test_that("dorng", {
 				expect_identical(rngs, ref, msg("Results of seeded loop contains whole sequence of RNG seeds"))
 			})
 			
+			# check with unamed foreach arguments (issue #8)
+			local({
+			  on.exit( registerDoSEQ() )
+			  registerDoRNG()
+			  set.seed(567)
+			  res <- foreach(a = 1:4, .combine = 'c') %dopar% {rnorm(1, mean = 0, sd = 1)}
+			  set.seed(567)
+			  res2 <- foreach(1:4, .combine = 'c') %dopar% {rnorm(1, mean = 0, sd = 1)}
+			  expect_identical(res, res2, info = "First argument named or unamed is equivalent")
+			  #
+			  set.seed(567)
+			  res <- foreach(a = 1:4, 1:2, .combine = 'c') %dopar% {rnorm(1, mean = 0, sd = 1)}
+			  set.seed(567)
+			  res2 <- foreach(1:4, 1:2, .combine = 'c') %dopar% {rnorm(1, mean = 0, sd = 1)}
+			  expect_identical(res, res2, info = "First argument named or unamed, with second unamed argument is equivalent")
+			  
+			})
+			##
+			
 			## check extra arguments to .options.RNG
 			# Normal RNG parameter is taken into account
 			s.unif.noNk <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(5) }

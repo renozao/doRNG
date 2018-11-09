@@ -78,7 +78,7 @@
 #' 
 doRNGversion <- local({
 
-	currentV <- "1.7.2" #as.character(packageVersion('doRNG')) 
+	currentV <- "1.7.3" #as.character(packageVersion('doRNG')) 
 	cache <- currentV
 	function(x){
 		if( missing(x) ) return(cache)
@@ -126,7 +126,7 @@ infoDoRNG <- function (data, item)
 	switch(item
 			, workers = data$backend$info(data$backend$data, "workers")
 			, name = "doRNG"
-			, version = "doRNG 1.7.2" 
+			, version = "doRNG 1.7.3" 
 			, NULL)
 }
 
@@ -310,10 +310,10 @@ setDoBackend <- function(backend){
 	# if an RNG seed is provided then setup random streams 
 	# and add the list of RNGs to use as an iterated arguments for %dopar%
 #	library(parallel)
+        N_elem <- length(as.list(iter(obj)))
 	obj$argnames <- c(obj$argnames, '.doRNG.stream')
-	it <- iter(obj)
-	argList <- as.list(it)
-	
+	obj$args$.doRNG.stream <- rep(NA_integer_, N_elem)
+
 	# restore current RNG  on exit if a seed is passed
 	rngSeed <- 
 	if( !is.null(obj$options$RNG) ){
@@ -337,7 +337,7 @@ setDoBackend <- function(backend){
 	# generate a sequence of streams
 #	print("before RNGseq")
 #	showRNG()
-	obj$args$.doRNG.stream <- do.call("doRNGseq", c(list(n=length(argList), verbose=obj$verbose), rngSeed))
+	obj$args$.doRNG.stream <- do.call("doRNGseq", c(list(n=N_elem, verbose=obj$verbose), rngSeed))
 #	print("after RNGseq")
 #	showRNG()
 	#print(obj$args$.doRNG.stream)

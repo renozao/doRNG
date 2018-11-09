@@ -10,7 +10,8 @@ FIXES
     o Enabled running %dorng% loops within a package (incorporating 
     the solution proposed by Elizabeth Byerly in PR#3) 
     o Fixed error with NULL iteration results when setting 'rng' 
-    attribute (#9)
+    attribute (issue #9)
+    o Fixed error when using unamed foreach arguments (issue #8)
 
 *************************************************************************
 Changes in version 1.6.2
