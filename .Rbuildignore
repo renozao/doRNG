@@ -8,3 +8,5 @@ vignettes/vignette.mk
 ^makefile$
 ^README.md$
 .travis.yml
+^.*\.Rproj$
+^\.Rproj\.user$
