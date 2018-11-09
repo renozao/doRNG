@@ -78,7 +78,7 @@
 #' 
 doRNGversion <- local({
 
-	currentV <- "1.5.3" #as.character(packageVersion('doRNG')) 
+	currentV <- "1.7.2" #as.character(packageVersion('doRNG')) 
 	cache <- currentV
 	function(x){
 		if( missing(x) ) return(cache)
@@ -126,7 +126,7 @@ infoDoRNG <- function (data, item)
 	switch(item
 			, workers = data$backend$info(data$backend$data, "workers")
 			, name = "doRNG"
-			, version = "doRNG 1.5.3" 
+			, version = "doRNG 1.7.2" 
 			, NULL)
 }
 
@@ -391,8 +391,8 @@ setDoBackend <- function(backend){
     
 	# call the standard %dopar% operator
 	res <- do.call('%dopar%', list(obj, ex), envir=parent.frame())
-	# add seed sequence as an attribute
-	attr(res, 'rng') <- obj$args$.doRNG.stream
+	# add seed sequence as an attribute (skip this for NULL results)
+	if( !is.null(res) ) attr(res, 'rng') <- obj$args$.doRNG.stream
 	# return result
 	res
 }

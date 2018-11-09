@@ -1,5 +1,5 @@
 *************************************************************************
-Changes in version 1.7
+Changes in version 1.7.x
 *************************************************************************
 CHANGES
     o Unit tests are now run through testthat
@@ -9,6 +9,8 @@ CHANGES
 FIXES
     o Enabled running %dorng% loops within a package (incorporating 
     the solution proposed by Elizabeth Byerly in PR#3) 
+    o Fixed error with NULL iteration results when setting 'rng' 
+    attribute (#9)
 
 *************************************************************************
 Changes in version 1.6.2

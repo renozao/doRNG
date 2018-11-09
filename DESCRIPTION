@@ -1,7 +1,7 @@
 Package: doRNG
 Type: Package
 Title: Generic Reproducible Parallel Backend for 'foreach' Loops
-Version: 1.7.1
+Version: 1.7.2
 Authors@R: person("Renaud", "Gaujoux", email = "renozao@protonmail.com", role = c("aut", "cre"))
 Description: Provides functions to perform
     reproducible parallel foreach loops, using independent
