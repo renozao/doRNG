@@ -414,7 +414,11 @@ setDoBackend <- function(backend){
 	# call the standard %dopar% operator
 	res <- do.call('%dopar%', list(obj, ex), envir=parent.frame())
 	# add seed sequence as an attribute (skip this for NULL results)
-	if( !is.null(res) ) attr(res, 'rng') <- obj$args$.doRNG.stream
+	if( !is.null(res) ){
+	  attr(res, 'rng') <- obj$args$.doRNG.stream
+	  attr(res, 'doRNG_version') <- doRNGversion()
+	  
+	}
 	# return result
 	res
 }

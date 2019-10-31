@@ -30,10 +30,19 @@ checkRNG <- function(x, y, msg = NULL, ...){
 # 1-length loop
 test_that("dorng1", {
     
+    rng_seed <- RNGseq(n = 1, seed = 123, simplify = FALSE)[[1L]]
     set.seed(123)
     x <- foreach(i=1) %dorng% { runif(1) }
     y <- foreach(i=1, .options.RNG = 123) %dorng% { runif(1) }
     expect_identical(x, y)
+    # check attributes on results
+    result_attributes <- attributes(x)
+    expect_true(setequal(names(result_attributes), c("rng", "doRNG_version")),
+                info = "Result has all the expected attributes")
+    expect_identical(result_attributes[["rng"]][[1L]], rng_seed, 
+                     info = "Attribute 'rng' does not have the expected value")
+    expect_identical(result_attributes[["doRNG_version"]], doRNGversion(),
+                     info = "Attribute 'doRNG_version' does not have the expected value")
     
 })
 
@@ -340,18 +349,24 @@ test_that("Initial RNG state is properly handled", {
   # pre-1.7.4: results are not-reproducible
   res <- .run_test_script("1.7.3")
   expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_true(all(sapply(res, attr, 'doRNG_version') == "1.7.3"), 
+              info = "doRNG version is correctly stored")
   expect_true(!identical(res[["r1"]], res[["r2"]]), info = "Version pre-1.7.3: results 1 & 2 are not identical")
-  expect_identical(res[["r3"]], res[["r2"]], , info = "Version pre-1.7.3: results 2 & 3 are identical")
+  expect_identical(res[["r3"]], res[["r2"]], info = "Version pre-1.7.3: results 2 & 3 are identical")
   
   # post-1.7.4: results are reproducible
   res <- .run_test_script("1.7.4")
   expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_true(all(sapply(res, attr, 'doRNG_version') == "1.7.4"), 
+              info = "doRNG version is correctly stored")
   expect_identical(res[["r1"]], res[["r2"]], info = "Version 1.7.4: results 1 & 2 are identical")
   expect_identical(res[["r3"]], res[["r2"]], info = "Version 1.7.4: results 3 & 3 are identical")
   
   # current version: results are reproducible
   res <- .run_test_script(NULL)
   expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_true(all(sapply(res, attr, 'doRNG_version') == doRNGversion()), 
+              info = "doRNG version is correctly stored")
   expect_identical(res[["r1"]], res[["r2"]], info = "Current version: results 1 & 2 are identical")
   expect_identical(res[["r3"]], res[["r2"]], info = "Current version: results 2 & 3 are identical")
   
