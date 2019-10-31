@@ -33,6 +33,14 @@
 #' to seeding via \code{.options.RNG}.
 #' Another bug was that non-seeded loops would share most of their RNG seed!
 #' }
+#' \item{1.7.4}{Prior to this version, in the case where the RNG had not been called yet, 
+#' the first seeded \code{\%dorng\%} loops would not give the identical results as 
+#' subsequent loops despite using the same seed 
+#' (see \link[issue #12]{https://github.com/renozao/doRNG/issues/12}).
+#' 
+#' This has been fixed in version 1.7.4, where the RNG is called once (\code{sample(NA)}), 
+#' whenever the .Random.seed is not found in global environment.
+#' }
 #' }
 #' 
 #' @param x version number to switch to, or missing to get the currently 
@@ -78,7 +86,7 @@
 #' 
 doRNGversion <- local({
 
-	currentV <- "1.7.3" #as.character(packageVersion('doRNG')) 
+	currentV <- "1.7.4" #as.character(packageVersion('doRNG')) 
 	cache <- currentV
 	function(x){
 		if( missing(x) ) return(cache)
@@ -314,6 +322,20 @@ setDoBackend <- function(backend){
 	obj$argnames <- c(obj$argnames, '.doRNG.stream')
 	obj$args$.doRNG.stream <- rep(NA_integer_, N_elem)
 
+	# make sure the RNG seed is initialized by calling getRNG()
+	if( is.null(RNGseed()) ){
+	  if( checkRNGversion("1.7.4") >= 0 ){
+	    message("NOTE -- .Random.seed is not initialized: sampling once to ensure reproducibility.")
+	    getRNG()
+	    
+	  }else{
+	    warning(paste0(".Random.seed is not initialized: results might not be reproducible.\n  ",
+	            "Update to doRNG version >= 1.7.4 to get a fix for this issue."))
+	    
+	  }
+	}
+	##
+	
 	# restore current RNG  on exit if a seed is passed
 	rngSeed <- 
 	if( !is.null(obj$options$RNG) ){

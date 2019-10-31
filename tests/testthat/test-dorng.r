@@ -304,3 +304,55 @@ test_that("registerDoRNG", {
 	expect_true(!identical(r1.2, r1), "The seed passed as an option is really taken into account")
 	
 })
+
+# Test the use-case discussed in https://github.com/renozao/doRNG/issues/12
+# Note: when run under RStudio, this
+test_that("Initial RNG state is properly handled", {
+  
+  # write script that loads the package being tested
+  .run_test_script <- function(version){
+    pkg_path <- path.package("doRNG")
+    lib_path <- dirname(pkg_path)
+    # determine if the package is a development or installed package
+    if( dir.exists(file.path(pkg_path, "Meta")) ) load_cmd <- sprintf("library(doRNG, lib = '%s')", lib_path)
+    else load_cmd <- sprintf("devtools::load_all('%s')", pkg_path)
+    # results are saved in a temporary .rds file
+    tmp_res <- tempfile("rscript_res_", fileext = ".rds")
+    on.exit( unlink(tmp_res) )
+    
+    r_code <- paste0(collapse = "; ", 
+                    c(load_cmd,
+                    if( !is.null(version) ) sprintf("doRNGversion('%s')", version),
+                    "r1 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }",
+                    "r2 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }",
+                    "r3 <- foreach(i=1:4, .options.RNG=1234) %dorng% { runif(1) }",
+                    sprintf("saveRDS(list(r1 = r1, r2 = r2, r3 = r3), '%s')", tmp_res)
+                    )
+    )
+    
+    # run code in an independent fresh session 
+    rscript <- file.path(R.home("bin"), "Rscript")
+    system(sprintf('"%s" -e "%s"', rscript, r_code), ignore.stdout = TRUE, ignore.stderr = TRUE)
+    # load result
+    readRDS(tmp_res)
+    
+  }
+  # pre-1.7.4: results are not-reproducible
+  res <- .run_test_script("1.7.3")
+  expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_true(!identical(res[["r1"]], res[["r2"]]), info = "Version pre-1.7.3: results 1 & 2 are not identical")
+  expect_identical(res[["r3"]], res[["r2"]], , info = "Version pre-1.7.3: results 2 & 3 are identical")
+  
+  # post-1.7.4: results are reproducible
+  res <- .run_test_script("1.7.4")
+  expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_identical(res[["r1"]], res[["r2"]], info = "Version 1.7.4: results 1 & 2 are identical")
+  expect_identical(res[["r3"]], res[["r2"]], info = "Version 1.7.4: results 3 & 3 are identical")
+  
+  # current version: results are reproducible
+  res <- .run_test_script(NULL)
+  expect_true(is.list(res) && identical(names(res), paste0("r", 1:3)))
+  expect_identical(res[["r1"]], res[["r2"]], info = "Current version: results 1 & 2 are identical")
+  expect_identical(res[["r3"]], res[["r2"]], info = "Current version: results 2 & 3 are identical")
+  
+})
