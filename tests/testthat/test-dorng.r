@@ -184,28 +184,35 @@ test_that("dorng", {
 		
 		# Multicore cluster
     if( .Platform$OS.type != 'windows'){
+      # Note: for some reason, running this test in RStudio fails when checking that the standard
+      # %dopar% loop is not reproducible
 		  registerDoParallel(cores=2)
 		  s <- test_dopar("Multicore", s.seq)
     }
 		
 		# SNOW-like cluster
 		cl <- makeCluster(2)
+		on.exit( if( !is.null(cl) ) stopCluster(cl), add = TRUE)
 		registerDoParallel(cl)
 		test_dopar("SNOW-like cluster", s.seq)
-		stopCluster(cl)
+		stopCluster(cl); cl <- NULL
 		
     skip("doMPI test because doMPI::startMPIcluster hangs inexplicably")
 		# Works with doMPI
 		if( require(doMPI) ){
-			cl <- startMPIcluster(2)
-			registerDoMPI(cl)
+			cl_mpi <- startMPIcluster(2)
+			on.exit( if( !is.null(cl_mpi) ) closeCluster(cl_mpi), add = TRUE)
+			registerDoMPI(cl_mpi)
 			test_dopar("MPI cluster", s.seq) 
-			closeCluster(cl)
+			closeCluster(cl_mpi); cl_mpi <- NULL
 		}
 })
 
 test_that("registerDoRNG", {
 	
+  orng <- RNGseed()
+	on.exit({ doRNGversion(NULL); RNGseed(orng); registerDoSEQ()} )
+		
     # RNG restoration after %dorng% over doSEQ
     registerDoSEQ()
     registerDoRNG()
@@ -218,7 +225,7 @@ test_that("registerDoRNG", {
     expect_identical(res1, res2, "%dorng% loop over doSEQ are reproducible")
     
     
-	on.exit( stopCluster(cl) )
+	on.exit( if( !is.null(cl) ) stopCluster(cl), add = TRUE)
 	library(doParallel)
 	cl <- makeCluster(2)
 	registerDoParallel(cl)
@@ -230,11 +237,12 @@ test_that("registerDoRNG", {
 	set.seed(1234)
 	r2 <- foreach(i=1:4) %dopar% { runif(1) }
 	expect_identical(r1, r2, "registerDoRNG + set.seed: makes a %dopar% loop behave like a set.seed + %dorng% loop")
-	stopCluster(cl)
+	stopCluster(cl); cl <- NULL
 	
 	# Registering another foreach backend disables doRNG
-	cl <- makeCluster(2)
-	registerDoParallel(cl)
+	cl2 <- makeCluster(2)
+	on.exit( if( !is.null(cl2) ) stopCluster(cl2), add = TRUE)
+	registerDoParallel(cl2)
 	set.seed(1234)
 	s1 <- foreach(i=1:4) %dopar% { runif(1) }
 	set.seed(1234)
