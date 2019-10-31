@@ -27,10 +27,6 @@ Note that (re-)registering a foreach backend other than doRNG, after a call
 to \code{registerDoRNG} disables doRNG -- which then needs to be registered.
 }
 \examples{
-\dontshow{
-options(R_CHECK_RUNNING_EXAMPLES_=TRUE) ## roxygen generated flag
-}
-
 
 library(doParallel)
 cl <- makeCluster(2)

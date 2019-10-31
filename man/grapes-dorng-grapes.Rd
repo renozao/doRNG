@@ -21,10 +21,6 @@ Use \code{attr(res, 'rng')} to retrieve it.
 \code{\%dopar\%}, which enable reproducible foreach loops to be performed.
 }
 \examples{
-\dontshow{
-options(R_CHECK_RUNNING_EXAMPLES_=TRUE) ## roxygen generated flag
-}
-
 
 library(doParallel)
 cl <- makeCluster(2)

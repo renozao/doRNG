@@ -3,6 +3,7 @@
 \docType{package}
 \encoding{UTF-8}
 \name{doRNG-package}
+\alias{doRNG}
 \alias{doRNG-package}
 \title{Generic Reproducible Parallel Backend for foreach Loops}
 \description{
@@ -15,10 +16,6 @@ or the chosen parallel environment and associated foreach backend.
 It has been tested with the following foreach backend: doMC, doSNOW, doMPI.
 }
 \examples{
-\dontshow{
-options(R_CHECK_RUNNING_EXAMPLES_=TRUE) ## roxygen generated flag
-}
-
 
 # register parallel backend
 library(doParallel)
@@ -71,8 +68,9 @@ stopCluster(cl)
 
 }
 \references{
-L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random number generators.”
-_Operations Research_, *47*(1). doi: 10.1287/opre.47.1.159 (URL: http://doi.org/10.1287/opre.47.1.159).
+L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random
+number generators.” _Operations Research_, *47*(1). doi: 10.1287/opre.47.1.159 (URL:
+https://doi.org/10.1287/opre.47.1.159).
 }
 \seealso{
 \code{\link{doRNG}}, \code{\link{RNGseq}}
