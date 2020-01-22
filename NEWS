@@ -19,6 +19,7 @@ FIXES
     o Fixed non-reproducibility issue when the .Random.seed is not yet 
     initialized, e.g., when the session starts and the RNG has not been 
     used yet (issue #12)
+    o Fixed runtime error when package is not attached (issue #13)
 
 *************************************************************************
 Changes in version 1.6.2
