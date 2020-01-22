@@ -36,7 +36,7 @@
 #' \item{1.7.4}{Prior to this version, in the case where the RNG had not been called yet, 
 #' the first seeded \code{\%dorng\%} loops would not give the identical results as 
 #' subsequent loops despite using the same seed 
-#' (see \link[issue #12]{https://github.com/renozao/doRNG/issues/12}).
+#' (see \url{https://github.com/renozao/doRNG/issues/12}).
 #' 
 #' This has been fixed in version 1.7.4, where the RNG is called once (\code{sample(NA)}), 
 #' whenever the .Random.seed is not found in global environment.
@@ -212,6 +212,18 @@ setDoBackend <- function(backend){
 #' The whole sequence of RNG seeds is stored in the result object as an attribute.
 #' Use \code{attr(res, 'rng')} to retrieve it. 
 #' 
+#' @section Global options:
+#' 
+#' These options are for advanced users that develop `foreach backends:
+#' 
+#' * 'doRNG.rng_change_warning_skip': if set to a single logical `FALSE/TRUE`, it indicates 
+#' whether a warning should be thrown if the RNG seed is changed by the registered 
+#' parallel backend (default=FALSE). 
+#' Set it to `TRUE` if you know that running your backend will change the RNG state and 
+#' want to disable the warning. 
+#' This option can also be set to a character vector that specifies the name(s) of the backend(s) 
+#' for which the warning should be skipped.
+#'  
 #' @importFrom iterators iter
 #' @export 
 #' @usage obj \%dorng\% ex
@@ -386,10 +398,15 @@ setDoBackend <- function(backend){
         RNG.old <- RNGseed()
         on.exit({
             rng_type_changed <- !identical(RNGtype(), RNGtype(RNG.old))
-            known_changing_cases <- is.null(dp) || dp=='doSEQ' || dp=='doMPI'
-            if( known_changing_cases || rng_type_changed){
-                if( rng_type_changed && !known_changing_cases ){
-                    warning("Foreach loop had changed the current RNG type: RNG was restored to same type, next state")
+            warning_skip <- getOption("doRNG.rng_change_warning_skip", FALSE)
+            force_warning <- getOption("doRNG.rng_change_warning_force", FALSE)
+            known_changing_cases <- is.null(dp) || dp %in% c("doSEQ", "doMPI") ||
+                                     (is.logical(warning_skip) && !is.na(warning_skip) && warning_skip) ||
+                                     (is.character(warning_skip) && dp %in% warning_skip)
+            if( known_changing_cases || rng_type_changed ){
+                if( force_warning || (rng_type_changed && !known_changing_cases) ){
+                    warning(sprintf("Foreach loop (%s) had changed the current RNG type: RNG was restored to same type, next state",
+                                    dp %||% "unknown"))
                 }else{
                     message("* Detected known RNG side effect: ", dp)
                 }

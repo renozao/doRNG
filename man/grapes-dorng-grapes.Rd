@@ -20,6 +20,20 @@ Use \code{attr(res, 'rng')} to retrieve it.
 \code{\%dorng\%} is a foreach operator that provides an alternative operator 
 \code{\%dopar\%}, which enable reproducible foreach loops to be performed.
 }
+\section{Global options}{
+
+
+These options are for advanced users that develop `foreach backends:
+
+* 'doRNG.rng_change_warning_skip': if set to a single logical `FALSE/TRUE`, it indicates 
+whether a warning should be thrown if the RNG seed is changed by the registered 
+parallel backend (default=FALSE). 
+Set it to `TRUE` if you know that running your backend will change the RNG state and 
+want to disable the warning. 
+This option can also be set to a character vector that specifies the name(s) of the backend(s) 
+for which the warning should be skipped.
+}
+
 \examples{
 
 library(doParallel)

@@ -36,7 +36,7 @@ Another bug was that non-seeded loops would share most of their RNG seed!
 \item{1.7.4}{Prior to this version, in the case where the RNG had not been called yet, 
 the first seeded \code{\%dorng\%} loops would not give the identical results as 
 subsequent loops despite using the same seed 
-(see \link[issue #12]{https://github.com/renozao/doRNG/issues/12}).
+(see \url{https://github.com/renozao/doRNG/issues/12}).
 
 This has been fixed in version 1.7.4, where the RNG is called once (\code{sample(NA)}), 
 whenever the .Random.seed is not found in global environment.

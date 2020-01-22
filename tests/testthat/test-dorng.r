@@ -30,6 +30,7 @@ checkRNG <- function(x, y, msg = NULL, ...){
 # 1-length loop
 test_that("dorng1", {
     
+    set.seed(1234) # needed to avoid weird behaviors in checks
     rng_seed <- RNGseq(n = 1, seed = 123, simplify = FALSE)[[1L]]
     set.seed(123)
     x <- foreach(i=1) %dorng% { runif(1) }
@@ -369,5 +370,39 @@ test_that("Initial RNG state is properly handled", {
               info = "doRNG version is correctly stored")
   expect_identical(res[["r1"]], res[["r2"]], info = "Current version: results 1 & 2 are identical")
   expect_identical(res[["r3"]], res[["r2"]], info = "Current version: results 2 & 3 are identical")
+  
+})
+
+test_that("RNG warnings", {
+  
+  .local <- function(){
+    
+    orng <- RNGseed()
+    oo <- options()
+		on.exit({ options(oo); doRNGversion(NULL); RNGseed(orng); registerDoSEQ()} )
+			
+    registerDoSEQ()
+    registerDoRNG()
+    expect_warning(y <- foreach(x = 1:2) %dorng% { rnorm(1); x }, NA)
+    options(doRNG.rng_change_warning_force = TRUE)
+    expect_warning(y <- foreach(x = 1:2) %dorng% { rnorm(1); x }, 
+                   "Foreach loop \\(doSEQ\\) .* changed .* RNG type")
+    options(doRNG.rng_change_warning_force = NULL)
+    
+    on.exit( if( !is.null(cl) ) stopCluster(cl), add = TRUE)
+  	library(doParallel)
+  	cl <- makeCluster(2)
+  	registerDoParallel(cl)
+  	
+    options(doRNG.rng_change_warning_force = TRUE)
+    options(doRNG.rng_change_warning_skip = "doParallelSNOW")
+    expect_warning(y <- foreach(x = 1:2) %dorng% { rnorm(1); x },
+                  "Foreach loop \\(doParallelSNOW\\) .* changed .* RNG type")
+    options(doRNG.rng_change_warning_force = NULL)
+    expect_warning(y <- foreach(x = 1:2) %dorng% { rnorm(1); x }, NA)
+    
+    options(doRNG.rng_change_warning_skip = NULL)
+  }
+  .local()
   
 })

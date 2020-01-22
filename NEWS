@@ -9,6 +9,8 @@ CHANGES
     the version of doRNG that was used, based on doRNGversion(). 
     NB: this is not necessarily the same as the version of the installed 
     package. 
+    o Added the following global option 'doRNG.rng_change_warning_skip'.
+    See ?`%dorng%` (issue #14).
     
 FIXES
     o Enabled running %dorng% loops within a package (incorporating 
