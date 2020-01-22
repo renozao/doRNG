@@ -3,7 +3,6 @@
 \docType{package}
 \encoding{UTF-8}
 \name{doRNG-package}
-\alias{doRNG}
 \alias{doRNG-package}
 \title{Generic Reproducible Parallel Backend for foreach Loops}
 \description{
@@ -68,8 +67,8 @@ stopCluster(cl)
 
 }
 \references{
-L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random
-number generators.” _Operations Research_, *47*(1). doi: 10.1287/opre.47.1.159 (URL:
+L'Ecuyer P (1999). “Good parameters and implementations for combined multiple recursive random number
+generators.” _Operations Research_, *47*(1). doi: 10.1287/opre.47.1.159 (URL:
 https://doi.org/10.1287/opre.47.1.159).
 }
 \seealso{

@@ -38,6 +38,6 @@ Suggests:
 Collate:
     'doRNG-package.R'
     'doRNG.R'
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
 Remotes: renozao/roclets

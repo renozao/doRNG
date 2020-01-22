@@ -10,7 +10,7 @@ infoDoRNG(data, item)
 doRNG(obj, ex, envir, data)
 }
 \arguments{
-\item{data}{a list of data used by the backend}
+\item{data}{configuration data of the doRNG backend}
 
 \item{item}{the data item requested, as a character string 
 (e.g. 'name', 'workers', 'version')}
@@ -20,8 +20,6 @@ doRNG(obj, ex, envir, data)
 \item{ex}{the lopp expression}
 
 \item{envir}{the loop's evaluation environment}
-
-\item{data}{configuration data of the doRNG backend}
 }
 \value{
 \code{infoDoRNG} returns the requested info (usually as a character 
