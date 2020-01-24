@@ -20,7 +20,7 @@ VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0),
     foreach,
-    rngtools (>= 1.3)
+    rngtools (>= 1.5)
 Imports:
     stats,
     utils,
@@ -34,7 +34,7 @@ Suggests:
     knitr,
     bibtex,
     testthat,
-    pkgmaker (>= 0.20)
+    pkgmaker (>= 0.31)
 RoxygenNote: 7.0.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
 Remotes: renozao/roclets
