@@ -1,5 +1,5 @@
 *************************************************************************
-Changes in version 1.7.4
+Changes in version 1.8
 *************************************************************************
 CHANGES
     o Unit tests are now run through testthat
@@ -11,6 +11,8 @@ CHANGES
     package. 
     o Added the following global option 'doRNG.rng_change_warning_skip'.
     See ?`%dorng%` (issue #14).
+    o Moved dependency on pkgmaker to Suggests to make installation lighter 
+    (issue #10).
     
 FIXES
     o Enabled running %dorng% loops within a package (incorporating 
