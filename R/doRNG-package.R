@@ -15,7 +15,7 @@
 #' @bibliography /home/renaud/Documents/articles/library.bib
 #' @cite Lecuyer1999
 #' 
-#' @import stats pkgmaker rngtools foreach
+#' @import stats rngtools foreach
 #' @examples
 #' 
 #' # register parallel backend

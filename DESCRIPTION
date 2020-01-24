@@ -24,8 +24,7 @@ Depends:
 Imports:
     stats,
     utils,
-    iterators,
-    pkgmaker (>= 0.20)
+    iterators
 Suggests:
     doParallel,
     doMPI,
@@ -34,10 +33,8 @@ Suggests:
     devtools,
     knitr,
     bibtex,
-    testthat
-Collate:
-    'doRNG-package.R'
-    'doRNG.R'
+    testthat,
+    pkgmaker (>= 0.20)
 RoxygenNote: 7.0.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
 Remotes: renozao/roclets
