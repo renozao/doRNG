@@ -326,8 +326,8 @@ test_that("Initial RNG state is properly handled", {
     # determine if the package is a development or installed package
     if( dir.exists(file.path(pkg_path, "Meta")) ) load_cmd <- sprintf("library(doRNG, lib = '%s')", lib_path)
     else load_cmd <- sprintf("devtools::load_all('%s')", pkg_path)
-    # results are saved in a temporary .rds file
-    tmp_res <- tempfile("rscript_res_", fileext = ".rds")
+    # results are saved in a temporary .rds file (substitute backslashes with forward slash for Windows)
+    tmp_res <- gsub("\\", "/", tempfile("rscript_res_", fileext = ".rds"), fixed = TRUE)
     on.exit( unlink(tmp_res) )
     
     r_code <- paste0(collapse = "; ", 
