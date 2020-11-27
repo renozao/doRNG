@@ -4,12 +4,16 @@
 # see the wiki:
 #   https://github.com/craigcitro/r-travis/wiki
 
+dist: bionic
 language: r
 sudo: required
 r_binary_packages:
   - rmpi
   - devtools
   - git2r
+apt_packages:
+  - libopenmpi-dev
+  - libhiredis-dev
 cache: packages
 r:
   - release
@@ -17,9 +21,6 @@ r:
 r_packages:
   - covr
   - doMPI
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install libopenmpi-dev r-cran-rmpi
 warnings_are_errors: false
 after_success:
   - Rscript -e 'covr::codecov()'
