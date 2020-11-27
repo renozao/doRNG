@@ -15,6 +15,7 @@ apt_packages:
   - libopenmpi-dev
   - openmpi-bin
   - libhiredis-dev
+  - ghostscript-x
 cache: packages
 r:
   - release
