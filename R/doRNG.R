@@ -186,7 +186,7 @@ getDoBackend <- function(){
 }
 setDoBackend <- function(backend){
 	ob <- getDoBackend()
-	do.call('setDoPar', backend)
+	do.call(setDoPar, backend)
 	invisible(ob)
 }
 
@@ -371,7 +371,7 @@ setDoBackend <- function(backend){
 	# generate a sequence of streams
 #	print("before RNGseq")
 #	showRNG()
-	obj$args$.doRNG.stream <- do.call("doRNGseq", c(list(n=N_elem, verbose=obj$verbose), rngSeed))
+	obj$args$.doRNG.stream <- do.call(doRNGseq, c(list(n=N_elem, verbose=obj$verbose), rngSeed))
 #	print("after RNGseq")
 #	showRNG()
 	#print(obj$args$.doRNG.stream)
@@ -429,7 +429,7 @@ setDoBackend <- function(backend){
 					substitute(ex)))
     
 	# call the standard %dopar% operator
-	res <- do.call('%dopar%', list(obj, ex), envir=parent.frame())
+	res <- do.call(`%dopar%`, list(obj, ex), envir=parent.frame())
 	# add seed sequence as an attribute (skip this for NULL results)
 	if( !is.null(res) ){
 	  attr(res, 'rng') <- obj$args$.doRNG.stream
