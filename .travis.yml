@@ -17,6 +17,9 @@ r:
 r_packages:
   - covr
   - doMPI
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install r-cran-rmpi
 warnings_are_errors: false
 after_success:
   - Rscript -e 'covr::codecov()'
