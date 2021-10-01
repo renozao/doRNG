@@ -35,6 +35,6 @@ Suggests:
     bibtex,
     testthat,
     pkgmaker (>= 0.31)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
 Remotes: renozao/roclets
