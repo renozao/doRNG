@@ -42,7 +42,7 @@ jobs:
       - name: Binary dependencies
         if: matrix.config.os == 'ubuntu-latest'
         run: |
-          sudo apt-get install libopenmpi-dev openmpi-bin libhiredis-dev ghostscript-x
+          sudo apt-get install libopenmpi-dev openmpi-bin libhiredis-dev ghostscript-x texlive
       
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
