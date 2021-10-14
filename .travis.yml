@@ -4,12 +4,18 @@
 # see the wiki:
 #   https://github.com/craigcitro/r-travis/wiki
 
+dist: bionic
 language: r
 sudo: required
 r_binary_packages:
   - rmpi
   - devtools
   - git2r
+apt_packages:
+  - libopenmpi-dev
+  - openmpi-bin
+  - libhiredis-dev
+  - ghostscript-x
 cache: packages
 r:
   - release
