@@ -11,3 +11,4 @@ vignettes/vignette.mk
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
+^codecov\.yml$
