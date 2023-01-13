@@ -39,5 +39,4 @@ Suggests:
 RoxygenNote: 7.1.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
 Remotes: 
-  renozao/roclets,
-  renozao/pkgmaker@develop
+  renozao/roclets
