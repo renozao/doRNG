@@ -67,5 +67,7 @@
 #' 
 #' stopCluster(cl) 
 #'
-"_PACKAGE"
+NULL
+
+`_PACKAGE` <- "doRNG"
 

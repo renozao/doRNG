@@ -3,7 +3,6 @@
 \docType{package}
 \encoding{UTF-8}
 \name{doRNG-package}
-\alias{doRNG}
 \alias{doRNG-package}
 \title{Generic Reproducible Parallel Backend for foreach Loops}
 \description{
@@ -73,9 +72,5 @@ L'Ecuyer P (1999). “Good Parameters and Implementations for Combined Multiple 
 }
 \seealso{
 \code{\link{doRNG}}, \code{\link{RNGseq}}
-}
-\author{
-\strong{Maintainer}: Renaud Gaujoux \email{renozao@protonmail.com}
-
 }
 \keyword{package}
