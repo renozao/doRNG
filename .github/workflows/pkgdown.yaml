@@ -28,6 +28,11 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Linux binary dependencies
+        if: matrix.config.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install libopenmpi-dev openmpi-bin libhiredis-dev
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::pkgdown, local::.
