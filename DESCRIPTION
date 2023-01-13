@@ -36,7 +36,6 @@ Suggests:
     testthat,
     pkgmaker (>= 0.32.7),
     covr
-RoxygenNote: 7.1.2
-Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
-Remotes: 
-  renozao/roclets
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE, roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
+Remotes: renozao/roclets

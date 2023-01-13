@@ -12,7 +12,7 @@ doRNG(obj, ex, envir, data)
 \arguments{
 \item{data}{configuration data of the doRNG backend}
 
-\item{item}{the data item requested, as a character string 
+\item{item}{the data item requested, as a character string
 (e.g. 'name', 'workers', 'version')}
 
 \item{obj}{a foreach description of the loop arguments}
@@ -22,7 +22,7 @@ doRNG(obj, ex, envir, data)
 \item{envir}{the loop's evaluation environment}
 }
 \value{
-\code{infoDoRNG} returns the requested info (usually as a character 
+\code{infoDoRNG} returns the requested info (usually as a character
 string or a numeric value).
 }
 \description{
@@ -30,13 +30,13 @@ string or a numeric value).
 number of workers.
 It is not meant to be called by the user.
 }
-\section{Functions}{
-\itemize{
-\item \code{doRNG}: implements the generic reproducible foreach backend. It should 
-not be called directly by the user.
-}}
-
 \author{
 Renaud Gaujoux
 }
 \keyword{internal}
+\section{Functions}{
+\itemize{
+\item \code{doRNG}: implements the generic reproducible foreach backend. It should
+not be called directly by the user.
+}}
+

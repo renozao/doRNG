@@ -9,21 +9,24 @@ registerDoRNG(seed = NULL, once = TRUE)
 \arguments{
 \item{seed}{a numerical seed to use (as a single or 6-length numerical value)}
 
-\item{once}{a logical to indicate if the RNG sequence should be seeded at the 
+\item{once}{a logical to indicate if the RNG sequence should be seeded at the
 beginning of each loop or only at the first loop.}
+}
+\value{
+The value returned by \link[foreach:setDoPar]{foreach::setDoPar}
 }
 \description{
 \code{registerDoRNG} registers the doRNG foreach backend.
-Subsequent \%dopar\% loops are then performed using the previously 
-registered foreach backend, but are internally performed as \code{\link{\%dorng\%}} loops,
+Subsequent \verb{\%dopar\%} loops are then performed using the previously
+registered foreach backend, but are internally performed as \link{\%dorng\%} loops,
 making them fully reproducible.
 }
 \details{
-Briefly, the RNG is set, before each iteration, with seeds for L'Ecuyer's CMRG 
-that overall generate a reproducible sequence of statistically independent 
+Briefly, the RNG is set, before each iteration, with seeds for L'Ecuyer's CMRG
+that overall generate a reproducible sequence of statistically independent
 random streams.
 
-Note that (re-)registering a foreach backend other than doRNG, after a call 
+Note that (re-)registering a foreach backend other than doRNG, after a call
 to \code{registerDoRNG} disables doRNG -- which then needs to be registered.
 }
 \examples{
@@ -74,5 +77,5 @@ stopCluster(cl)
 
 }
 \seealso{
-\code{\link{\%dorng\%}}
+\link{\%dorng\%}
 }

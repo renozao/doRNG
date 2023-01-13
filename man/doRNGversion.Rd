@@ -7,15 +7,15 @@
 doRNGversion(x)
 }
 \arguments{
-\item{x}{version number to switch to, or missing to get the currently 
-active version number, or \code{NULL} to reset to the default behaviour, 
+\item{x}{version number to switch to, or missing to get the currently
+active version number, or \code{NULL} to reset to the default behaviour,
 i.e. of the latest version.}
 }
 \value{
 a character string
-If \code{x} is missing this function returns the version number from the 
+If \code{x} is missing this function returns the version number from the
 current behaviour.
-If \code{x} is specified, the function returns the old value of the 
+If \code{x} is specified, the function returns the old value of the
 version number (invisible).
 }
 \description{
@@ -26,19 +26,19 @@ given version number.
 
 
 \describe{
-\item{1.4}{ The behaviour of \code{doRNGseed}, and therefore of 
-\code{\%dorng\%} loops, changed in the case where the current RNG was 
+\item{1.4}{ The behaviour of \code{doRNGseed}, and therefore of
+\verb{\%dorng\%} loops, changed in the case where the current RNG was
 L'Ecuyer-CMRG.
-Using \code{set.seed} before a non-seeded loop used not to be identical 
+Using \code{set.seed} before a non-seeded loop used not to be identical
 to seeding via \code{.options.RNG}.
 Another bug was that non-seeded loops would share most of their RNG seed!
 }
-\item{1.7.4}{Prior to this version, in the case where the RNG had not been called yet, 
-the first seeded \code{\%dorng\%} loops would not give the identical results as 
-subsequent loops despite using the same seed 
+\item{1.7.4}{Prior to this version, in the case where the RNG had not been called yet,
+the first seeded \verb{\%dorng\%} loops would not give the identical results as
+subsequent loops despite using the same seed
 (see \url{https://github.com/renozao/doRNG/issues/12}).
 
-This has been fixed in version 1.7.4, where the RNG is called once (\code{sample(NA)}), 
+This has been fixed in version 1.7.4, where the RNG is called once (\code{sample(NA)}),
 whenever the .Random.seed is not found in global environment.
 }
 }
