@@ -14,8 +14,8 @@ Description: Provides functions to perform
     parallel environment and associated foreach backend.
 License: GPL (>=2)
 LazyLoad: yes
-URL: https://renozao.github.io/doRNG
-BugReports: http://github.com/renozao/doRNG/issues
+URL: https://renozao.github.io/doRNG/
+BugReports: https://github.com/renozao/doRNG/issues
 VignetteBuilder: knitr
 Depends:
     R (>= 3.0.0),
