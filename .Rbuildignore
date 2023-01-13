@@ -10,3 +10,5 @@ vignettes/vignette.mk
 .travis.yml
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^codecov\.yml$

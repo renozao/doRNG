@@ -32,9 +32,11 @@ Suggests:
     rbenchmark,
     devtools,
     knitr,
-    bibtex,
+    rbibutils (>= 1.3),
     testthat,
-    pkgmaker (>= 0.31)
-RoxygenNote: 7.0.2
+    pkgmaker (>= 0.32.7),
+    covr
+RoxygenNote: 7.1.2
 Roxygen: list(roclets = c('collate', 'namespace', 'roclets::rd2_roclet'))
-Remotes: renozao/roclets
+Remotes: 
+  renozao/roclets
