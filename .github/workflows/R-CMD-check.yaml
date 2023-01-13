@@ -49,6 +49,11 @@ jobs:
         run: |
           brew install gcc
           brew install open-mpi
+          
+      - name: Windows binary dependencies
+        if: matrix.config.os == 'windows-latest'
+        run: |
+          pacman -Syu msmpi
       
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
