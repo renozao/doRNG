@@ -68,8 +68,8 @@ stopCluster(cl)
 
 }
 \references{
-L'Ecuyer P (1999). “{\backslash{}Good parameters and implementations for combined multiple recursive random number generators{\backslash}}.” _Operations Research_,
-*47*(1). doi:10.1287/opre.47.1.159 <https://doi.org/10.1287/opre.47.1.159>.
+L'Ecuyer P (1999). “Good Parameters and Implementations for Combined Multiple Recursive Random Number Generators.” _Operations Research_, *47*(1), 159-164. ISSN
+0030-364X, doi:10.1287/opre.47.1.159 <https://doi.org/10.1287/opre.47.1.159>.
 }
 \seealso{
 \code{\link{doRNG}}, \code{\link{RNGseq}}

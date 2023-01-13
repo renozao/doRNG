@@ -12,7 +12,7 @@
 #' @title Generic Reproducible Parallel Backend for foreach Loops
 #' @keywords package
 #' @seealso \code{\link{doRNG}}, \code{\link{RNGseq}}
-#' @bibliography /home/renaud/Documents/articles/library.bib
+#' @bibliography ~/Documents/articles/library.bib
 #' @cite Lecuyer1999
 #' 
 #' @import stats rngtools foreach
